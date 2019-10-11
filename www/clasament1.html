@@ -184,7 +184,7 @@ function  fetch_data()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-my-points?start="+$("#startdate").val()+"&end="+$("#enddate").val()+"&employee=" + user.employee,
+        url: root_url + "/api/get-my-points?start="+$("#startdate").val()+"&end="+$("#enddate").val()+"&employee=" + user.employee,
         dataType: 'json',
         async: true,
         complete: function (e){
@@ -199,7 +199,7 @@ function  fetch_data()
                                 tbalance += n ;
               if(n > 0)
               	n = "+" + e[i].points
-                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="https://citygrillgroup.jobs/'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' ('+n+')</p></div></div>' 
+                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="'+root_url +'/'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' ('+n+')</p></div></div>' 
 
                 counter++;
                 $("#items").append(div)

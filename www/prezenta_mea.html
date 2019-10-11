@@ -167,7 +167,7 @@ var year_counterm = 0;
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/prezenta-luna?employee="+user.employee+"&month="+month+"&year="+year,
+        url: root_url + "/api/prezenta-luna?employee="+user.employee+"&month="+month+"&year="+year,
         dataType: 'json',
         async: true,
         complete: function (json){

@@ -256,7 +256,7 @@ $(function() {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
         },
             type: "POST",
-            url: "https://citygrillgroup.jobs/manager-api/get-program-restaurant-week?restaurant=1&week=10&year=2019&category=",
+            url: root_url + "/manager-api/get-program-restaurant-week?restaurant=1&week=10&year=2019&category=",
             dataType: 'json',
             async: true,
             success: function (e){

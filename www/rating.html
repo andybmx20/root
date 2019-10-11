@@ -303,7 +303,7 @@ $(function() {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "POST",
-        url: "https://citygrillgroup.jobs/api/get-my-ratings?employee=" + user.employee,
+        url: root_url + "/api/get-my-ratings?employee=" + user.employee,
         dataType: 'json',
         async: true,
         complete: function (json){

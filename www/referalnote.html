@@ -110,7 +110,8 @@ request.onreadystatechange = function (response) {
 input.placeholder = "Loading options...";
 
 // Set up and make the request.
-request.open('GET', 'https://citygrillgroup.jobs/api/search-my-team', true);
+let url = root_url + '/api/search-my-team'
+request.open('GET', url, true);
 request.send();
 }
 </script>
