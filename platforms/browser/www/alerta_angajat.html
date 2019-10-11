@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+
+    <script src="config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: white
+}
+}
+
+
+
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+
+
+   
+<div class="app">
+<div class="">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav()"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Agenda mea</h2>
+                        <div class="navigation">
+                            <div></div>
+                        </div>
+                </div>
+                <div class="row2">
+                    <p>Toate notificarile</p>
+                </div>
+                </header>
+
+                              <div id="planificare">
+                                <div onclick="route(1)" id="back"><i class="fas fa-arrow-circle-down"></i></div>
+                <h3>Planificare muncă</h3>
+                    <p>Intru la muncă:</p>
+
+                <div class="boxx">
+                    <p>Ziua</p>
+                    <input onchange="fetch_c_date()" id="date_in" type="date" name="">
+                    <p>Ora</p>
+                    <input onchange="fetch_c_date()" id="hour_in" type="time" name="">
+                </div>
+                                    <p>Ies la muncă:</p>
+                <div class="boxx">
+                                      <p>Ziua</p>
+
+                    <input onchange="fetch_c_date()" id="date_out" type="date" name="">
+                    <p>Ora</p>
+                    <input onchange="fetch_c_date()" id="hour_out" type="time" name="">
+                </div>
+                <p>Număr de ore planificate:</p>
+                <div class="oreee">
+                    <p>Ore zi:</p>
+                    <p id="zi">0</p>
+                    <p>Ore noapte:</p>
+                    <p id="noapte">0</p>
+                    <p>Total ore:</p>
+                    <p id="total">0</p>
+                </div>
+                <p>Brandul de restaurante</p>
+                <div id="brands">
+                    <div class="imgcontainer">
+                      <div id="7" onclick="fill_restaurants(7, this)"><img src="https://citygrillgroup.jobs/uploads/brands/carucubere.png"><p>CCB</p></div>
+                      <div id="8" onclick="fill_restaurants(8, this)"><img src="https://citygrillgroup.jobs/uploads/brands/hanuberarilor.png"><p>HB</p></div>
+                      <div id="9" onclick="fill_restaurants(9, this)"><img src="https://citygrillgroup.jobs/uploads/brands/citygrill.png"><p>CG</p></div>
+                      <div id="10" onclick="fill_restaurants(10, this)"><img src="https://citygrillgroup.jobs/uploads/brands/citycafe.png"><p>CC</p></div>
+                      <div id="11" onclick="fill_restaurants(11, this)"><img src="https://citygrillgroup.jobs/uploads/brands/buongiorno.png"><p>TB</p></div>
+                      <div id="12" onclick="fill_restaurants(12, this)"><img src="https://citygrillgroup.jobs/uploads/brands/pescarus.png"><p>P</p></div>
+                      <div id="13" onclick="fill_restaurants(13, this)"><img src="https://citygrillgroup.jobs/uploads/brands/hanumanuc.png"><p>HM</p></div>
+                    </div>
+                </div>
+                <p>Restaurantul unde voi munci</p>
+                <select id="res">
+                  <option>Alege o optiune</option>
+                </select>
+                <p >Poziția</p>
+                <select id="pozitii">
+                                    <option>Alege o optiune</option>
+                </select>
+                <p id="frev">Frecvență</p>
+                <select onchange="daily(value)">
+                  <option value="1">O singura data</option>
+                  <option value="2">Se repeta zilnic</option>
+                  <option value="3">Se repeta saptamanal</option>
+                  <option value="4">Se repeta lunar</option>
+                </select>
+                <div id="frecventa">
+
+                </div>
+
+                <button onclick="send_data()" class="btn btn-defaut">Salveaza planificarea</button>
+
+                </div>
+
+              </div>
+
+
+</div></div>
+</body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+</html>
+
+<script type="text/javascript">
+
+  var id_restaurant_selected = new Array();
+  var _frecventa;
+
+  function  fetch_c_date()
+  {
+    var total_ore = 0;
+    var ore_zi = 0;
+    var ore_noapte = 0;
+    if($("#date_in").val() && $("#hour_in").val() &&  $("#date_out").val() && $("#hour_out").val())
+    {
+      openLoader()
+      
+       $.ajax
+        ({
+          beforeSend: function (xhr) {
+          xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+        },
+          type: "GET",
+          url: "https://citygrillgroup.jobs/api/calculate-total-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
+          dataType: 'json',
+          async: false,
+          success: function (r){              
+              total_ore = r;
+            }
+          })
+           $.ajax
+        ({
+          beforeSend: function (xhr) {
+          xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+        },
+          type: "GET",
+          url: "https://citygrillgroup.jobs/api/calculate-day-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
+          dataType: 'json',
+          async: false,
+          success: function (r){              
+              ore_zi = r;
+              if(total_ore - ore_zi > 0)
+                  ore_noapte = total_ore - ore_zi
+                closeLoader()
+              document.getElementById("zi").innerText = ore_zi
+              document.getElementById("noapte").innerText = ore_noapte
+              document.getElementById("total").innerText = total_ore
+              validate_hours()
+            }
+          })
+    }
+
+
+
+  }
+
+  function validate_hours()
+  {
+    if(document.getElementById("zi").innerText < 0)
+    {
+      alert("Nr ore zi negativ")
+      return 0;
+    }
+    if(document.getElementById("noapte").innerText < 0)
+    {
+      alert("Nr ore noapte negativ")
+      return 0;
+    }
+    if(document.getElementById("total").innerText < 0)
+    {
+      alert("Nr ore total negativ")
+      return 0;
+    }
+  }
+
+  function  send_data(x)
+  {
+    if(validate_hours()==0)
+      return ;
+    var username = "", cnp = "", start_work_date = "", start_work_time = "", end_work_date="", end_work_time="", day_hours = "", night_hours = "", total_hours = "", id_restaurant = "", id_job = "", id_frequency = "", frequency_daily_workings="" , frequency_daily_non_workings="", end_frequency_date="" ;
+
+    username = user.username;
+    cnp = user.employee;
+    start_work_date = $("#date_in").val();
+    start_work_time = $("#hour_in").val();
+    end_work_date = $("#date_out").val();
+    end_work_time = $("#hour_out").val();
+    id_restaurant = $("#res").val();   
+    frequency_daily_workings = $("#frequency_daily_workings").val();
+    frequency_daily_non_workings = $("#frequency_daily_non_workings").val();
+    end_frequency_date = $("#end_frequency_date").val();
+    id_job = $("#pozitii").val()
+
+
+    var data = "username=" + username + "&employee=" + cnp +"&start_work_date=" + start_work_date +"&start_work_time=" + start_work_time +"&end_work_date=" + end_work_date +"&end_work_time=" + end_work_time +"&id_restaurant=" + id_restaurant + "&id_job=" + id_job;
+    var url = "https://citygrillgroup.jobs/api/new-plan?"
+    if(_frecventa == 1) {
+      data += "&id_frequency=1";
+      url += data;
+    }
+
+    if(_frecventa == 2)
+    {
+      data += "&id_frequency=2&frequency_daily_workings=" + frequency_daily_workings + "&frequency_daily_non_workings=" + frequency_daily_non_workings + "&end_frequency_date=" + end_frequency_date;
+      url += data;
+    }
+
+    if(_frecventa == 3)
+    {
+      var days = "";
+      for(var i=0;i<$(".selected").length;i++)
+        days += ","+$($(".selected")[i]).attr("day");
+
+      data += "&id_frequency=3"
+      data += "&frequency_weekly_days=" + days;
+      data += "&end_frequency_date=" + $("#repetasapt").val();
+      data += "&every_number_period=" + $("#innumber").val()
+
+      url += data;
+    }
+    openLoader()
+      $.ajax
+      ({
+        beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+      },
+        type: "POST",
+        url: url,
+        dataType: 'json',
+        async: true,
+        complete: function (r){   
+                    closeLoader()           
+          alert(r.responseText)
+          window.location = "./agendamealogat.html";
+      }})
+
+  }
+
+function  daily(x)
+{
+  _frecventa = x;
+  var text = "";
+  if(x == 2)
+      text = '                  <p>Se repeta pana in data de:</p>   <div>               <input class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset" id="end_frequency_date" type="date" name="">                </div>  <div style="display: flex">                    <div>                      <p>Zile lucratoare</p>             <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">         <input id="frequency_daily_workings" type="number" name="">              </div>      </div>                    <div>                      <p>Zile libere</p>             <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">            <input id="frequency_daily_non_workings" type="number" name="">        </div>            </div>                  </div>'
+  else if(x == 3) 
+    text = `<div style="display: flex"><p>O data la </p><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input id="innumber" type="number" name=""></div><p> saptamana</p></div>                  <p>Zilele in care sa lucrezi</p>                  <div id="daysw">   <div day="1" class="selected" onclick="$(this).toggleClass('selected')"><p>Lun</p></div>                    <div day="2"  class="selected" onclick="$(this).toggleClass('selected')"><p>Mar</p></div>                    <div day="3" class="selected"onclick="$(this).toggleClass('selected')"><p>Mie</p></div>                    <div  day="4" class="selected"onclick="$(this).toggleClass('selected')"><p>Joi</p></div>                    <div day="5"  class="selected" onclick="$(this).toggleClass('selected')"><p>Vin</p></div>
+                    <div day="6"  onclick="$(this).toggleClass('selected')"><p>Sam</p></div>
+                    <div day="7"  onclick="$(this).toggleClass('selected')"><p>Dum</p></div>
+
+                  </div>
+                  <p>Se repeta pana in data:</p>
+                <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">  <input id="repetasapt" type="date" name=""></div>`
+
+  document.getElementById("frecventa").innerHTML = text
+}
+
+function fetch_res(ids)
+  {
+      $("#res").html("");
+    $("#res").append("<option>Alege o optiune</option>")
+    
+    r = user.restaurants        
+            for(var j=0;j<r.length;j++) {
+              $("#res").append("<option value="+r[j].id+">"+r[j].restaurant+"</option>")
+            }
+
+  }
+
+function fetch_poziti()
+{
+          
+          r = user.jobs
+      for(var j=0;j<r.length;j++) {
+        $("#pozitii").append("<option value="+r[j].id+">"+r[j].pozitie+"</option>")
+      }
+
+  
+
+}
+
+function fill_restaurants(id, e)
+{
+  if(id_restaurant_selected.includes(id))
+    removeA(id_restaurant_selected, id);
+  else
+      id_restaurant_selected.push(id);
+  console.log(id_restaurant_selected);
+  $(e).toggleClass("imgselected");
+  fetch_res(id_restaurant_selected)
+}
+
+$(function() {
+    var user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || !parola)
+          window.location = "./login.html";
+      if("restaurants" in user)
+        if(user.restaurants)
+                  if(user.restaurants.length)
+          if("id" in user.restaurants[0])
+            if(user.restaurants[0].id) {
+              fill_restaurants(user.restaurants[0].id, "");
+              if($("#" + user.restaurants[0].id))
+                  $("#" + user.restaurants[0].id).addClass("imgselected")
+                    fetch_poziti()
+
+            }
+});
+
+</script>
+
+
+<style>
+.row2 {
+  display: none;Z
+}
+.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a {
+      box-shadow: unset;
+  background: none;
+}
+
+#daysw > div {
+  border-radius: 50%;
+  background: white;
+  color: black;
+    width: 100%;
+  text-align: center;
+}
+
+#daysw {
+  display: flex;
+}
+
+.ui-input-text input, .ui-input-search input {
+  background: white;
+}
+
+#daysw p {
+  min-width: unset!important;
+}
+
+#daysw .selected {
+  background:  #009DD9;
+  color: white;
+}
+
+
+
+
+input {
+    border: none;
+        outline: 0px solid #555 !important;
+    box-shadow: unset;
+box-shadow: unset!important;
+    width: -webkit-fill-available;
+    padding: unset;
+    outline: unset;
+    margin-left: unset;
+    -moz-box-shadow: unset;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    margin-bottom: unset;
+    padding-bottom: unset;
+    padding-left: unset;
+height: 2em;
+    background: white;
+}
+#planificare {
+    z-index: 99999;
+        margin-top: 4em;
+
+    position: absolute;
+    width: 90%;
+    height: fit-content;
+    background: ghostwhite;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#frecventa p {
+        font-size: medium;
+            min-width: 5em;
+}
+
+#frecventa {
+      padding-bottom: 2em;
+}
+
+input[type="time"] {
+  outline: 0!important;
+}
+
+.boxx{
+        display: flex;
+    text-align: center;
+    height: 3.5em;
+}
+
+.boxx p {
+    margin-top: 20px;
+    font-size: 15px;
+
+}
+
+
+.imgcontainer {
+  display: flex;
+  }
+
+  .imgcontainer > div > img{
+max-width: 100%;
+    max-height: inherit;
+        min-height: 3.3em;
+        max-height: 3.3em;
+
+}
+
+
+.imgcontainer > div > p{
+margin: 0;
+    text-align: center;
+    padding-bottom: 5px;
+    background: white;
+    margin-top: -4px;
+    padding-top: 5px;
+}
+
+#back > i {
+      font-size: 28px;
+    color: grey;
+}
+
+#back {
+  position: absolute;
+    width: 100%;
+    text-align: right;
+    margin-left: -12%;
+}
+
+.imgcontainer > div {
+    width: 100%;
+    height: fit-content;
+    border: 1px solid red;}
+
+._nr {
+    font-size: 11px;
+    width: 2.6em;
+    text-align: center;
+    height: 30%;
+    margin-top: 0.8em;
+    background: #7ffa7f;
+    margin-right: 10px;
+    color: #f6f2f2;
+    padding-top: 15px;
+}
+
+.arrow_up {
+        margin: 0;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin-top: -2.5em;
+}
+
+.fa-clock {
+      margin-left: -0.18em!important;
+}
+
+.fa-crown {
+      margin-left: -0.3em!important;
+}
+
+.selects {
+        margin-top: 3em;
+        color: white;
+}
+
+.selects p {
+    font-size: 14px;
+}
+
+.arrow_up > i {
+background: grey;
+    padding: 2em;
+    z-index: -99999999999999;
+    margin-top: 0.4em;
+    color: white;
+    border-radius: 50%;
+}
+
+.ui-input-text {
+  width: 100%;
+}
+
+.imgselected {
+    border: 2px solid red!important;
+}
+
+ 
+.imgselected > p {
+    background: red!important;
+    color: white!important;
+}
+
+.filters {
+position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 2.7em;
+    padding-top: 0.5em;
+}
+
+
+.oreee {
+    display: flex;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.oreee p {
+    width: 100%;
+}
+
+.hours {
+    display: flex;
+}
+
+.expand {
+        height: 13.7em!important;
+}
+
+.hours p {
+        margin-top: 12px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.ftype {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+.ftype > .selected {
+    background: red;
+    color: white;
+}
+
+.fa-arrow-up:before, .fa-arrow-down:before  {
+    margin-top: -1.5em;
+    position: absolute;
+    margin-left: -0.4em;
+}
+
+.ftype > div {
+        width: 50%;
+        background: white;
+            border: 1px solid #55555547;
+
+    text-align: center;
+}
+
+#thours {
+    font-size: 13px;
+    margin-top: 18px;
+    margin-right: 0.2em;
+}
+
+</style>

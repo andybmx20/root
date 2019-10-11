@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+
+    <script src="config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: white
+}
+}
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+   
+<div class="app">
+
+<div id="prizes">
+
+</div>
+
+<div class="">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav(15)"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Premii</h2>
+                        <div class="navigation">
+                            <div><p id="pun">0 puncte</p></div>
+                        </div>
+                </div>
+                <div id="rr" class="row2">
+                    <p></p>
+                </div>
+                </header>
+
+
+</div></div>
+
+</body>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+</html>
+
+<script type="text/javascript">
+/*
+<div>
+  <div><img src=""></div>
+  <div><p></p></div>
+  <div><p></p><p></p></div>
+  <button>dsad</button>
+</div>*/
+
+var json = {}
+var index;
+
+function  counter(x)
+{
+  console.log(json)
+  var s = document.getElementById("number").value
+  if(Number(Number(s) + Number(x)) >= 0) {
+    document.getElementById("number").value = Number(Number(s) + Number(x));
+    document.getElementById("pun").innerText = user.points - $("#number").val() + " puncte";
+    document.getElementById("final").innerText = $("#number").val() + " puncte"
+    }
+  }
+
+
+function favorite(x, i)
+{
+    if($(x).hasClass("far"))
+      $(x).removeClass("far").addClass("fas")
+    else
+      $(x).removeClass("fas").addClass("far")
+
+        $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/toggle-favorite-prize?id="+i+"&employee=" + user.employee,
+        dataType: 'json',
+        async: true,
+        success: function (r){
+            alert(r)
+        }
+    }); 
+}
+
+function reload()
+{
+  location.reload()
+}
+
+function    show_item(i)
+{
+  index = i;
+  document.getElementById("prizes").style.display = "none";
+  var r = json;
+  document.getElementById("rr").innerHTML = "<p class='mtit'>" + r[i].title + "</p>"
+  document.getElementsByClassName("title")[0].innerText = "Premiu selectat"
+  document.getElementsByClassName("fa-bars")[0].className = "fas fa-arrow-circle-left"
+
+  var img = "https://citygrillgroup.jobs"+r[i].image
+             var fav = '<i onclick="favorite(this, '+r[i].id+')" class="far fa-heart"></i>'
+
+  var data = "<div id='prize'>"
+  document.getElementById("menu").setAttribute("onclick", "reload()");
+
+  data += "<div onclick='show_item("+i+")' class='prize'>  <div><img src="+img+"></div>  <div></div>  <div class='asd ba'><p>"+r[i].points+" puncte</p><p>"+fav+"</p></div></div>"
+  data += "<div class='prize blaa'> <p class='key'>Brand</p><p>" + r[i].brand + "</p> </div>"
+  data += "<div class='prize blaa'> <p class='key'>Model</p><p>" + r[i].model + "</p> </div>"
+  data += "<div class='prize blaa'> <p class='key'>Descriere</p><p>" + r[i].description + "</p> </div>"
+  data += "<div class='prize blaa'> <p class='key'>Caracteristici</p><p>" + r[i].caracteristics + "</p> </div>"
+
+  data += "</div>"
+
+  console.log(json[i])
+
+  $($(".app")[0]).append(data)
+}
+
+/*
+
+<div id="basket">
+  <img src="https://helpguide.sony.net/tv/faep2/v1/ro/images/picturemode_vivid_400px.png">  
+  <div>
+    <p class="matitle">TTTTTTTTTTTTTTTTTTTTTTTT</p>
+    <p class="description">TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT</p>
+    <div class="basket_bottom">
+      <div class='a1sd'>
+        <div><button onclick="counter(-1)">-</button></div>
+        <div><input id="number" value="0" type="number" name=""></div>
+        <div><button onclick="counter(1)">+</button></div>
+      </div>
+      <div class="balance">
+        <p>0</p>
+        <i class="fa fa-star"></i>
+      </div> 
+    </div>
+  </div>
+</div>
+
+*/
+
+var order = 0;
+
+function  removeBasket()
+{
+   $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/empty-basket?employee=" + user.employee,
+        dataType: 'json',
+        async: true,
+        complete: function (z){
+          alert(z.responseText)
+          window.location = "premi.html"
+            closeLoader()
+        }
+    }); 
+}
+
+function  confirm()
+{
+  openLoader()
+   $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/confirm-order?order=" + order,
+        dataType: 'json',
+        async: true,
+        complete: function (z){
+          alert(z.responseText)
+            $.ajax
+              ({
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+            },
+                type: "POST",
+                url: "https://citygrillgroup.jobs/api/login",
+                dataType: 'json',
+                async: true,
+                complete: function (e){
+                  console.log(e.responseJSON)
+                window.localStorage.setItem("user", JSON.stringify(e.responseJSON));
+
+                window.location = "premi.html"
+
+                }
+            });
+          
+        }
+    }); 
+}
+
+
+function  _continue()
+{
+var n = $("#pun").html()
+  if(n[0] == "-") {
+    alert("Puncte insuficiente")
+    return;
+  }
+
+  var data = '<p>' +user.firstname + ' ' + user.lastname + ' : ' + user.phone + '</p>'
+  data += '<p>' + 'adresa ' + '</p>'
+  data += "<button class='btn' onclick=route('e')>Schimba adresa</button>"
+openLoader();
+
+ $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/update-prize-order?order="+order+"&quantity="+$("#number").val(),
+        dataType: 'json',
+        async: true,
+        complete: function (z){
+            closeLoader()
+        }
+    }); 
+
+  document.getElementById("basket").innerHTML = data;
+  document.getElementById("cont").innerText = "Trimite comanda"
+  document.getElementById("cont").setAttribute("onclick", "confirm()");
+
+}
+
+function    basket_item(i)
+{
+  index = i;
+  var r = json;
+  if(r[i].points > user.points)
+  {
+    alert("Puncte insuficiente")
+    return ;
+  }
+
+if(!basket) {
+  openLoader()
+
+    $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/add-prize-to-basket?id="+r[i].id+"&employee="+user.employee+"&quantity=1",
+        dataType: 'json',
+        async: true,
+        success: function (z){
+            order = z;
+            console.log(z)
+            closeLoader()
+        }
+    }); 
+}
+    document.getElementById("prizes").style.display = "none";
+
+  document.getElementById("rr").innerHTML = "<p class='mtit'>" + r[i].title + "</p>"
+  document.getElementsByClassName("title")[0].innerText = "Premiu selectat"
+  document.getElementsByClassName("fa-bars")[0].className = "fas fa-arrow-circle-left"
+
+  var img = "https://citygrillgroup.jobs"+r[i].image
+
+  var data = `<div id="basket"><img src="`+img+`"><div><p class="matitle">`+r[i].title+`</p><p class="description">`+r[i].description+`</p><div class="basket_bottom"><div class='a1sd'><div><button class=' ui-btn ui-shadow ui-corner-all' onclick="counter(-1)">-</button></div><div><input id="number" onchange="counter(0)" value="1" type="number" name=""></div><div><button class=' ui-btn ui-shadow ui-corner-all' onclick="counter(1)">+</button></div></div><div class="balance"><p>`+r[i].points+` puncte</p></div></div>
+  </div></div>`
+  document.getElementById("menu").setAttribute("onclick", "reload()");
+  data += '<div class="golire" onclick="removeBasket()"">Golire cos</div>'
+
+  data += "<div class='sumar'><p>Sumar comandă</p><div class='qwe'><p>Cost total produse</p><p id='final'></p></div><p>Produsele vor fi livrate prin curier, în maxim 5 zile lucrătoare de la efectuarea comenzii.</p><button id='cont' onclick='_continue()' class='btn btn-succes'>Continua</button</div>"
+
+  data += "</div>"
+
+
+  $($(".app")[0]).append(data)
+                  document.getElementById("number").value = quantity
+
+        document.getElementById("final").innerText = $("#number").val() + " puncte"
+
+}
+
+var basket;
+var quantity = 1;
+
+function check_basket()
+{
+      $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/get-basket?employee=" + user.employee,
+        dataType: 'json',
+        async: false,
+        success: function (p){
+            if(p)
+              if("prize_id" in p) {
+                basket = p.prize_id
+                order = p.order_id
+                quantity = p.quantity
+                document.getElementById("pun").innerText = (user.points - p.points) + " puncte"
+
+              }
+        }
+    }); 
+}
+
+function    fetch_prizes()
+{
+  openLoader()
+        $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/get-prizes",
+        dataType: 'json',
+        async: true,
+        success: function (r){
+          json = r;
+            console.log(r)
+            closeLoader()
+              check_basket()
+            for(i in r)
+            {
+              var text = (r[i].points < user.points) ? "Adauga in cos" : "Acumuleaza puncte" 
+              var grey = (r[i].points < user.points) ? "" : "grey" 
+              var opacity = (r[i].points < user.points) ? "1" : "0.8" 
+
+              var img = "https://citygrillgroup.jobs"+r[i].image
+             var fav = '<i onclick="favorite(this, '+r[i].id+')" class="far fa-heart"></i>'
+              var data = "<div style='opacity:"+opacity+"'  class='prize'>  <div onclick='show_item("+i+")'><img src="+img+"></div>  <div><p onclick='show_item("+i+")' class='ztitle'>"+r[i].title+"</p></div>  <div class='asd'><p>"+r[i].points+" puncte</p><p>"+fav+"</p></div>  <button onclick='basket_item("+i+")' style='background:"+grey+"' class='btn btn-succes'>"+text+"</button></div>"
+              $("#prizes").append(data)
+              if(r[i].id == basket)
+              {       
+                    basket_item(i)
+
+              }
+            }
+
+        }
+    }); 
+}
+
+$(function() {
+          user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
+      document.getElementById("pun").innerText = user.points + " puncte"
+    fetch_prizes();
+
+
+
+      });
+
+
+</script>
+
+
+<style>
+
+.menuname p {
+    font-size: 14px;
+    font-weight: 200;
+    margin-top: -10px;
+}
+
+.golire {
+  color: red;
+    font-weight: bold;
+    padding: 1em;
+    padding-bottom: 0;
+}
+
+.mtit {
+      margin-top: 7px;
+    margin-bottom: 6px;
+}
+
+.prize {
+  text-align: center;
+}
+
+#prizes, #prize, #basket {
+      margin-top: 5.5em;
+}
+
+.prize img {
+    width: auto;
+    height: 6em;
+    padding-top: 1em;
+}
+
+#number {
+    text-align: center;
+    height: 2.8em;
+    margin-top: 9px;}
+
+.prize {
+      padding: 1em;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    background: ghostwhite;
+    border-radius: 4%;
+        margin: 1em;
+
+}
+
+#basket img {
+  height: 5em;
+    margin-top: 2em;
+    width: auto;
+}
+
+#basket {
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    margin: 0.4em;
+
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+
+    margin-top: 6em;}
+
+.fa-arrow-circle-left{
+      color: white;
+}
+
+.basket_bottom, .balance, .a1sd {
+  display: flex;
+}
+
+.basket_bottom {
+  width: 100%;
+}
+
+.balance > p {
+  text-align: right;
+}
+
+.sumar {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    padding: 0.6em;
+    margin-bottom: 1em;
+    margin-top: 5em;
+}
+
+.balance {
+  font-size: 20px;
+    margin-top: 17px;
+}
+
+.balance > i {
+  text-align: left;
+}
+
+.basket_bottom > div {
+  width: 50%;
+}
+
+.balance > * {
+  width: 100%;
+}
+
+.navigation p {
+      margin-top: 12px;
+    font-size: 17px;
+
+}
+
+.prize .ztitle {
+      padding-top: 1em;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.btn-succes {
+    background: #289828;
+    color: white;
+    width: 100%;
+}
+
+.qwe {
+      display: flex;
+          white-space: nowrap;
+
+}
+
+.ba {
+      margin-top: 2em;
+      margin-bottom: -1.2em;
+
+}
+
+#final {
+      text-align: right;
+    width: 100%;
+}
+
+.asd {
+  display: flex;
+    width: 100%;
+    font-size: 16px;
+}
+
+.asd > * {
+  width: 50%;
+  text-align: center;
+}
+
+.fa-heart {
+      font-size: 27px;
+    margin-top: -6px;
+}
+
+
+.menuname h2 {
+    font-size: 24px!important;
+    height: 2em!important;
+}
+
+.blaa {
+    padding-top: 0.6em;
+    text-align: left!important;
+    margin-top: -0.7em!important;
+    padding-bottom: 0.2em;
+}
+
+.key {
+  font-weight: bold
+}
+
+.matitle {
+      margin-top: 9px;
+    margin-bottom: -7px
+}
+
+#prize {
+  margin-top:5.5em;
+}
+</style>

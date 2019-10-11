@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *;connect-src *;" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script src="./config/global.js"></script>
+
+</head>
+
+
+<script type="text/javascript">
+    function login(x, y)
+{
+    console.log(x)
+    alert(x + ' ' + y)
+if(x && y)
+    $.ajax({
+         contentType: "application/json",
+       dataType: 'applicaton/json',
+        url: "https://citygrillgroup.jobs/api/login",  
+                type: "POST",
+        data: JSON.stringify({ "username": x, "password": y }),
+        success: function(response) {
+            fetch_config(response);
+        },
+        error: function(e) {
+            if(typeof e == "string")
+                e = JSON.parse(e);
+            fetch_config(e)
+            window.localStorage.setItem("user", e.responseText);
+            window.location = "./guest/landing.html";
+        }
+    });
+}
+
+
+function        check_username()
+{
+
+}
+</script>
+
+
+<div id="overlay">
+
+</div>
+
+<body>
+    <div id="bg" class="z">
+      <img src="./imgs/background.png" alt="">
+    </div>
+  
+   
+
+    <div class="app">
+                <div id="deviceready" class="blink login">
+
+         <div id="logotop">
+            <p><img src="./imgs/logo.png" alt=""></p>
+        </div>
+        <form action="">
+        <p class="title" style="margin-top: 6%;background: none;">Munceste liber<p>
+            <div>
+                <i class="fa icondiss fa-check"></i>
+                    <i class="fa fa_css fa-envelope"></i>
+                    <i class="fa fa_css fa-window-close" aria-hidden="true"></i>
+
+                    <input onkeyup="check_phone()" type="phone" name="phone" id="phone" required="" value="" placeholder="Telefon" />
+            </div>
+            <div id="checkcode" style="display: none">
+                <i class="fas fa-check"></i>
+                <i class="fa fa_css fa-lock"></i>
+                <input type="phone" name="checkcode" id="checkcode" required="" value="" placeholder="Cod primit prin sms" />
+            </div>
+
+            <div id="passck" style="display: none">
+                <i class="fas fa-check"></i>
+                <i class="fa fa_css fa-lock"></i>
+                <input type="text" name="password" id="passck" required="" value="" placeholder="Parola noua" />
+            </div
+                    <button type="submit" id="submit" value="Submit" onclick="resetpass()">Reset Password</button>
+                <form>
+
+            </div>
+    </div>
+
+                        <a href="#">
+                        <div class="input_subbutton bottom">
+                         <span class="_span1">Nu ai cont?</span>
+                            <span class="_span2">Creaza unul acum</span>
+                        </div>
+                    </a>
+    <script type="text/javascript" src="cordova.js"></script>
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+
+function    check_phone()
+{
+    var a = document.getElementById("phone").value;
+    if(a.length > 11)
+    {
+        
+    }
+
+}
+
+$(function() {
+    console.log('00000000000000000000000000000000000000000000000000000');
+
+
+
+});</script>

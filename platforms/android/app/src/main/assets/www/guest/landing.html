@@ -1,0 +1,49 @@
+function    fetch_agenda()
+{
+                  /* 
+                              <div class="item">
+                <div class="item_header">
+                    <p>Luni, 3 decembrie 2018<span>10ore</span></p>
+                </div>
+                 <div class="_item">
+                    <div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>
+                    <div class="_content">
+                        <p class="_restaurant">Caru cu bere <span class="_street">, Stavropoleos 5</span></p>
+                        <p class="hour">zzzzzzzzzz</p>
+                        <p class="_role">zzzzzzz</p>
+                    </div>
+                    <div class="_pastrat">
+                        <p class="_nr"></p>
+                    </div>
+                </div>
+                           >*/
+                           var hours = 0;
+            for(var i=0;i<keys.length;i++)
+             {
+                var div = '<div class="item"> <div class="item_header">   <p> '+keys[i]+' <span>'+values[i].hours+' ore</span> </p></div><div class="_item">'
+
+                var img = "";
+
+                div+='<div style="display: grid">'
+                for(var j in values[i].plan) {
+                    div+='<div class="_content"> '
+                    img = '<div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>';
+
+                     div+=img;
+                    console.log(values[i].plan[j])  
+                    var content = '<div><p class="_restaurant">'+values[i].plan[j].restaurant.name
+                    + values[i].plan[j].restaurant.address +' <span class="_street"></span></p> <p class="hour">'+values[i].plan[j].total_hours+'</p> <p class="_role">'+values[i].plan[j].job.name+'</p> </div><div class="_pastrat"><p class="_nr"></p></div></div>';
+                    hours +=parseInt(values[i].plan[j].total_hours);
+
+                    div+=content;
+                }
+                div+='</div>'
+
+                $("#items").append(div)
+            }
+                            $("#hours").html("");
+                document.getElementById("hours").innerText =hours += " ore"
+
+
+
+}

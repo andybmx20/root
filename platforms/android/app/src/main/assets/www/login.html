@@ -1,0 +1,231 @@
+    <!DOCTYPE html>
+    <!--
+        Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+        Licensed to the Apache Software Foundation (ASF) under one
+        or more contributor license agreements.  See the NOTICE file
+        distributed with this work for additional information
+        regarding copyright ownership.  The ASF licenses this file
+        to you under the Apache License, Version 2.0 (the
+        "License"); you may not use this fiale except in compliance
+        with the License.  You may obtain  copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing,
+        software distributed under the License is distributed on an
+        "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+         KIND, either express or implied.  See the License for the
+        specific language governing permissions and limitations
+        under the License.
+    -->
+    <html>
+
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+        <!-- Good default declaration:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+            * Enable eval(): add 'unsafe-eval' to default-src
+        * Create your own at http://cspisawesome.com
+        -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+
+
+
+
+    <script src="./config/global.js"></script>
+
+    </head>
+
+
+
+    <script type="text/javascript">
+        function login(x, y)
+    {
+        document.getElementsByClassName("ui-icon-loading")[0].style.display = "block"
+
+        $("body > div").addClass("ui-page-active")
+        openLoader();
+        if(x && y) {
+            openLoader();
+                    $("body > div").addClass("ui-page-active");
+            $.ajax
+              ({
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Basic " + btoa(x + ":" + y));
+            },
+                type: "POST",
+                url: "https://citygrillgroup.jobs/api/login",
+                dataType: 'json',
+                async: true,
+                complete: function (e){
+                                        closeLoader()
+                    if(e.statusText == "error")
+                    {
+                        alert("Incearca din nou")
+                        return ;
+                    }
+                    document.getElementsByClassName("ui-icon-loading")[0].style.display = "none"
+
+                    window.localStorage.setItem("parola", y);
+                    fetch_config(e)
+                    user = e;
+                    window.localStorage.setItem("user", JSON.stringify(e.responseJSON));
+                      window.location = "./agendamealogat.html";
+
+                }
+            });
+          }
+        else
+            closeLoader()
+
+                          $("body > div").addClass("ui-page-active")
+
+    }
+
+
+    function        check_username()
+    {
+        return 1;
+    }
+    </script>
+
+
+
+    <body>
+            <div id="overlay">
+
+    </div>
+
+        <div id="bg" class="z">
+          <img src="./imgs/background.png" alt="">
+        </div>
+      
+       
+
+        <div class="app">
+                    <div id="deviceready" class="blink login">
+
+             <div id="logotop">
+                <p><img src="./imgs/logo.png" alt=""></p>
+            </div>
+            <form action="">
+            <p class="title" style="margin-top: 20%;background: none;">Munceste liber<p>
+                <div>
+                        <i class="fa fa_css fa-envelope"></i>
+                        <input onchange="check_username()" type="text" name="username" id="login_username" required="" value="" placeholder="Utilizator" />
+                </div>
+                <div>
+                    <i class="fa fa_css fa-lock"></i>
+                    <input type="password" name="password" id="login_password" required="" value="" placeholder="Parola" />
+                </div>
+                    <button id="submit" onclick="login(document.getElementById('login_username').value, document.getElementById('login_password').value)">Sign in</button>
+                    <form>
+                        <div class="input_subbutton">
+                            <input id="lck" type="checkbox" name="">
+                            <span class="tinema_minte">Tine-mă minte</span>
+                            <a class="parolauit" href="#">Am uitat parola</a>
+                        </div>  
+
+                </div>
+        </div>
+
+                            <a onclick="route('re')" href="./register.html">
+                            <div class="input_subbutton bottom">
+                             <span class="_span1">Nu ai cont?</span>
+                                <span class="_span2">Creaza unul acum</span>
+                            </div>
+                        </a>
+    </body>
+
+    </html>
+
+    <script type="text/javascript">
+
+    $(function() {
+        console.log("here")
+        console.log('00000000000000000000000000000000000000000000000000000');
+
+    });</script>
+
+
+    <style>
+        .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+        background-color: #f9f9f900;
+        border-color: #bbb;
+        color: #333;
+        text-shadow: 0 1px 0 #f3f3f3;
+    }
+
+    input {
+        outline: unset!important;
+    }
+
+
+    .app {
+        z-index: 2;
+        position: absolute;
+    }
+
+    .ui-input-text {
+        height: 2em;
+    }
+
+    #lck {
+        margin-right: 0em;
+    margin-top: -0.8em;
+    float: right;
+    box-shadow: 0px 0px 0px 0px transparent!important;
+    text-align: right;
+    width: -webkit-fill-available;
+    zoom: 2;
+    margin-left: -1.3em;
+    }
+
+    .tinema_minte {
+    margin-top: 0.7em;
+    width: 100%;
+    margin-left: 0.2em;
+    font-size: smaller;
+    word-break: break-all;
+}
+
+.parolauit {
+    width: fit-content;
+    float: right;
+    text-align: right;
+    margin-top: 0.8em;
+    color: white!important;
+    font-size: smaller;
+    font-weight: 500!important;
+
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    background-color: #f9f9f900;
+    border-color: #bbb;
+    color: #333;
+    text-shadow: 0 1px 0 #f3f3f3;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    background-color: #f9f9f9;
+    border-color: #bbb;
+    color: #333;
+    text-shadow: 0 1px 0 #f3f3f3;
+}
+    </style>

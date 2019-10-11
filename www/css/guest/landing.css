@@ -1,0 +1,188 @@
+header {
+        position: inherit;
+    width: 100%;
+    height: fit-content;
+    background: red;
+    top: 0;
+    left: 0;
+    color: white;
+}
+
+
+p {
+  font-size: 10px;
+}
+
+#headernav > div {
+    width: 30%;
+    display: block!important;
+}
+
+
+
+.row1 , .row2 , .navigation {
+	display: flex;
+}
+
+
+.title {
+	font-family: 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    /* font-size: 18px; */
+    /* color: #333333; */
+    /* text-align: center; */
+    line-height: normal;
+}
+
+.navigation {
+	position: absolute;
+    right: 0;
+    margin-right: 5%;
+    font-size: 20px;
+}
+
+.fas {
+    color: #555;
+    font-size: larger;
+    margin-top: 20px;
+}
+
+.fa-bars {
+    font-size: 20px;
+}
+
+.row1 {
+	    margin-top: 10px;
+
+} 
+
+
+
+#headerav {
+    display: flex;
+}
+
+#headernav div {
+        width: 33%;
+
+}
+
+
+#menu {
+	    font-size: xx-large!important;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: -4px;
+    padding: 2%;
+    padding-left: 3%;
+}
+
+.row2 {
+	margin-top: 0px;
+    font-size: 20px;
+    margin-left: 12px;
+
+}
+
+.hours {
+	text-align: right;
+	right: 0;
+	float: right;
+	position: absolute;
+	margin-right: 20px;
+}
+
+
+
+body {
+	background-color: rgba(153, 153, 153, 0.45);
+	margin: 0;
+    top: 0;
+    padding: 0;
+    margin-top: -20px;
+}
+
+.items {
+	position: absolute;
+    width: 100%;
+    left: 0;
+    padding-bottom: 3.5em;
+        padding-bottom: 5em;
+
+}
+
+._img {
+	    margin-top: 8px;
+}
+
+._restaurant {
+      line-height: normal;
+    width: 83%;
+}
+
+._pastrat {       position: absolute;
+    right: 0;
+    height: 5em;
+    min-height: fit-content;
+    margin-right: 0.1em;
+    padding-top: 0px;}
+
+
+._content {
+    display: flex;
+    letter-spacing: 1.4px;
+    width: 100%;
+    font-size: small;
+}
+
+._item > ._content {
+    display: block;
+    letter-spacing: 1.4px;
+    width: 74%;
+    font-size: small;
+}
+
+._img img {
+    width: 40px;
+    height: auto;
+}
+
+.item_header {
+        padding-top: 6px;
+    margin-left: 1px;
+}
+
+.item {
+    background: #e3e3e3;
+    top: 0;
+    position: relative;
+    width: 100%;
+    margin-top: 0;
+    display: "flow-root";
+}
+
+._item {
+    display: -webkit-inline-box;
+    width: 100%;
+    left: 0;
+    background: ghostwhite;
+    line-height: 0.1;
+        box-shadow: 0 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.item_header {
+    top: 0;
+    width: 100%;
+    font-size: 13px!important;
+    margin-left: 15px;
+    color: black;
+    font-weight: 550;
+}
+
+
+.item_header p span{
+	float: right;
+    margin-right: 10%;
+}
+

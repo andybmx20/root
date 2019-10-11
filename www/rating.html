@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+
+    <script src="config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: white
+}
+}
+
+
+.menuname h2 {
+    font-size: 24px!important;
+    height: 2em!important;
+}
+
+th {
+    text-align: center!important;
+}
+
+#fullposition {
+      margin-top: -8.8px!important;
+
+}
+
+.progress {
+      margin-right: 2em;
+    margin-left: 2em;
+    margin-top: 1.7em;
+    height: 1.9em;
+}
+
+.fa-bars {
+      margin-top: 0.8em;
+    position: absolute;
+}
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+
+
+   
+<div class="app">
+<div class="">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav(10)"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Rating</h2>
+                        <div class="navigation">
+                            <div></div>
+                        </div>
+                </div>
+                <div class="row2">
+                  <p>0</p>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                </header>
+
+      <div>
+        <div id="alls">
+          <div class="star_container">
+            <div style="width: 15%"><p class="index">5</p></div>
+            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+                  <div class="star_container">
+            <div style="width: 15%"><p class="index">4</p></div>
+            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+                  <div class="star_container">
+            <div style="width: 15%"><p class="index">3</p></div>
+            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+                  <div class="star_container">
+            <div style="width: 15%"><p class="index">2</p></div>
+            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+                  <div class="star_container">
+            <div style="width: 15%"><p class="index">1</p></div>
+            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>  
+
+       <div class="rating">
+          <p style="opacity: 0" class="rating_score">-</p>
+          <i style="opacity: 0" class="fa fa-star" aria-hidden="true"></i>
+          <i style="opacity: 0" class="fa fa-star" aria-hidden="true"></i>
+          <i style="opacity: 0"class="fa fa-star" aria-hidden="true"></i>
+          <i style="opacity: 0"class="fa fa-star" aria-hidden="true"></i>
+          <i style="opacity: 0"class="fa fa-star" aria-hidden="true"></i>
+          <p class="rating_counter">0 recenzii</p>
+       </div>
+         <div id="note" class="note">
+
+         </div>
+</div></div>
+<div class="filters">
+
+                <div class="ftype">
+                  <div onclick="route(100)" id="alerta">
+                      <i class="fas fa-star"></i>
+                  </div>          
+                    <div id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
+                    <div id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
+                </div>
+</div>
+</body>
+
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+</html>
+
+<script type="text/javascript">
+
+/*
+
+           <div>
+
+            <div class="note_i"><img src="https://citygrillgroup.jobs/media/cache/small_thumb/images/rating.png"></div>
+             
+             <div class="note_c">
+                <div class="note_t">Rcenzie</div>
+                <div class="note_m">Mesaj</div>
+                <div class="note_d">2012</div>
+             </div>
+
+             <div class="starrs">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+             </div>
+           </div>
+
+
+*/
+
+var total_rating = 0;
+
+function  fetch_data(data)
+{
+  var i = 0;
+  total_rating = 0;
+  console.log(data)
+  for(i in data)
+  {
+    var div = '<div><div class="note_i"><img src="'+data[i].icon+'"></div><div class="note_c"><div class="note_t">' + data[i].title + '</div><div class="note_m">' + data[i].message + '</div>                <div class="note_d">' + data[i].date + '</div>             </div>             <div class="starrs">                     ';
+    total_rating += data[i].rating;
+    for(var j=0;j<5;j++)
+    {
+      if(data[i].rating > j)
+        div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
+      else
+                div += '                <i class="fa fa-star" aria-hidden="true"></i>'
+
+    }
+    div+="</div> </div>           </div>"
+    console.log(div)
+    $("#note").append(div)
+  }
+  total_rating /= i;
+  var div = "<p> "+total_rating+" </p>"
+   for(var j=0;j<5;j++)
+    {
+      if(total_rating > j)
+        div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
+      else
+                div += '                <i class="fa fa-star" aria-hidden="true"></i>'
+
+    }
+    $($(".row2")[0]).html(div)
+    if(i)
+    var a = i + ' recenzii'
+    $($(".rating_counter")[0]).html(a)
+
+    
+
+}
+
+$(function() {
+   user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
+    
+    $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "POST",
+        url: "https://citygrillgroup.jobs/api/get-my-ratings?employee=" + user.employee,
+        dataType: 'json',
+        async: true,
+        complete: function (json){
+          fetch_data(json.responseJSON)
+            }
+    });
+
+});
+
+</script>
+
+
+<style>
+
+  .row2 {
+        margin-left: -0.6em!important;
+
+  }
+
+.note_t {
+      padding-right: 2em;
+}
+
+.app {
+      margin-top: 5.6em;
+}
+
+.note > div {
+  display: flex;
+}
+.note_i {
+      margin-right: 1em;
+}
+
+.starrs {
+    font-size: 19px;
+    margin-top: 7px;
+    margin-right: 1.2em;
+    float: right;
+    right: 0;
+    text-align: right;
+    width: 100%;
+}
+
+.note_c {
+  margin-top: 7px;
+    width: 100%;
+    text-align: left;
+
+}
+
+.note_i > img {
+  width: 50px;
+    margin-top: 8px;
+    background: white;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid #d8d8d8;
+    margin-left: 20px;
+}
+
+.star_container {
+  display: flex;
+    height: 2em;
+    white-space: nowrap;
+
+}
+.stars {
+      text-align: center;
+    font-size: 24px;
+    margin-top: 11px;
+}
+.fa-star {
+  color: black;
+}
+.star_container > div {
+  width: 45%;
+}
+
+
+
+.progress-bar {
+  color: black;
+}
+
+.index {
+text-align: center;
+    font-size: 19px;
+    padding: 8px;
+    margin-top: 18px;
+
+}
+
+.row2 .fa-star {
+      font-size: 24px;
+          margin-top: 6px;
+color: white;
+}
+
+.row2 p {
+    margin-left: 4px;
+    font-size: 19px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    margin-right: 1.4em;
+}
+
+.rating {
+    display: flex;
+    height: 2em;
+    margin-top: 2em;
+    font-size: 18px;
+    background: lightgrey;
+}
+
+.rating_score {
+      margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.rating_score {
+    left: 0;
+    text-align: left;
+    height: 1em;
+    float: left;
+    /* padding-right: 0.1em; */
+    margin-top: 0.3em;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 16px;
+}
+
+.fa-star {
+      margin-top: 0.5em;
+          color: black;
+}
+
+.rating_counter {
+      width: 100%;
+    margin-top: 0.4em;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: right;
+    margin-right: 1.4em;
+}
+
+
+.golden {
+    color: #009966!important;
+
+}
+
+
+
+</style>
+
+
+<style>
+  #alerta > i {
+    font-size: 30px;
+        margin-top: 9px!important;
+    margin-left: -4px;
+
+    color: ghostwhite;
+}
+  #alerta {
+    position: fixed;
+    margin-top: -5em;
+    text-align: right;
+    margin-left: -1em;
+    /* font-size: 35px; */
+    /* border: 1px solid black; */
+    /* margin-left: 83%; */
+    border-radius: 50%;
+    background: #9A2C18;
+    padding: 0.5em;
+    box-shadow: 0 1px 2px rgb(0, 0, 0);
+    padding-top: 0;
+    margin-right: 1em;
+    right: 0;
+    width: 2em;
+padding-right: 2.46em;
+    padding-left: 0.9em;}
+  .ftype {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+  .filters {
+    position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 3.5em;
+    padding-top: 0.5em;
+}
+  .ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}
+.ftype > .selected {
+    background: #9A2C18;
+    color: ghostwhite;
+}
+.ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}#typew p, #typem p {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: 0.5em;
+} 
+
+</style>

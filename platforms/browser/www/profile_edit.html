@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+
+    <script src="./config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: white
+}
+}
+
+.app  {
+      margin-top: 3.7em;
+
+}
+
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+
+
+   
+<div class="app">
+<div class="">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav()"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Profilul meu</h2>
+                        <div class="navigation">
+                            <div></div>
+                        </div>
+                </div>
+                <div style="display: none" class="row2">
+                    <p>Toate notificarile</p>
+                </div>
+                </header>
+
+
+</div>
+
+<div class="profile">
+
+   <div class="profileheader"> 
+
+    <div>
+       <img id="img" src="#"> 
+    </div>
+
+    <div class="names">
+        <p>Prenume</p>
+        <input id="prenume" type="text" placeholder="Prenume" name="">
+        <p>Nume de familie</p>
+        <input id="nume" type="text" placeholder="Nume" name="">
+    </div>
+
+
+  </div>
+
+    <div class="profilecontent">
+      <div>
+          <div>
+            <p>Telefon</p>
+            <input placeholder="Telefon" id="telefon" type="tel" placeholder="Telefon" name="">
+          </div>
+          <div>
+            <p>Email</p>
+            <input placeholder="Email" id="email" type="email" placeholder="Email" name="">
+          </div>
+      </div>
+      <div>
+          <div>
+            <p>Gen</p>
+            <div class="gender">
+              <div><p>Femeie</p></div>
+              <div><p>Masculin</p></div>
+            </div>
+          </div>
+          <div>
+            <p>CNP</p>
+            <input placeholder="CNP" id="cnp" type="number" placeholder="CNP" name="">
+          </div>
+      </div>
+        <div>
+          <div>
+            <p>Data nasterii</p>
+            <input id="data_nasteri" type="date" name="">
+          </div>
+          <div>
+            <p>Data angajarii</p>
+            <input id="data_angajari" type="date"  name="">
+          </div>
+      </div>
+        <div>
+          <div>
+            <p>Pozitie</p>
+            <select id="poziti"></select>
+          </div>
+          <div>
+            <p>Restaurant</p>
+            <select id="restaurant"></select>
+          </div>
+      </div>
+        <div>
+          <div>
+            <p>Oras</p>
+            <select onchange="fetch_city()" id="oras"></select>
+          </div>
+          <div>
+            <p>Judet</p>
+            <select id="judet"></select>
+          </div>
+      </div>
+        <div>
+          <div>
+            <p>Strada</p>
+            <input id="strada" placeholder="Strada" type="text" name="">
+          </div>
+          <div>
+            <p>Numar</p>
+            <input id="numar" placeholder="Numar" type="text"  name="">
+          </div>
+      </div>
+        <div>
+          <div>
+            <p>Bloc</p>
+            <input id="bloc" placeholder="Bloc" type="text" name="">
+          </div>
+          <div>
+            <p>Scara</p>
+            <input id="scara" placeholder="Scara" type="text"  name="">
+          </div>
+          <div>
+            <p>Etaj</p>
+            <input id="etaj" placeholder="Etaj" type="text" name="">
+          </div>        
+          <div>
+            <p>Ap.</p>
+            <input id="apartament" placeholder="Apartament" type="text" name="">
+          </div>
+      </div>
+    </div>
+    <button onclick="send_data()" class="btn btn-default"> Salveaza </button>
+
+  </div>
+
+</div>
+</body>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+</html>
+
+<script type="text/javascript">
+
+function    fetch_city(id)
+{
+      var option = "<option>Alege</option>"
+    $(query).append(option)
+
+$("#judet").html("")
+
+ $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/cities-by-county?id=" + $("#oras").val(),
+        dataType: 'json',
+        async: false,
+        success: function (json){
+        for(var i=0;i<json.length;i++)
+        {
+           var option = "<option value=" + json[i].id_city + ">" + json[i].city + "</option>"
+          $("#judet").append(option)
+        }        
+      }
+    });
+}
+
+function    fetch_county(query, json)
+{
+      var option = "<option>Alege</option>"
+    $(query).append(option)
+
+  if(typeof json == "string")
+    json = JSON.parse(json);
+
+  for(var i=0;i<json.length;i++)
+  {
+     var option = "<option value=" + json[i].id + ">" + json[i].title + "</option>"
+    $(query).append(option)
+  }
+}
+  
+function    fetch_poziti(query, json)
+{
+      var option = "<option>Alege</option>"
+    $(query).append(option)
+
+  if(typeof json == "string")
+    json = JSON.parse(json);
+
+  for(var i=0;i<json.length;i++)
+  {
+     var option = "<option value=" + json[i].id + ">" + json[i].pozitie + "</option>"
+    $(query).append(option)
+  }
+}
+
+
+function    fetch_restaurant(query, json)
+{
+    var option = "<option>Alege</option>"
+    $(query).append(option)
+  if(typeof json == "string")
+    json = JSON.parse(json);
+console.log(json)
+  for(var i=0;i<json.length;i++)
+  {
+     var option = "<option value=" + json[i].id + ">" + json[i].title + "</option>"
+    $(query).append(option)
+  }
+}
+
+var _user = {}
+
+function  fetch_profile()
+{
+        _user = JSON.parse(window.localStorage.getItem('user'));
+
+    if("email" in _user)
+      if(_user.email)
+        $("#email").val(_user.email)
+    if("firstname" in _user)
+      if(_user.firstname)
+        $("#prenume").val(_user.firstname)
+    if("lastname" in _user)
+      if(_user.lastname)
+        $("#nume").val(_user.lastname)
+    if("cnp" in _user)
+      if(_user.cnp)
+        $("#cnp").val(_user.cnp)
+    if("phone" in _user)
+      if(_user.phone)
+        $("#telefon").val(_user.phone)
+    if("street" in _user)
+      if(_user.street)
+        $("#strada").val(_user.street)
+    if("street_no" in _user)
+      if(_user.street_no)
+        $("#numar").val(_user.street_no)
+    if("street_no" in _user)
+      if(_user.street_no)
+        $("#numar").val(_user.street_no)
+    if("stair" in _user)
+      if(_user.stair)
+        $("#scara").val(_user.stair)
+    if("id_restaurant" in _user)
+      if(_user.id_restaurant)
+        $("#restaurant").val(_user.id_restaurant).trigger("change")
+}
+
+function  send_data()
+{
+  var data = '';
+  data += "id=" + _user.id
+  data += "&email=" + $("#email").val()
+  data += "&phone=" + $("#telefon").val()
+  data += "&lastname=" + $("#nume").val()
+  data += "&firstname=" + $("#prenume").val()
+  data += "&cnp=" + $("#cnp").val()
+  data += "&street=" + $("#strada").val()
+  data += "&street_no=" + $("#numar").val()
+  data += "&stair=" + $("#scara").val()
+  data += "&email=" + $("#email").val()
+  data += "&id_restaurant=" + $("#id_restaurant").val()
+  data += "&floor=" + $("#apartament").val()
+  data += "&flat=" + $("#etaj").val()
+
+openLoader()
+
+ $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "POST",
+        url: "https://citygrillgroup.jobs/api/update-profile?" + data,
+        dataType: 'json',
+        async: true,
+        complete: function (json){
+          route("p")
+          location.reload();
+      }
+    });
+
+  console.log(data)
+}
+
+$(function() {
+      user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
+        document.getElementById("img").src = "https://citygrillgroup.jobs" + user.image;
+      console.log(user.username + " " + parola)
+      openLoader()
+       $.ajax
+          ({
+          beforeSend: function (xhr) {
+             xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola))  ;
+          },
+            type: "POST",
+            url: "https://citygrillgroup.jobs/api/login",
+            dataType: 'json',
+            async: true,
+            success: function (e){
+                window.localStorage.setItem("user", JSON.stringify(e));
+                e = user;
+                _user = user
+                fetch_profile();
+                closeLoader()
+
+            }
+        });
+
+    var res = "" +  window.localStorage.getItem('brands');
+    fetch_poziti("#poziti", window.localStorage.getItem('poziti'));
+    fetch_county("#oras", window.localStorage.getItem('countries'));
+    fetch_restaurant("#restaurant", res);
+        $("#menu").replaceWith("<i onclick=\"route('p')  \" class=\"fas fa-arrow-circle-left\"></i>")
+
+         
+
+});
+
+</script>
+
+
+<style>
+
+.fa-arrow-circle-left{
+      font-size: 23px;
+    color: ghostwhite;
+    margin-left: 0.6em;
+
+}
+
+.row1 {
+    padding-top: 10px;
+    margin-top:0px;
+    height: 3em;
+}
+
+.profileheader {
+  display: flex;
+}
+  
+.gender {
+  width: 90%;
+  display: flex;
+}
+
+.gender > div {
+height: 2.45em;
+    border: 1px solid #555555;
+    margin-top: 0.2em;
+    width: inherit;
+}
+
+.gender p {
+    text-align: center;
+    font-size: 16px;
+    /* border: 1px solid #555; */
+    margin-top: 0.6em;
+    padding-left: 6px;}
+
+img {
+      width: 125px;
+    height: 125px;
+    margin: 1em;
+    border: 1px solid #d8d8d8;
+    border-radius: 50%;
+    background: white;
+}
+
+p {
+    margin: 5px;
+    margin-left: 0;
+  }
+
+.names {
+    margin-top: 0.7em;
+    width: 100%;
+}
+
+.names input {
+      width: 98%;
+}
+
+.profilecontent > div  {
+  display: flex;
+    width: 100%;
+}
+
+.profilecontent > div > div{
+    width: 100%;
+}
+
+.profilecontent input[type=date]{
+      width: 87%;
+
+}
+
+
+input {
+    border: none;
+        outline: 0px solid #555 !important;
+    box-shadow: unset;
+box-shadow: unset!important;
+    width: auto;
+    padding: unset;
+    outline: unset;
+    margin-left: unset;
+    -moz-box-shadow: unset;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    margin-bottom: unset;
+    padding-bottom: unset;
+    padding-left: unset;
+        height: 2.5em;
+
+}
+
+</style>

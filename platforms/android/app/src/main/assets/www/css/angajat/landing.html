@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="./css/guest/landing.css" />
+    <link rel="stylesheet" type="text/css" href="./css/menu.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script src="../config/global.js"></script>
+
+
+
+<style>
+
+</style>
+
+</head>
+
+
+<script type="text/javascript">
+
+</script>
+
+<body>
+   
+    <div class="app">
+            <div class="blink login">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav()"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Agenda mea</h2>
+                        <div class="navigation">
+                            <div class="arrow_left"><i class="fas fa-arrow-left"></i></i></div>
+                            <div><p> 40 </p> </div>
+                            <div class="arrow_right"><i class="fas fa-arrow-right"></i></div>
+                        </div>
+                </div>
+                <div class="row2">
+                    <p>Saptamana in curs</p>
+                    <p class="hours">10ore</p>
+                </div>
+                </header>
+
+        <div class="items">
+            <div class="item">
+                <div class="item_header">
+                    <p>Luni, 3 decembrie 2018<span>10ore</span></p>
+                </div>
+                <div class="_item">
+                    <div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>
+                    <div class="_content">
+                        <p class="_restaurant">Caru cu bere <span class="_street">, Stavropoleos 5</span></p>
+                        <p class="hour">zzzzzzzzzz</p>
+                        <p class="_role">zzzzzzz</p>
+                    </div>
+                    <div class="_pastrat">
+                        <p class="_nr"></p>
+                    </div>
+                </div>
+                <div class="_item">
+                    <div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>
+                    <div class="_content">
+                        <p class="_restaurant">Caru cu bere <span class="_street">, Stavropoleos 5</span></p>
+                        <p class="hour">zzzzzzzzzz</p>
+                        <p class="_role">zzzzzzz</p>
+                    </div>
+                    <div class="_pastrat">
+                        <p class="_nr"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item_header">
+                    <p>Luni, 3 decembrie 2018<span>10ore</span></p>
+                </div>
+                <div class="_item">
+                    <div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>
+                    <div class="_content">
+                        <p class="_restaurant">Caru cu bere <span class="_street">, Stavropoleos 5</span></p>
+                        <p class="hour">zzzzzzzzzz</p>
+                        <p class="_role">zzzzzzz</p>
+                    </div>
+                    <div class="_pastrat">
+                        <p class="_nr"></p>
+                    </div>
+                </div>
+                <div class="_item">
+                    <div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>
+                    <div class="_content">
+                        <p class="_restaurant">Caru cu bere <span class="_street">, Stavropoleos 5</span></p>
+                        <p class="hour">zzzzzzzzzz</p>
+                        <p class="_role">zzzzzzz</p>
+                    </div>
+                    <div class="_pastrat">
+                        <p class="_nr"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+                <div id="planificare">
+                <h3>Planificare muncă</h3>
+                <div class="boxx">
+                    <p>Intru la muncă:</p>
+                    <input type="date" name="">
+                    <p>Ora</p>
+                    <input type="time" name="">
+                </div>
+                <div class="boxx">
+                    <p>Ies la muncă:</p>
+                    <input type="date" name="">
+                    <p>Ora</p>
+                    <input type="time" name="">
+                </div>
+                <p>Număr de ore planificate:</p>
+                <div class="oreee">
+                    <p>Ore zi:</p>
+                    <p>20</p>
+                    <p>Ore noapte:</p>
+                    <p>15</p>
+                    <p>Total ore:</p>
+                    <p>20</p>
+                </div>
+                <p>Brandul de restaurante</p>
+                <div id="brands">
+                </div>
+                <p>Restaurantul unde voi munci</p>
+                <select></select>
+                <p>Poziția</p>
+                <select></select>
+                <p>Frecvență</p>
+                <select></select>
+
+                </div>
+</body>
+
+
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+      <div>
+          <div><i class="fas fa-phone"></i></div>
+          <div><p>110h</p></div>
+      </div>
+      <div>
+        <div id="imgbor">
+            <img src="">
+        </div>
+      </div>
+        <div>
+          <div><i class="fas fa-arrow-left"></i></div>
+          <div><p>66p</p></div>
+      </div>
+
+  </div>
+
+  <div class="menuname">
+
+    <h2>Nume prenume</h2>
+
+    <p>Bucatar | Caru cu bere</p>
+
+  </div>
+
+
+  <div id="menuz">
+  </div>
+
+</div>
+
+</html>
+
+<script type="text/javascript">
+
+$(function() {
+    console.log('00000000000000000000000000000000000000000000000000000');
+
+    fetch_ajax();
+ 
+});
+
+
+var agenda = {
+
+    "Wednesday, 30 January 2019": {
+
+        "hours": 14.75,
+
+        "plan": {
+
+            "1": {
+
+                "id_plan": 2007,
+
+                "restaurant": {
+
+                    "id_restaurant": 1,
+
+                    "brand": null,
+
+                    "logo": "carucubere.svg",
+
+                    "id": 1,
+
+                    "name": "Caru' cu bere",
+
+                    "icon": "ccb-pin.png",
+
+                    "address": "Strada Stavropoleos 5, Bucureşti",
+
+                    "lat": "44.4320163",
+
+                    "long": "26.098127100000056"
+
+                },
+
+                "job": {
+
+                    "id": 2,
+
+                    "name": "barman"
+
+                },
+
+                "plan_status": {
+
+                    "id": 1,
+
+                    "name": "planificat",
+
+                    "icon": "<i class=\"fas fa-calendar-plus\"></i>",
+
+                    "background": "#D7D7D7",
+
+                    "color": "#333333"
+
+                },
+
+                "presence_status": {
+
+                    "id": null,
+
+                    "name": null,
+
+                    "icon": null,
+
+                    "background": null,
+
+                    "color": null
+
+                }
+
+            }
+
+        }
+
+    },
+
+    "Thursday, 31 January 2019": {
+
+        "hours": 14.75,
+
+        "plan": {
+
+            "2": {
+
+                "id_plan": 2008,
+
+                "restaurant": {
+
+                    "id_restaurant": 1,
+
+                    "brand": null,
+
+                    "logo": "carucubere.svg",
+
+                    "id": 1,
+
+                    "name": "Caru' cu bere",
+
+                    "icon": "ccb-pin.png",
+
+                    "address": "Strada Stavropoleos 5, Bucureşti",
+
+                    "lat": "44.4320163",
+
+                    "long": "26.098127100000056"
+
+                },
+
+                "job": {
+
+                    "id": 2,
+
+                    "name": "barman"
+
+                },
+
+                "plan_status": {
+
+                    "id": 1,
+
+                    "name": "planificat",
+
+                    "icon": "<i class=\"fas fa-calendar-plus\"></i>",
+
+                    "background": "#D7D7D7",
+
+                    "color": "#333333"
+
+                },
+
+                "presence_status": {
+
+                    "id": null,
+
+                    "name": null,
+
+                    "icon": null,
+
+                    "background": null,
+
+                    "color": null
+
+                }
+
+            }
+
+        }
+
+    },
+
+    "Saturday, 02 February 2019": {
+
+        "hours": 14.75,
+
+        "plan": {
+
+            "3": {
+
+                "id_plan": 2009,
+
+                "restaurant": {
+
+                    "id_restaurant": 1,
+
+                    "brand": null,
+
+                    "logo": "carucubere.svg",
+
+                    "id": 1,
+
+                    "name": "Caru' cu bere",
+
+                    "icon": "ccb-pin.png",
+
+                    "address": "Strada Stavropoleos 5, Bucureşti",
+
+                    "lat": "44.4320163",
+
+                    "long": "26.098127100000056"
+
+                },
+
+                "job": {
+
+                    "id": 2,
+
+                    "name": "barman"
+
+                },
+
+                "plan_status": {
+
+                    "id": 1,
+
+                    "name": "planificat",
+
+                    "icon": "<i class=\"fas fa-calendar-plus\"></i>",
+
+                    "background": "#D7D7D7",
+
+                    "color": "#333333"
+
+                },
+
+                "presence_status": {
+
+                    "id": null,
+
+                    "name": null,
+
+                    "icon": null,
+
+                    "background": null,
+
+                    "color": null
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
+function    fetch_ajax(cnp='', week='', day='')
+{
+    $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "car"));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/get-my-agenda?cnp=4040404040401&week=7&year=2019",
+        dataType: 'json',
+        async: false,
+        success: function (e){
+            fetch_agenda(e)
+        }
+    }); 
+}
+
+
+function    fetch_agenda(e)
+{
+                  /*  <div class="_item">
+                    <div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>
+                    <div class="_content">
+                        <p class="_restaurant">Caru cu bere <span class="_street">, Stavropoleos 5</span></p>
+                        <p class="hour">zzzzzzzzzz</p>
+                        <p class="_role">zzzzzzz</p>
+                    </div>
+                    <div class="_pastrat">
+                        <p class="_nr"></p>
+                    </div>
+                </div>*/
+
+    var key = Object.keys(e)
+
+    var div = '<div class="_item">'
+
+    var img = "";
+    img = '<div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>';
+
+    div+=img;
+
+    var content = '<div class="_content"> <p class="_restaurant">Caru cu bere <span class="_street">, Stavropoleos 5</span></p> <p class="hour">zzzzzzzzzz</p> <p class="_role">zzzzzzz</p> </div><div class="_pastrat"><p class="_nr"></p></div></div>';
+
+    div+=content;
+
+    $("")
+
+
+
+}
+
+
+
+
+</script>
+
+    <link rel="stylesheet" href="../css/lib/font_awesome.css">
+
+
+<style>
+
+#planificare {
+        z-index: 99999;
+    position: absolute;
+    width: 100%;
+    display: none;  
+    height: fit-content;
+    background: #d5d5d5;
+}
+
+#planificare p {
+        font-size: medium;
+}
+
+
+
+.boxx{
+        display: flex;
+    text-align: center;
+    height: 3.5em;
+}
+
+.boxx p {
+    margin-top: 11px;
+    font-size: 15px;
+
+}
+
+
+
+.oreee {
+    display: flex
+}
+
+.oreee p {
+    width: 16.6%
+}
+</style>
+

@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+
+    <script src="config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: ghostwhite
+}
+}
+
+
+
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+
+
+   
+<div class="app">
+<div class="">
+
+<table id="table">
+  <tr>
+    <th>Ore Saptamana</th>
+    <th>Lun</th>
+    <th>Mar</th>
+    <th>Mie</th>
+    <th>Joi</th>
+    <th>Vin</th>
+    <th>Sam</th>
+    <th>Dum</th>
+</tr>
+</table>
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav(14)"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Prezenta mea</h2>
+                        <div class="navigation">
+                            <div></div>
+                        </div>
+                </div>
+                <div class="row2">
+                    <p id="datetext">Luna in curs</p>
+                    <div class="hours">
+                        <div onclick="filter_date(-1)" class="arrow_left"><i class="fas fa-arrow-left"></i></div>
+                        <p id="fweek">18 </p> <p> / </p><p id="fyear">2019</p>
+                        <div onclick="filter_date(1)" class="arrow_right"><i class="fas fa-arrow-right"></i></div>
+                    </div>                </div>
+                </header>
+
+
+</div></div>
+</body>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+</html>
+
+<script type="text/javascript">
+var week_counter = 0;
+var year_counterw = 0;
+var month_counter = 0;
+var year_counterm = 0;
+
+
+ function       fetch_data(month, year)
+  {
+    openLoader()
+    $("#table").html('  <tr>    <th>Ore Saptamana</th>    <th>Lun</th>    <th>Mar</th>    <th>Mie</th>    <th>Joi</th>    <th>Vin</th>    <th>Sam</th>    <th>Dum</th></tr>')
+           $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/prezenta-luna?employee="+user.employee+"&month="+month+"&year="+year,
+        dataType: 'json',
+        async: true,
+        complete: function (json){
+          json = json.responseJSON
+
+          var keys = Object.keys(json)
+          var values = Object.values(json)
+          console.log(keys)
+          console.log(values)
+            closeLoader()
+          for(var i=0;i<values.length;i++)
+          {
+            _values = Object.values(values[i]);
+            var data = "<tr><th>" + keys[i] + "</th>";
+            for(var j=0;j<_values.length;j++)
+            {
+              var color = ""
+              var background = ""
+
+              if("color" in  _values[j])
+                color =  _values[j].color
+
+              if("background" in  _values[j])
+                background =  _values[j].background
+              data += "<th style='color:"+color+";background:"+background+"'>" + _values[j].hours + "</th>"
+            }
+            data += "</tr>"
+                      $("#table").append(data)
+
+          }
+
+        }
+    });
+  }
+
+
+
+  function filter_date(x)
+  {
+            if(x == 1)
+                month_counter++;
+            else if(x==-1)
+                month_counter--;
+
+            var year = new Date().getFullYear();
+
+            if((new Date()).getMonth() + month_counter > 12)
+            while( (new Date()).getMonth() + month_counter > 12) {
+                month_counter-=12;
+                year_counterm++;
+            }
+
+         if( (new Date()).getMonth() + month_counter < 0)
+            while( (new Date()).getMonth() + month_counter < 0) {
+                month_counter+=12;
+                year_counterm--;
+            }      
+            var m = (new Date()).getMonth()+ month_counter + 1;
+
+            document.getElementById("fweek").innerText = m;
+            document.getElementById("fyear").innerText =  (new Date()).getFullYear() + year_counterm;
+            fetch_data(m, new Date().getFullYear() + year_counterm);
+            if(month_counter == 0)
+                document.getElementById("datetext").innerText = "Luna in curs";
+            else if(month_counter == -1)
+                document.getElementById("datetext").innerText = "Acum o luna";
+            else if(month_counter == 1)
+                document.getElementById("datetext").innerText = "Peste o luna";
+            else if(month_counter < -1)
+                document.getElementById("datetext").innerText = "Acum "+((month_counter*-1)+1)+" luna";
+            else if(month_counter > 1)
+                document.getElementById("datetext").innerText = "Peste "+(month_counter+1)+" luna";
+            }
+
+
+$(function() {
+   user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";   
+
+        filter_date()
+       
+
+});
+
+
+</script>
+
+
+<style>
+
+.hours {
+  display: flex;
+}
+
+#table {
+    margin-top: 7em;
+    height: 100%;
+        overflow: auto;
+
+    width: 100%;
+}
+
+#table tr{  
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    height: 3em;
+}
+
+
+#table th {    border: 1px solid white;
+    min-width: 4em;
+
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+#table thead tr {
+  display: block;
+}
+
+[data-role~="page"] {
+  overflow: auto!important;
+}
+</style>

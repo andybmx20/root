@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.css" />
+
+    <script src="config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: white
+}
+}
+
+
+
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+
+
+   
+<div class="app">
+<div class="">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav(2)"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Necesar pe restaurante</h2>
+                        <div class="navigation">
+                            <div></div>
+                        </div>
+                </div>
+                <div class="row2">
+                    <p>Astazi</p>
+                    <i class="fas fa-suitcase"></i>
+                </div>
+                </header>
+
+<div class="table">
+<div class="in06"><div><p>06:00</div></div>
+<div class="in07"><div><p>07:00</p></div></div>
+<div class="in08"><div><p>08:00</p></div></div>
+<div class="in09"><div><p>09:00</p></div></div>
+<div class="in10"><div><p>10:00</p></div></div>
+<div class="in11"><div><p>11:00</p></div></div>
+<div class="in12"><div><p>12:00</p></div></div>
+<div class="in13"><div><p>13:00</p></div></div>
+<div class="in14"><div><p>14:00</p></div></div>
+<div class="in15"><div><p>15:00</p></div></div>
+<div class="in16"><div><p>16:00</p></div></div>
+<div class="in17"><div><p>17:00</p></div></div>
+<div class="in18"><div><p>18:00</p></div></div>
+<div class="in19"><div><p>19:00</p></div></div>
+<div class="in20"><div><p>20:00</p></div></div>
+<div class="in21"><div><p>21:00</p></div></div>
+<div class="in22"><div><p>22:00</p></div></div>
+<div class="in23"><div><p>23:00</p></div></div>
+<div class="in00"><div><p>00:00</p></div></div>
+<div class="in01"><div><p>01:00</p></div></div>
+<div class="in02"><div><p>02:00</p></div></div>
+<div class="in03"><div><p>03:00</p></div></div>
+<div class="in04"><div><p>04:00</p></div></div>
+<div class="in05"><div><p>05:00</p></div></div>
+</div>
+
+
+</div></div>
+</body>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+
+
+</html>
+
+            <div class="filters">
+                <div class="arrow_up" onclick="expand_filters()"><i id="arrow" class="fas fa-arrow-up"></i></div>
+                <div class="ftype">
+                    <div id="typew" onclick="weekmonth(0)" class="selected"><p>Saptamana</p></div>
+                    <div id="typem" onclick="weekmonth(1)"><p>Luna</p></div>
+                </div>
+                <div class="selects">
+                <p> Joburile mele </p>
+                <select><option>Toate</option></select>
+                <p> Confirmari </p>
+                <select><option>Toate</option></select>
+                </div>
+            </div>
+
+<script type="text/javascript">
+
+
+/*
+
+<div class="interval">
+  <div><p class="interval_title">Barman</p></div>
+    <div class="interval_content">
+      <div class="_1con">
+          <div><p class="inter_h">08:00-12:00</p></div>
+            <div>III 4h</div>
+            <div class="content_restaurant">Caru cu bere</div>
+        </div>
+        <div>
+          <img>
+        </div>
+    </div>
+</div>
+
+*/
+
+var interval_counter = 0;
+
+
+
+function      expand_filters()
+{
+    if($("#arrow").hasClass("fa-arrow-up"))
+    {
+        $($(".filters")[0]).addClass("expand");
+        $($("#arrow")).removeClass("fa-arrow-up");
+        $($("#arrow")).addClass("fa-arrow-down")
+    }else
+    {
+        $($(".filters")[0]).removeClass("expand");
+        $($("#arrow")).addClass("fa-arrow-up");
+        $($("#arrow")).removeClass("fa-arrow-down")
+    }
+}
+
+function   fetch_interval(data)
+{
+    for(var i=0;i<data.length;i++)
+    {
+      var title = 'Barman';
+      var _in = data[i].day_part_time_in.substr(0, 6);
+      var out = "22:55";
+      var date = _in + '-' + out;
+      var hours = data[i].day_part_hours + "h";
+      var restaurant_name = "Caru cu bere";
+      var restaurant_image = "";
+      var query = '.in' + data[i].day_part_time_in.substr(0, 2);
+      var margin = ((8 * interval_counter++) + 3 ) + 'em';
+      var height = 54.4 * hours+'px';
+      var z_index = _in.substr(0, 2);
+      var interval = '<div style=z-index:'+z_index+';margin-left:'+margin+';height:'+height+' class="interval"><div><p class="interval_title">' + title + '</p></div><div class="interval_content"><div class="_1con"><div><p class="inter_h">' + date + '</p></div><div><p><i class="fas fa-hourglass"></i> ' + hours + '</p></div><div class="content_restaurant"><p>' + restaurant_name + '</p></div></div><div class="_1con"><img src="https://cdn.pixabay.com/photo/2015/12/01/20/28/fall-1072821__340.jpg"></div></div></div>';
+      console.log(query)
+      $(query).append(interval)
+    }
+}
+
+$(function() {
+
+        user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
+        interval_counter = 0;
+        $("body").removeClass("ui-overlay-a")
+                $("body").removeClass(" ui-mobile-viewport")
+
+        openLoader()
+
+        $.ajax
+          ({
+          beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+        },
+            type: "POST",
+            url: "https://citygrillgroup.jobs/manager-api/get-program-restaurant-week?restaurant=1&week=10&year=2019&category=",
+            dataType: 'json',
+            async: true,
+            success: function (e){
+            console.log(e)
+            fetch_interval(e)
+            closeLoader()
+            }
+        });
+});
+
+
+
+</script>
+
+
+
+<style>
+
+
+.selects {
+        margin-top: 3em;
+        color: white;
+}
+
+.selects p {
+    font-size: 14px;
+}
+
+.ftype {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+.ftype > .selected {
+    background: #B8351D;
+    color: white;
+}
+
+.title {
+      margin-top: 0.6em;
+}
+
+.fa-arrow-up:before, .fa-arrow-down:before  {
+    margin-top: -1.5em;
+    position: absolute;
+    margin-left: -0.4em;
+}
+
+
+
+.expand {
+        height: 13.7em!important;
+}
+
+
+.ftype > div {
+        width: 50%;
+        background: white;
+            border: 1px solid #55555547;
+
+    text-align: center;
+}
+
+.arrow_up {
+        margin: 0;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin-top: -2.5em;
+}
+
+
+.filters {
+position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 2.7em;
+    padding-top: 0.5em;
+        z-index: 999;
+
+}
+.interval_title {
+  color: white;
+    margin-top: 0em;
+    min-height: 100px;    min-height: 100px;    min-height: 100px;  
+    font-weight: bold;
+        margin-left: 0.2em;
+}
+
+.fa-clock {
+      margin-left: -0.2em!important;
+
+}
+
+#headernav i {
+    font-size: 30px!important;
+    color: white!important;
+    width: 100%;
+    text-align: center;
+}
+
+.arrow_up > i {
+background: grey;
+    padding: 2em;
+    z-index: -99999999999999;
+    margin-top: 0.4em;
+    color: white;
+    border-radius: 50%;
+}
+
+.interval {
+    position: absolute;
+    background: green;
+    width: 8em;
+        min-height: 7.5em;
+    margin-left: 3em;
+        border-bottom: 2px solid #5555558c;
+    padding-left: 6px;
+
+}
+
+.content_restaurant {
+  white-space: nowrap;
+}
+
+.interval_content {
+    background: ghostwhite;
+    display: flex;
+    margin-top: -5.3em;
+    margin-left: 4px;
+    height: 100%;
+        padding-top: 0.6em;
+    box-shadow: 0 8px 2px rgba(140, 140, 140, 0.15);
+}
+
+  
+.inter_h {
+  font-size: 10px;
+}
+
+table > tr {
+    display: flex;
+}
+
+._1con {
+  width: 50%;
+    margin-left: 5px;
+
+}
+
+.app, .table {
+      overflow-y: scroll;
+    overflow-y: scroll;
+    margin-top: 3.2em;
+    width: 100em;
+    position: absolute;
+    height: 100em;
+}
+
+body.ui-mobile-viewport, div.ui-mobile-viewport {
+  height: 50em;
+}
+
+th {
+      overflow: hidden;
+}
+
+._1con p {
+  margin-top: -0.2em;
+    margin-left: 4px;
+}
+
+._1con  img{
+        width: 59.5px;
+    height: 43px;
+    margin-top: 0.9em;
+    border-radius: 25%;
+    margin-left: -1em;
+}
+
+#menu {
+      padding: 0.3em;
+}
+
+tr > th > p {
+        font-size: 14px;
+}
+
+.app > div {
+        background: ghostwhite;
+}
+
+.ui-mobile .ui-page {
+    /* min-height: 420px; */
+    height: inherit;
+        max-height: inherit!important;
+
+}
+
+.fa-suitcase {
+  color: white;
+    font-size: 26px;
+    width: 100%;
+    float: right;
+    text-align: right;
+    margin-right: 1em;
+}
+
+
+body > div {
+    width: fit-content;
+}
+
+
+body {
+  max-height: 50em;
+}
+</style>
+

@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+
+    <script src="config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: white
+}
+}
+
+table {
+    font-size: 9px;
+    font-weight: 700;
+    color: #000000c2;
+    margin-top: 12em;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+
+
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+
+
+   
+<div class="app">
+<div class="">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav(5)"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Prezenta pe restaurant</h2>
+                        <div class="navigation">
+                            <div><p id="nra">0 angajati </p></div>
+                        </div>
+                </div>
+                <div class="row2">
+                    <p id="datetext"></p>
+                                        <div class="hours">
+                        <div onclick="filter_date(-1)" class="arrow_left"><i class="fas fa-arrow-left"></i></div>
+                        <p id="fweek">18 </p> <p> / </p><p id="fyear">2019</p>
+                        <div onclick="filter_date(1)" class="arrow_right"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                </header>
+
+
+</div></div>
+<table id="angajati" style="width:100%">
+  <tr>
+    <td>Nume Prenume</td>
+    <td id="luni">Luni</td>
+    <td id="marti">Ma</td>
+    <td id="miercuri">Mie</td>
+    <td id="joi">Joi</td>
+    <td id="vineri">Vin</td>
+    <td id="sambata">Sam</td>
+    <td id="duminica">Dum</td>
+  </tr>
+</table>
+</body>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+</html>
+
+<script type="text/javascript">
+
+  /*
+
+  <tr>
+    <th>Ionurrrr</th>
+    <td>CO</td>
+    <td>8</td>
+    <td>X</td>
+    <td>Z</td>
+    <td>S</td>
+    <td>CO</td>
+    <td>15</td>
+  </tr>
+
+  */
+
+  var week_counter = 0;
+  var year_counterw = 0;
+
+  function filter_date(x)
+  {
+
+        if(x == 1)
+            week_counter++;
+        else if(x==-1)
+            week_counter--;
+
+        var week = getWeekNumber(new Date());
+        var year = new Date().getFullYear();
+
+        if(getWeekNumber(new Date()) + week_counter > 52)
+        while( getWeekNumber(new Date()) + week_counter > 52) {
+            week_counter-=52;
+            year_counterw++;
+        }
+     if(getWeekNumber(new Date()) + week_counter < 0)
+        while( getWeekNumber(new Date()) + week_counter < 0) {
+            week_counter+=52;
+            year_counterw--;
+        }      
+
+        document.getElementById("fweek").innerText = getWeekNumber(new Date())+ week_counter;
+        document.getElementById("fyear").innerText =  new Date().getFullYear() + year_counterw;
+        fetch_ajax('', getWeekNumber(new Date())+ week_counter, new Date().getFullYear() + year_counterw);
+        if(week_counter == 0)
+            document.getElementById("datetext").innerText = "Saptamana in curs";
+        else if(week_counter == -1)
+            document.getElementById("datetext").innerText = "Acum o saptamana";
+        else if(week_counter == 1)
+            document.getElementById("datetext").innerText = "Peste o saptamana";
+        else if(week_counter < -1)
+            document.getElementById("datetext").innerText = "Acum "+week_counter*-1+" saptamana";
+        else if(week_counter > 1)
+            document.getElementById("datetext").innerText = "Peste "+week_counter+" saptamana";
+  }
+
+function    status(url)
+{
+  if(url && url != "undefined" && url.length > 0){
+  openLoader()
+      $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: url,
+        dataType: 'json',
+        async: true,
+        complete: function (e){  
+        closeLoader()
+        alert("Status schimbat" + ' | apasa din nou pentru a schimba status ul')
+        filter_date()
+          }
+        
+    });
+    }
+}
+
+function fetch_data(d)
+{
+    var length = 0;
+    var bg = ""
+    var color = ""
+    for( j in d[0])
+      length++;
+    document.getElementById("nra").innerText = length-1 + " Angajati";
+    for(i = 1 ; i < length ; i++)
+    {
+      var th = "<tr>"
+        th += "<td style='display: flex;'> <img src="+d[0][i].image+"><p>" + d[0][i].nume + "</p></td>"
+
+      for(j = 0 ; j < d.length ; j++)
+      {
+          var h = d[j][i].hours
+          if("status" in d[j][i] ) {
+            cl = d[j][i].status.color
+            title = d[j][i].status.title
+             bg = d[j][i].status.background
+          }
+         else {
+          bg = null
+          cl = null
+         }
+        var url
+                 var title = ""
+                 if("status" in d[j][i])
+                  title = d[j][i].status.title
+        if(title == "" || title == "prezent")
+          url = "https://citygrillgroup.jobs" + d[j][i]["set-absent"]
+        if(title == "absent")
+          url = "https://citygrillgroup.jobs" + d[j][i]["set-liber"]        
+        if(title == "liber")
+          url = "https://citygrillgroup.jobs" + d[j][i]["set-prezent"]  
+
+          th += "<td onclick='status(`"+(url)+"`)' style='background: "+bg+";color:"+cl+"'>" + h + "</td>"
+      }
+      th += "</tr>";
+      $("#angajati").append(th)
+    }
+
+}
+
+function fetch_table_header(d)
+{
+  console.log(d)
+  $("#angajati").append('<tr>    <td>Nume Prenume</td>    <td id="luni">Luni</td>    <td id="marti">Ma</td>    <td id="miercuri">Mie</td>    <td id="joi">Joi</td>    <td id="vineri">Vin</td>    <td id="sambata">Sam</td>    <td id="duminica">Dum</td>  </tr>')
+  document.getElementById("luni").innerText = d[0]["date-header"];
+  document.getElementById("marti").innerText = d[1]["date-header"];
+  document.getElementById("miercuri").innerText = d[2]["date-header"];
+  document.getElementById("joi").innerText = d[3]["date-header"];
+  document.getElementById("vineri").innerText = d[4]["date-header"];
+  document.getElementById("sambata").innerText = d[5]["date-header"];
+  document.getElementById("duminica").innerText = d[6]["date-header"];
+
+}
+
+function fetch_ajax(cnp, week, year, restaurant=1)
+{
+  openLoader()
+  $("#angajati").html("")
+      $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/manager-api/get-weekly-restaurant-presence?week="+week+"&year="+year+"&restaurant=" + restaurant,
+        dataType: 'json',
+        async: true,
+        success: function (e){
+            var values = Object.values(e);
+            var keys = Object.keys(e);
+            closeLoader(  )
+            console.log(values)
+            fetch_table_header(values)
+            fetch_data(values)
+            console.log(keys)
+        }
+    }); 
+}
+
+$(function() {
+          user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
+
+filter_date()
+});
+
+</script>
+
+
+<style>
+
+img {
+width: auto;
+    height: 25px;
+    margin-top: 7px;
+    border-radius: 15%;
+}
+
+
+[data-role~="page"] {
+  overflow: auto!important;
+}
+
+td, tr {
+    margin: 0!important;
+    height: 4em!important;
+    font-size: 11px!important;
+    min-width: 3.2em!important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    padding: 0.1em;
+    height: 4.2em;
+}
+
+.hours p {
+        margin-top: 12px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+#headernav i {
+    font-size: 30px!important;
+    color: white!important;
+    width: 100%;
+    text-align: center;
+    margin-left: -0.3em!important;
+}
+
+tr {
+  text-align: center;
+}
+
+html {
+      background: #aaa6a647;
+}
+
+#headernav table {
+    font-size: unset;
+    font-weight: unset;
+    color: unset;
+    margin-top: unset;
+    box-shadow: unset;
+}
+
+td , tr {
+    margin: 0;
+    height: 4em;
+    /* padding-top: 5px; */
+    font-size: 9px;
+    /* margin-top: 8px; */
+    min-width: 5.2em;
+    height: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    padding: 0.1em;
+    height: 5.2em;
+}
+
+
+  
+
+    #nra {
+    font-size: 15px;
+    margin-top: 14px;
+    }
+
+.hours {
+    display: flex;
+}
+</style>

@@ -1,0 +1,1212 @@
+
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+
+    <script src="config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: white
+}
+}
+
+
+
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+
+
+   
+<div class="app">
+<div class="">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav(3)"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Necesar pe restaurante</h2>
+                        <div class="navigation">
+                            <div></div>
+                        </div>
+                </div>
+                <div class="row2">
+                    <p id="datetext">Saptamana aceasta</p>
+                    <div class="hours">
+                        <div onclick="filter_date(-1)" class="arrow_left"><i class="fas fa-arrow-left"></i></div>
+                        <p id="fweek">18 </p> <p> / </p><p id="fyear">2019</p>
+                        <div onclick="filter_date(1)" class="arrow_right"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                </header>
+
+
+</div>
+</body>
+
+<table>
+<tr id_part_day="1">
+	<th><p class="line">06:00</p></th>
+	<th><p class="weekday">Luni</p></th>
+	<th><p class="weekday">Marti</p></th>
+	<th><p class="weekday">Miercuri</p></th>
+	<th><p class="weekday">Joi</p></th>
+	<th><p class="weekday">Vineri</p></th>
+	<th><p class="weekday">Sambata</p></th>
+	<th><p class="weekday">Duminica</p></th>
+</tr>
+
+<tr id_part_day="1">
+	<th><p class="line">07:00</p></th>
+    <th><div id="071"></div></th>
+    <th><div id="072"></div></th>
+    <th><div id="073"></div></th>
+    <th><div id="074"></div></th>
+    <th><div id="075"></div></th>
+    <th><div id="076"></div></th>
+    <th><div id="077"></div></th>
+</tr>
+
+<tr id_part_day="1">
+	<th><p class="line">08:00</p></th>
+    <th><div id="081"></div></th>
+    <th><div id="082"></div></th>
+    <th><div id="083"></div></th>
+    <th><div id="084"></div></th>
+    <th><div id="085"></div></th>
+    <th><div id="086"></div></th>
+    <th><div id="087"></div></th>
+</tr>
+
+<tr id_part_day="1">
+	<th><p class="line">09:00</p></th>    
+    <th><div id="091"></div></th>
+    <th><div id="092"></div></th>
+    <th><div id="093"></div></th>
+    <th><div id="094"></div></th>
+    <th><div id="095"></div></th>
+    <th><div id="096"></div></th>
+    <th><div id="097"></div></th>
+</tr>
+
+<tr id_part_day="1">
+	<th><p class="line">10:00</p></th>
+    <th><div id="101"></div></th>
+    <th><div id="102"></div></th>
+    <th><div id="103"></div></th>
+    <th><div id="104"></div></th>
+    <th><div id="105"></div></th>
+    <th><div id="106"></div></th>
+    <th><div id="107"></div></th>
+</tr>
+
+<tr id_part_day="2">
+	<th><p class="line">11:00</p></th>
+    <th><div id="111"></div></th>
+    <th><div id="112"></div></th>
+    <th><div id="1103"></div></th>
+    <th><div id="114"></div></th>
+    <th><div id="115"></div></th>
+    <th><div id="116"></div></th>
+    <th><div id="117"></div></th>
+</tr>
+
+<tr id_part_day="2">
+	<th><p class="line">12:00</p></th>
+    <th><div id="121"></div></th>
+    <th><div id="122"></div></th>
+    <th><div id="123"></div></th>
+    <th><div id="124"></div></th>
+    <th><div id="125"></div></th>
+    <th><div id="126"></div></th>
+    <th><div id="127"></div></th>
+</tr>
+
+<tr id_part_day="2">
+	<th><p class="line">13:00</p></th>
+    <th><div id="131"></div></th>
+    <th><div id="132"></div></th>
+    <th><div id="133"></div></th>
+    <th><div id="134"></div></th>
+    <th><div id="135"></div></th>
+    <th><div id="136"></div></th>
+    <th><div id="137"></div></th>
+</tr>
+
+<tr id_part_day="2">
+	<th><p class="line">14:00</p></th>
+    <th><div id="141"></div></th>
+    <th><div id="142"></div></th>
+    <th><div id="143"></div></th>
+    <th><div id="144"></div></th>
+    <th><div id="145"></div></th>
+    <th><div id="146"></div></th>
+    <th><div id="147"></div></th>
+</tr>
+
+<tr id_part_day="3">
+	<th><p class="line">15:00</p></th>  
+    <th><div id="151"></div></th>
+    <th><div id="152"></div></th>
+    <th><div id="153"></div></th>
+    <th><div id="154"></div></th>
+    <th><div id="155"></div></th>
+    <th><div id="156"></div></th>
+    <th><div id="157"></div></th>
+</tr>
+
+<tr id_part_day="3">
+	<th><p class="line">16:00</p></th>    
+    <th><div id="161"></div></th>
+    <th><div id="162"></div></th>
+    <th><div id="163"></div></th>
+    <th><div id="164"></div></th>
+    <th><div id="165"></div></th>
+    <th><div id="166"></div></th>
+    <th><div id="167"></div></th>
+</tr>
+
+<tr id_part_day="3">
+	<th><p class="line">17:00</p></th>
+    <th><div id="171"></div></th>
+    <th><div id="172"></div></th>
+    <th><div id="173"></div></th>
+    <th><div id="174"></div></th>
+    <th><div id="175"></div></th>
+    <th><div id="176"></div></th>
+    <th><div id="177"></div></th>
+</tr>
+
+<tr id_part_day="3">
+	<th><p class="line">18:00</p></th>
+    <th><div id="181"></div></th>
+    <th><div id="182"></div></th>
+    <th><div id="183"></div></th>
+    <th><div id="184"></div></th>
+    <th><div id="185"></div></th>
+    <th><div id="186"></div></th>
+    <th><div id="187"></div></th>
+</tr>
+
+<tr id_part_day="4">
+	<th><p class="line">19:00</p></th>
+    <th><div id="191"></div></th>
+    <th><div id="192"></div></th>
+    <th><div id="193"></div></th>
+    <th><div id="194"></div></th>
+    <th><div id="195"></div></th>
+    <th><div id="196"></div></th>
+    <th><div id="197"></div></th>
+</tr>
+
+<tr id_part_day="4">
+	<th><p class="line">20:00</p></th>
+    <th><div id="201"></div></th>
+    <th><div id="202"></div></th>
+    <th><div id="203"></div></th>
+    <th><div id="204"></div></th>
+    <th><div id="205"></div></th>
+    <th><div id="206"></div></th>
+    <th><div id="207"></div></th>
+</tr>
+
+<tr id_part_day="4">
+    <th><p class="line">21:00</p></th>
+    <th><div id="211"></div></th>
+    <th><div id="212"></div></th>
+    <th><div id="213"></div></th>
+    <th><div id="214"></div></th>
+    <th><div id="215"></div></th>
+    <th><div id="216"></div></th>
+    <th><div id="217"></div></th></tr>
+
+<tr  id_part_day="4">
+    <th><p class="line">22:00</p></th>
+    <th><div id="221"></div></th>
+    <th><div id="222"></div></th>
+    <th><div id="223"></div></th>
+    <th><div id="224"></div></th>
+    <th><div id="225"></div></th>
+    <th><div id="226"></div></th>
+    <th><div id="227"></div></th></tr>
+
+<tr id_part_day="5">
+    <th><p class="line">23:00</p></th>
+    <th><div id="231"></div></th>
+    <th><div id="232"></div></th>
+    <th><div id="233"></div></th>
+    <th><div id="234"></div></th>
+    <th><div id="235"></div></th>
+    <th><div id="236"></div></th>
+    <th><div id="237"></div></th></tr>
+
+<tr id_part_day="5">
+    <th><p class="line">00:00</p></th>
+    <th><div id="001"></div></th>
+    <th><div id="002"></div></th>
+    <th><div id="003"></div></th>
+    <th><div id="004"></div></th>
+    <th><div id="005"></div></th>
+    <th><div id="006"></div></th>
+    <th><div id="007"></div></th></tr>
+
+<tr id_part_day="5">
+    <th><p class="line">01:00</p></th>
+    <th><div id="011"></div></th>
+    <th><div id="012"></div></th>
+    <th><div id="013"></div></th>
+    <th><div id="014"></div></th>
+    <th><div id="015"></div></th>
+    <th><div id="016"></div></th>
+    <th><div id="017"></div></th></tr>
+
+<tr id_part_day="5">
+    <th><p class="line">02:00</p></th>
+    <th><div id="021"></div></th>
+    <th><div id="022"></div></th>
+    <th><div id="023"></div></th>
+    <th><div id="024"></div></th>
+    <th><div id="025"></div></th>
+    <th><div id="026"></div></th>
+    <th><div id="027"></div></th></tr>
+
+<tr id_part_day="5">
+    <th><p class="line">03:00</p></th>
+    <th><div id="031"></div></th>
+    <th><div id="032"></div></th>
+    <th><div id="033"></div></th>
+    <th><div id="034"></div></th>
+    <th><div id="035"></div></th>
+    <th><div id="036"></div></th>
+    <th><div id="037"></div></th></tr></tr>
+
+<tr id_part_day="5">
+    <th><p class="line">04:00</p></th>
+    <th><div id="041"></div></th>
+    <th><div id="042"></div></th>
+    <th><div id="043"></div></th>
+    <th><div id="044"></div></th>
+    <th><div id="045"></div></th>
+    <th><div id="046"></div></th>
+    <th><div id="047"></div></th></tr></tr>
+
+<tr id_part_day="5">
+    <th><p class="line">05:00</p></th>
+    <th><div id="051"></div></th>
+    <th><div id="052"></div></th>
+    <th><div id="053"></div></th>
+    <th><div id="054"></div></th>
+    <th><div id="055"></div></th>
+    <th><div id="056"></div></th>
+    <th><div id="057"></div></th></tr></tr>
+</table>
+
+
+<div  id="pop">
+
+    <div class="pop_title">
+        <p>Luni 8dec, 1999</p>
+        <p class="btnr"><i class="fab fa-sourcetree"></i></p>
+    </div>
+    <div class="pop_program"> 
+           <div >
+            <p class="program">Program</p>
+            <div class="inputwidth">
+             <input type="time" id="timein"
+                required>
+            </div>
+                <p class="inputline">-</p>
+                <div class="inputwidth">
+            <input type="time" id="timeout"
+                required>
+            </div>
+
+                <i class="far fa-save"></i>
+                <i class="fas fa-object-ungroup"></i>
+            </div>
+            <div>
+               
+            </div>
+     </div>
+
+    <div class="pop_title _2">
+        <p>Necesar <span id="day_part">Dimineata</span></p>
+        <p id="team_size_day" class="btnr">77</p>
+        
+    </div>
+    <div id="sal" class="gestiune_part">
+            <div id="salon_header">
+                <p>Salon</p>
+                <div class="gg">
+                    <p onclick="edit_item(0)" id="edit_salon"><i  class="far fa-edit"></i></p>
+                    <p id="salon_size"></p>
+                </div>
+            </div>
+        </div>
+        <div id="buc" class="gestiune_part">
+            <div id="bucatarie_header">
+                <p>Bucatarie</p>
+                <div class="gg">
+                    <p id="edit_bucatarie"><i onclick="edit_item(1)" class="far fa-edit"></i></p>
+                    <p id="bucatarie_size"></p>
+                </div>
+            </div>
+        </div>
+        <div id="adc" class="gestiune_part">
+            <div id="admin_header">
+                <p>Administrativ</p>
+                <div class="gg">
+                    <p id="edit_admin"><i onclick="edit_item(2)" class="far fa-edit"></i></p>
+                    <p id="admin_size"></p>
+                </div>
+            </div>
+        </div>
+        <div style="display: none" id="corc" class="gestiune_part">
+            <div id="cor_header">
+                <p>Corporate</p>
+                <div class="gg">
+                    <p id="edit_corporate">btn</p>
+                    <p id="cor_size"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+            <div class="filters">
+
+                <div class="arrow_up" onclick="expand_filters()"><i id="arrow" class="fas fa-arrow-up"></i></div>
+                <div class="ftype">
+                    <div id="type0" class="types selected" onclick="weekmonth(0)" class="selected"><p>Toti</p></div>
+                    <div id="type1" class="types" onclick="weekmonth(1)"><p>Salon</p></div>
+                    <div id="type2" class="types" onclick="weekmonth(2)"><p>Bucatarie</p></div>
+                    <div id="type3" class="types" onclick="weekmonth(3)"><p>Admininstrativ</p></div>
+                </div>
+                <div class="selects">
+                <p> Joburile mele </p>
+                <select><option>Toate</option></select>
+                <p> Confirmari </p>
+                <select><option>Toate</option></select>
+                </div>
+            </div>
+
+</div>
+</html>
+
+<script type="text/javascript">
+
+var json = {}, _json = {};
+
+/*
+
+<div class="content">
+            <p>77p</p>
+        </div>
+
+*/
+// bucatarie / salon / administrativ / corporate
+
+var salon = [];
+var bucatarie = [];
+var administrativ = [];
+var corporate = [];
+
+var week_counter = 0;
+var year_counterw = 0;
+var month_counter = 0;
+var year_counterm = 0;
+
+var lsalon = 0, ladmin= 0, lbuc = 0;
+
+var categorie = 0;
+
+function weekmonth(d)
+{
+    $(".ftype > .selected").removeClass("selected")
+    $($(".ftype > div")[d]).addClass("selected")
+    categorie = d;
+    filter_date()
+}
+
+function filter_date(x)
+{
+    $("#items").html("");
+        if(x == 1)
+            week_counter++;
+        else if(x==-1)
+            week_counter--;
+
+        var week = getWeekNumber(new Date());
+        var year = new Date().getFullYear();
+
+        if(getWeekNumber(new Date()) + week_counter > 52)
+        while( getWeekNumber(new Date()) + week_counter > 52) {
+            week_counter-=52;
+            year_counterw++;
+        }
+     if(getWeekNumber(new Date()) + week_counter < 0)
+        while( getWeekNumber(new Date()) + week_counter < 0) {
+            week_counter+=52;
+            year_counterw--;
+        }      
+
+        document.getElementById("fweek").innerText = getWeekNumber(new Date())+ week_counter;
+        document.getElementById("fyear").innerText =  new Date().getFullYear() + year_counterw;
+        ajax('1', getWeekNumber(new Date())+ week_counter, new Date().getFullYear() + year_counterw);
+        if(week_counter == 0)
+            document.getElementById("datetext").innerText = "Saptamana in curs";
+        else if(week_counter == -1)
+            document.getElementById("datetext").innerText = "Acum o saptamana";
+        else if(week_counter == 1)
+            document.getElementById("datetext").innerText = "Peste o saptamana";
+        else if(week_counter < -1)
+            document.getElementById("datetext").innerText = "Acum "+week_counter*-1+" saptamani";
+        else if(week_counter > 1)
+            document.getElementById("datetext").innerText = "Peste "+week_counter+" saptamani";
+         
+    
+}
+
+function    edit_item(index)
+{
+    document.getElementsByClassName("item_cont")[index].setAttribute('style', 'display:block !important');
+
+    if(index==0)
+    {
+        $("#edit_salon > i").replaceWith("<i class=\"far fa-save\"></i><i class=\"fas fa-object-ungroup\"></i>")
+        var e = $("#sal > .item_cont > .item > h6");
+        var p = $("#sal > .item_cont > .item > p");
+        for(var i=0;i<e.length;i++)
+            e.replaceWith("<input class='edit_input' type='number' position='" + p[i].innerText + "' value='" + e[i].innerText + "' />");
+    }
+    if(index==1)
+    {
+        $("#edit_bucatarie > i").replaceWith("<i class=\"far fa-save\"></i><i class=\"fas fa-object-ungroup\"></i>")
+        var e = $("#buc > .item_cont > .item > h6");
+        var p = $("#buc > .item_cont > .item > p");
+        for(var i=0;i<e.length;i++)
+            e.replaceWith("<input class='edit_input' type='number' position='" + p[i].innerText + "' value='" + e[i].innerText + "' />");
+    }
+    if(index==2)
+    {
+        $("#edit_admin > i").replaceWith("<i class=\"far fa-save\"></i><i class=\"fas fa-object-ungroup\"></i>")
+        var e = $("#adm > .item_cont > .item > h6");
+        var p = $("#adm > .item_cont > .item > p");
+        for(var i=0;i<e.length;i++)
+            e.replaceWith("<input class='edit_input' type='number' position='" + p[i].innerText + "' value='" + e[i].innerText + "' />"); 
+    }
+}
+
+function fetch_th(query_size, variable, query_append)
+{
+    document.getElementById(query_size).innerText = lsalon;
+    values = Object.values(variable)
+    keys = Object.keys(variable)
+    var html = "<div class='item_cont none'>"
+    for(var i=0;i<keys.length;i++)
+    {        
+        if(values[i]>0)
+            html += "<div class='item'><p>" + keys[i] + " </p><h6>" + values[i] + "</h6></div>"
+    }
+        html += "</div>"
+        $(query_append).append(html)
+
+}
+
+
+
+function    pop(day, restaurant, team, day_part_name , day_part_id, _in, out,category=0, job=0)
+{
+    openLoader()
+    document.getElementById("pop").style.display = "unset";
+    var _day = day.substr(6, 5) + '-' +  day.substr(3, 2) + '-' + day.substr(0, 2);
+    document.getElementById("team_size_day").innerText = team;
+    document.getElementById("day_part").innerText = day_part_name;
+    $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/manager-api/acoperire-necesar-restaurant-zi?restaurant="+restaurant+"&day="+_day+"&category="+categorie+"&job="+job+"",
+        dataType: 'json',
+        async: true,
+        success: function (e){
+        _json = e;
+        var length = Object.keys(json).length;
+            closeLoader()
+
+
+        for(var i=0;i<length;i++)
+        {
+            _json[Object.keys(_json)[i]][day_part_id]
+            if(_json[Object.keys(_json)[i]][day_part_id].categorie == "Salon") {
+                salon.push(_json[Object.keys(_json)[i]][day_part_id].pozitie)
+            }
+            else if(_json[Object.keys(_json)[i]][day_part_id].categorie == "Bucătărie") {
+                bucatarie.push(_json[Object.keys(_json)[i]][day_part_id].pozitie)
+            }
+            else if(_json[Object.keys(_json)[i]][day_part_id].categorie == "Administrativ"){
+                administrativ.push(_json[Object.keys(_json)[i]][day_part_id].pozitie)
+            }
+            else if(_json[Object.keys(_json)[i]][day_part_id].categorie == "Corporate"){
+                corporate.push(_json[Object.keys(_json)[i]][day_part_id].pozitie)
+
+            }         
+
+
+        }
+        document.getElementById("team_size_day").innerText = salon.length + bucatarie.length + administrativ.length + corporate.length;
+            if(!salon)
+                document.getElementById("sal").style.display = "none"
+            else
+                document.getElementById("salon_size").innerText = salon.length
+            if(!bucatarie)
+                document.getElementById("buc").style.display = "none"     
+            else
+                document.getElementById("bucatarie_size").innerText = bucatarie.length       
+            if(!administrativ)
+                document.getElementById("adm").style.display = "none"            
+            else
+                document.getElementById("admin_size").innerText = administrativ.length
+            if(!corporate)
+                document.getElementById("cor").style.display = "none"     
+            else
+                document.getElementById("cor_size").innerText = corporate.length  
+
+            var _poziti =  window.localStorage.getItem('poziti');
+            var result = {};
+
+            var a = salon;
+
+            for(var i = 0; i < a.length; ++i) {
+                if(!result[a[i]])
+                    result[a[i]] = 0;
+                ++result[a[i]];
+            }
+
+            lsalon = salon.length;
+            if(!lsalon)
+                document.getElementById("salon_header").style.display = "none"
+            else{
+                salon = result;
+                fetch_th("salon_size", salon, "#sal");
+            }
+            var a = bucatarie;
+            result = {};
+            for(var i = 0; i < a.length; ++i) {
+                if(!result[a[i]])
+                    result[a[i]] = 0;
+                ++result[a[i]];
+            }
+
+            lbuc = bucatarie.length
+            if(!lbuc)
+                document.getElementById("bucatarie_header").style.display = "none"
+            else {
+                bucatarie = result;
+                fetch_th("bucatarie_size", bucatarie, "#buc");
+
+            }
+            result = {};
+            console.log(bucatarie)
+
+            var a = administrativ;
+
+            for(var i = 0; i < a.length; ++i) {
+                if(!result[a[i]])
+                    result[a[i]] = 0;
+                ++result[a[i]];
+            }
+
+            ladmin = administrativ.length
+            if(!ladmin)
+                document.getElementById("admin_header").style.display = "none" 
+            else {
+                administrativ = result;
+                fetch_th("admin_size", administrativ, "#adc")
+            }
+
+            $( "#salon_header" ).on( "click", function() {
+              $($(".item_cont")[0]).toggleClass("none");
+            });
+
+            $( "#bucatarie_header" ).on( "click", function() {
+              $($(".item_cont")[1]).toggleClass("none");
+            });
+
+            $( "#admin_header" ).on( "click", function() {
+              $($(".item_cont")[2]).toggleClass("none");
+            });
+
+
+        }
+    });
+}
+
+function fetch_data(data)
+{
+    for(var i=0;i<data.length;i++)
+    {
+        var hours = data[i].day_part_hours;
+        var team = data[i].team_size + 'p';
+        var _in = data[i].day_part_time_in.substr(0, 2);
+        _in += data[i].weekday;
+        var height = 32.8 * hours + "px"
+        //'<p class="hinter">' + data[i].day_part_time_in.substr(0, 5) + ' - ' + "XX;XX" +'</p>'+
+        var content = '<div style="height:'+height+';" onclick=pop(`' + String(data[i].zi)+'`,'+ data[i].id_restaurant + ',' + data[i].team_size + ',`' + data[i].day_part_name + '`,`' + data[i].id_day_part + '`,' +_in+') style="z-index:'+parseInt(data[i].day_part_time_in.substr(0, 2))+'" class="content"><p>' + team + '</p></div>';
+        console.log(_in)
+        $("#"+_in).append(content)
+    }
+}
+
+function ajax(r=1, w, y)
+{
+    openLoader()
+    $(".content").remove()
+    $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/manager-api/get-program-restaurant-week?restaurant="+r+"&week="+w+"&year="+y+"&category="+categorie,
+        dataType: 'json',
+        async: true,
+        success: function (e){
+        json = e;   
+        fetch_data(json);
+        console.log(e)
+        closeLoader()
+        }
+    });
+}
+
+$(function() {
+            user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
+
+filter_date()
+	
+});
+
+
+
+
+
+
+
+
+ 
+
+
+</script>
+
+
+
+<style>
+
+
+
+.ftype  .selected {
+    background: #B8351D;
+    color: white;
+}
+.selects {
+        margin-top: 6em;
+        color: white;
+}
+
+.selects p {
+    font-size: 14px;
+}
+
+.ftype {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+
+
+.fa-arrow-up:before, .fa-arrow-down:before  {
+    margin-top: -1.5em;
+    position: absolute;
+    margin-left: -0.4em;
+}
+
+
+.filters p {
+        font-size: 14px;
+
+}
+
+
+input {
+        outline: 0px solid #555 !important; 
+}
+
+
+.expand {
+        height: 23.7em!important;
+}
+
+
+.ftype > div {
+        width: 50%;
+        background: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+
+    text-align: center;
+}
+
+.arrow_up {
+        margin: 0;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin-top: -2.5em;
+}
+
+
+.filters {
+position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 4.7em;
+    padding-top: 0.5em;
+        z-index: 999;
+
+}
+.interval_title {
+  color: white;
+    margin-top: 0em;
+    min-height: 100px;    min-height: 100px;    min-height: 100px;  
+    font-weight: bold;
+}
+
+.arrow_up > i {
+background: grey;
+    padding: 2em;
+    z-index: -99999999999999;
+    margin-top: -0.4em;
+    color: white;
+    border-radius: 50%;
+}
+
+.interval {
+    position: absolute;
+    background: green;
+    width: 8em;
+        min-height: 7.5em;
+    margin-left: 3em;
+        border-bottom: 2px solid #5555558c;
+
+}
+
+
+.hours p {
+        margin-top: 12px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.hours {
+    display: flex;
+}
+
+.gestiune_part > div {
+    display: flex;
+}
+
+th {
+    height: 2em;
+    width: 12.5%;
+    position: relative;
+    max-width: 12.5%;
+    min-width: 12.5%;
+}
+
+table {
+	width: 100%;
+        margin-top: 11em;
+
+}
+
+
+#menuz > div {
+    height: 5.8em!important;
+}
+
+.row1 {
+        height: 4.4em;
+
+}
+
+.zlop {
+    display: flex!important;
+    position: absolute!important;
+    margin-top: 11em!important;
+    width: 100%!important;
+    margin-left: 7.3px!important;
+}
+
+#headernav table {
+    width: 100%;
+    margin-top: unset!important;
+}
+
+.fa-sourcetree {
+    font-size: 19px;
+}
+
+.gg {
+width: 100%;
+    text-align: right;
+    margin-right: 3.3em;
+    display: flex;
+    right: 0;
+    float: right;
+    position: relative;
+    margin-left: 68%;
+    left: 0;
+}
+
+.item {
+    display:    flex; 
+        height: 2em;      
+}
+
+.item_cont {
+        display: block!important;
+    margin-left: 1em;
+    margin-right: 1em;
+    max-height: 6em;
+    overflow-y: auto;
+    font-size: 13px;
+        margin-top: -0.8em;
+
+}
+
+.content {
+    height: 10em;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    margin: 0;
+    background: #2eac77;
+    padding: 0;
+    border: 1px solid lightcyan;
+    width: 100%;
+    border-top: 4px solid #528856;
+    font-size: medium;
+}
+
+.content p {
+    margin-top: 7px;
+}
+
+.gestiune_part > div > p {
+    min-width: 5em;
+}
+
+.app {
+    font-size: 10px;
+}
+
+.item > p  {
+    width: 100%;
+    display:    flex;
+        margin-top: 10px;
+
+}
+
+.item > h6  {
+    text-align: right;
+    width: 100%;
+    right: 0;
+        margin-top: 10px;
+        font-size: 14px;
+    font-weight: 400;
+
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.line:after {
+    content: '';
+    width: 81vw;
+    border-bottom: solid 1px #5b24242e;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 101;
+    margin-left: 100%;
+}
+
+.weekday 
+{
+    margin-top: -1px;
+}
+
+body {
+    background: ghostwhite;
+}
+#pop {
+        width: 100%;
+    height: 50%;
+    background: ghostwhite;
+    position: fixed;
+    display: none;
+        border-top: 2px solid #555;
+    bottom: 0;
+    left: 0;
+    z-index: 50000;
+    overflow-y: auto;
+}
+
+.pop_title {
+    display: flex;
+    background: #ff8fdd7a;
+    font-size: 14px;
+    font-weight: 600;
+        padding-left: 1em;
+
+}
+
+.item > input
+{
+        float: right;
+    text-align: right;
+}
+
+.pop_title > p {
+    width: 100%;
+}
+
+.btnr {
+    text-align: right;
+    padding-right: 24px;
+}
+
+.pop_program > div  {
+    display: flex;
+}
+
+input {
+    border: none;
+        outline: 1px solid #555 !important;
+    box-shadow: unset;
+box-shadow: unset!important;
+    width: auto;
+    padding: unset;
+    outline: unset;
+    margin-left: unset;
+    -moz-box-shadow: unset;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    margin-bottom: unset;
+    padding-bottom: unset;
+    padding-left: unset;
+}
+
+.inputline {
+    font-size: 24px;
+    margin: 5px;
+}
+
+#timeout {
+        right: 0;
+    float: right;
+    text-align: right;
+        margin-right: 2em;
+
+}
+
+#timein {
+        margin-left: 1em;
+}
+
+.pop_program input{
+        text-align: center;
+        margin-top: 0.8em;
+}
+
+.inputwidth {
+    width: 26%;
+}
+
+.inputwidth  input {
+        width: -webkit-fill-available;
+}
+
+.hinter {
+    margin-top: -3.6em;
+    font-size: 8px;
+    white-space: nowrap;
+    z-index: -37;
+}
+
+.program {
+        font-size: 15px;
+    margin-top: 11px;
+    margin-left: 8px;
+}
+
+.line {
+    font-size: 12px;
+}
+
+.none {
+    display: none!important;
+}
+
+.gestiune_part {
+        font-size: 12px;
+    text-transform: capitalize;
+        padding-left: 1em;
+    padding-right: 1em;
+
+}
+
+.fa-edit {
+    font-size: 20px;
+    margin-left: -5px;
+    margin-right: 5px;
+}
+
+#salon_size , #bucatarie_size, #admin_size {
+    font-size: 14px;
+    margin-left: 4px;
+    display: flex;
+}
+
+.pop_program .fa-save, .pop_program .fa-object-ungroup{
+        margin-top: 15px;
+    margin-left: 0em;
+
+}
+
+.fa-save, .fa-object-ungroup {
+    font-size: 20px;
+}
+
+.fa-save {
+margin-left: -40px;
+    margin-right: 20px;
+}
+
+.fa-object-ungroup {
+    margin-top: 3px;
+    margin-right: 5px;
+    margin-left: -5px;}
+
+#salon_header > p , #bucatarie_header > p, #admin_header > p{
+        font-size: 14px;
+    margin-right: -7px;
+}
+
+</style>
+

@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this fiale except in compliance
+    with the License.  You may obtain  copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+
+    <script src="config/global.js"></script>
+
+<style>
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px)
+{
+
+.app {
+    background: white
+}
+}
+
+
+
+
+</style>
+
+
+</head>
+
+<script>
+if ( device.platform === 'Android' ) {
+    $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
+}
+</script>
+
+<body>
+
+
+   
+<div class="app">
+<div class="">
+
+                <header>
+                    <div class="row1">
+                        <div id="menu" onclick="openNav()"><i class="fas fa-bars"></i></div>
+                        <h2 class="title">Necesar pe restaurante</h2>
+                        <div class="navigation">
+                            <div></div>
+                        </div>
+                </div>
+                <div class="row2">
+                    <p>Toate notificarile</p>
+                </div>
+                </header>
+
+               <div> 
+                <div class="part">
+                  <div><p class="ztitle">Necesar</p></div>
+                  <hr>
+
+                  <div class="cdate">
+                    <p class="mtitle">Inceput necesar</p>
+                    <div class="sdate">
+                      <span>Ziua</span><input type="date" name="">
+                      <span>Ora</span><input type="time" name="">
+                    </div>
+                  </div>
+
+                  <div class="cdate">
+                    <p class="mtitle">Final necesar</p>
+                    <div class="sdate">
+                      <span>Ziua</span><input type="date" name="">
+                      <span>Ora</span><input type="time" name="">
+                    </div>
+                  </div>
+
+                  <div class="sdate blaz">
+                      <div>
+                        <span>Numar persoane</span>
+                        <input type="number" name="">
+                      </div>
+                      <div>
+                        <span>Pentu pozitia</span>
+                        <select>
+                        </select>
+                      </div>
+                  </div>
+
+                </div>
+                  <div class="part">
+                    <div><p class="ztitle">Destinatari</p></div>
+                    <hr>
+                    <div class="cdate">
+                      <p class="mtitle">Angajați în brandurile:</p>
+                    </div>
+                    <div class="imgcontainer">
+                      <div onclick="fill_restaurants(7, this)"><img src="https://i.vimeocdn.com/portrait/27549506_300x300"><p>CCB</p></div>
+                      <div onclick="fill_restaurants(8, this)"><img src="https://i.vimeocdn.com/portrait/27549506_300x300"><p>HB</p></div>
+                      <div onclick="fill_restaurants(9, this)"><img src="https://i.vimeocdn.com/portrait/27549506_300x300"><p>CG</p></div>
+                      <div onclick="fill_restaurants(10, this)"><img src="https://i.vimeocdn.com/portrait/27549506_300x300"><p>CC</p></div>
+                      <div onclick="fill_restaurants(11, this)"><img src="https://i.vimeocdn.com/portrait/27549506_300x300"><p>TB</p></div>
+                      <div onclick="fill_restaurants(12, this)"><img src="https://i.vimeocdn.com/portrait/27549506_300x300"><p>P</p></div>
+                      <div onclick="fill_restaurants(13, this)"><img src="https://i.vimeocdn.com/portrait/27549506_300x300"><p>HM</p></div>
+                    </div>
+                    <div class="cdate">
+                      <p class="mtitle">Sau angajatii unui restaurant din brandurile selectate</p>
+                      <div class="_insp">
+                        <select id="res">
+                            <option value="-1">Toate restaurantele din brandurile selectate</option>
+                        </select>
+                        <i class="fas fa-phone"></i>  
+                      </div>
+                    </div>
+                      
+                    </div>
+                </div>
+                  <div class="part">
+                    <div><p class="ztitle">Condiții eliminatorii</p></div>
+                    <hr>
+                    <div class="divz"><input type="number" name=""><p>ore pe interval (minim)</p><i class="fas fa-phone"></i></div>
+                    <div class="divz"><input type="number" name="  "><p>rating (minim)</p><i class="fas fa-phone"></i></div>
+                    <div class="divz"><input type="number" name=""><p>luni experiență (minimă)</p><i class="fas fa-phone"></i></div>
+                </div>
+
+                <button>Trimite alerta</button>
+
+              </div>
+
+
+</div></div>
+</body>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="headernav">
+     <table>
+  <tr>
+    <th><i class="far fa-clock"></i></th>
+     <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
+    <th><i class="fas fa-crown"></i></th>   
+  </tr>
+</table>
+<div style="display: flex!important" class="zlop">
+    <div style="    padding-left: 7px;" class="lop"><p>110h</p></div>
+    <div style="opacity: 0" class="lop"><p>110h</p></div>
+    <div style="    margin-left: -21px;" class="lop"><p>66p</p></div>
+</div>
+  </div>
+  <div class="menuname">
+    <h2 id="fullname">Nume prenume</h2>
+    <p id="fullposition">Bucatar | Caru cu bere</p>
+  </div>
+ <div class="rating">
+            <p class="rating_score">-</p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="rating_counter">0 recenzii</p>
+         </div>
+  <div id="menuz">
+  </div>
+</div>
+
+</html>
+
+<script type="text/javascript">
+
+  var id_restaurant_selected = new Array();
+
+function fetch_res(ids)
+{
+  $("#res").html("");
+  for(var i=0;i<ids.length;i++)
+  {
+
+        $.ajax
+      ({
+        beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+      },
+        type: "GET",
+        url: "https://citygrillgroup.jobs/api/restaurants-by-brand?id="+ids[i],
+        dataType: 'json',
+        async: true,
+        success: function (r){              
+  for(var j=0;j<r.length;j++) {
+    $("#res").append("<option value="+r[j].id+">"+r[j].name+"</option>")
+  }
+        }
+    });
+
+  
+  }
+}
+
+function fill_restaurants(id, e)
+{
+  if(id_restaurant_selected.includes(id))
+    removeA(id_restaurant_selected, id);
+  else
+      id_restaurant_selected.push(id);
+  console.log(id_restaurant_selected);
+  $(e).toggleClass("imgselected");
+  fetch_res(id_restaurant_selected)
+}
+
+$(function() {
+            user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";});
+
+</script>
+
+
+<style>
+
+.row2 {
+  display: none;
+}
+
+.imgselected {
+    border: 2px solid red!important;
+}
+
+.imgselected > p {
+    background: red!important;
+    color: white!important;
+}
+
+._insp {
+  display: flex;
+}
+
+._insp span{
+  display: none;
+}
+
+._insp > div , ._insp select {
+  width: 95%;
+}
+
+._insp i {
+    text-align: center;
+    margin-right: 12px;
+    margin-top: 5px;
+}
+
+.divz {
+      display: flex;
+          margin-bottom: -12px;
+
+}
+
+.divz  input {
+      width: 3em;
+    margin: 1em;
+    margin-left: 0;
+}
+
+#select-11-button > span {
+  display: none;
+}
+
+.divz > p {
+      margin-top: 20px;
+          white-space: nowrap;
+
+}
+
+.divz > i {
+      margin-top: 22px;
+    width: 100%;
+    position: relative;
+    margin-right: 1.1em;
+    right: 0;
+    text-align: right;
+}
+
+
+
+input {
+    border: none;
+        outline: 1px solid #555 !important;
+    box-shadow: unset;
+box-shadow: unset!important;
+    width: auto;
+    padding: unset;
+    outline: unset;
+    margin-left: unset;
+    -moz-box-shadow: unset;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    margin-bottom: unset;
+    padding-bottom: unset;
+    padding-left: unset;
+}
+
+button {
+      margin-top: 2em;
+    height: 3em;
+    width: 100%;
+    color: white;
+    background: red;
+}
+
+
+.ztitle {
+      text-align: center;
+          height: 0.3em;
+}
+
+.sdate {
+  display: flex;
+}
+
+.imgcontainer {
+  display: flex;
+}
+
+.blaz > div {
+  width: 100%;
+    padding: 0.4em;
+}
+
+.mtitle {
+  height: 0.6em;
+    margin-top: 0.2em;
+}
+
+.sdate > span {
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.imgcontainer > div > img{
+max-width: 100%;
+    max-height: inherit;
+}
+
+
+.imgcontainer > div > p{
+margin: 0;
+    text-align: center;
+    padding-bottom: 5px;
+    background: white;
+    margin-top: -4px;
+    padding-top: 5px;
+}
+
+.imgcontainer > div {
+    width: 100%;
+    height: fit-content;
+    border: 1px solid red;}
+
+.sdate input, .sdate > .ui-input-text , .sdate select{
+    width: -webkit-fill-available;
+}
+
+#select-8-button > span {
+  display: none;
+}
+
+input, select {
+      height: 2.2em;
+}
+</style>
