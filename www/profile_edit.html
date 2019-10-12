@@ -272,11 +272,11 @@ $("#judet").html("")
 
 function    fetch_county(query, json)
 {
-
-
   if(typeof json == "string")
     json = JSON.parse(json);
 
+if(!json)
+  return;
   for(var i=0;i<json.length;i++)
   {
      var option = "<option value=" + json[i].id + ">" + json[i].title + "</option>"
@@ -285,22 +285,34 @@ function    fetch_county(query, json)
 }
   
 
+var _user = {}
 
-
-function    fetch_restaurant(query, json)
+function fetch_poziti()
 {
+          
+          r = user.jobs
+      for(var j=0;j<r.length;j++) {
+        $("#poziti").append("<option value="+r[j].id+">"+r[j].pozitie+"</option>").trigger("change")
+      }
 
-  if(typeof json == "string")
-    json = JSON.parse(json);
-console.log(json)
-  for(var i=0;i<json.length;i++)
-  {
-     var option = "<option value=" + json[i].id + ">" + json[i].title + "</option>"
-    $(query).append(option)
-  }
+  $("#poziti").prop("selectedIndex", 0);
+
+
 }
 
-var _user = {}
+function fetch_restaurant()
+{
+          
+          r = user.restaurants
+      for(var j=0;j<r.length;j++) {
+        $("#restaurant").append("<option value="+r[j].id+">"+r[j].restaurant+"</option>").trigger("change")
+      }
+
+  $("#restaurant").prop("selectedIndex", 0);
+
+
+}
+
 
 function  fetch_profile()
 {
@@ -491,6 +503,8 @@ p {
 
 .profilecontent > div > div{
     width: 100%;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
 }
 
 .profilecontent input[type=date]{
