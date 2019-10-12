@@ -2,6 +2,8 @@ let user, today, dd, mm, yyyy, week_id;
 
 let parola;
 
+let root_url = "https://citygrillgroup.jobs";
+
 function 	fetch_config(response)
 {
 	user = response;
@@ -49,6 +51,8 @@ function      expand_filters()
 function route(id)
 {
   console.log(id)
+  if(id==100)
+        window.location.href = "./referalnote.html"  
   if(id==155)
         window.location.href = "./comenzi.html"
   if(id=="rn")
@@ -174,7 +178,7 @@ if(document.getElementById("menuz").childNodes.length < 4)
 //document.getElementById("imgbor").children[0].src = "https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"
 
 document.getElementById("fullname").innerText = user.firstname + ' ' + user.lastname;
-document.getElementById("fullimg").src = "https://citygrillgroup.jobs" + user.image
+document.getElementById("fullimg").src = root_url + user.image
 }
 
 
@@ -209,7 +213,7 @@ function get_compani()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/companii",
+        url: root_url + "/api/companii",
         dataType: 'json',
         async: true,
         success: function (e){
@@ -233,7 +237,7 @@ function    get_countries()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/counties?",
+        url: root_url + "/api/counties",
         dataType: 'json',
         async: true,
         success: function (a){
@@ -260,7 +264,7 @@ function      get_poziti()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/pozitii",
+        url: root_url + "/api/pozitii",
         dataType: 'json',
         async: true,
         success: function (a){
@@ -287,7 +291,7 @@ function get_brands()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/brands",
+        url: root_url + "/api/brands",
         dataType: 'json',
         async: true,
         success: function (e){
@@ -310,7 +314,7 @@ function get_brands()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-all-brands",
+        url: root_url + "/api/get-all-brands",
         dataType: 'json',
         async: true,
         success: function (e){
@@ -334,7 +338,7 @@ function get_brands()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-all-restaurants",
+        url: root_url + "/api/get-all-restaurants",
         dataType: 'json',
         async: true,
         success: function (e){
