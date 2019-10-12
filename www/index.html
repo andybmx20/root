@@ -92,7 +92,7 @@
 
 function redirect()
 {
-    if(!window.localStorage.getItem('user'))
+   if(!window.localStorage.getItem('user'))
         document.location.href = "./login.html";
     else
         document.location.href = "./agendamealogat.html";
@@ -125,6 +125,12 @@ $(function() {
     background: rgba(47, 43, 43, 0.25);
 
     font-weight: 500;
+
+    }
+
+    img {
+        background: white;
+            border-radius: 8%;
 
     }
 

@@ -212,22 +212,23 @@ var year_counterm = 0;
             else if(x==-1)
                 month_counter--;
 
-            var year = new Date().getFullYear();
-
-            if((new Date()).getMonth() + month_counter > 12)
-            while( (new Date()).getMonth() + month_counter > 12) {
-                month_counter-=12;
+ var year = new Date().getFullYear();
+            let mm = month_counter
+            year_counterm = 0
+            if((new Date()).getMonth() + mm >= 12)
+            while( (new Date()).getMonth() + mm >= 12) {
+                mm-=12;
                 year_counterm++;
             }
 
-         if( (new Date()).getMonth() + month_counter < 0)
-            while( (new Date()).getMonth() + month_counter < 0) {
-                month_counter+=12;
+         if( (new Date()).getMonth() + mm < 0)
+            while( (new Date()).getMonth() + mm < 0) {
+                mm+=12;
                 year_counterm--;
             }      
             var m = (new Date()).getMonth()+ month_counter + 1;
 
-            document.getElementById("fweek").innerText = m;
+            document.getElementById("fweek").innerText = m - (12*year_counterm);
             document.getElementById("fyear").innerText =  (new Date()).getFullYear() + year_counterm;
             fetch_data(m, new Date().getFullYear() + year_counterm);
             if(month_counter == 0)
