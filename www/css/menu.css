@@ -1,11 +1,11 @@
 
 #headernav {
 display: flex!important;
-    background: #B8351D;
+    background: #F8DD09;
     width: 100%;
     top: 0;
     margin-top: -1em;
-    color: white!important;
+    color: #333333!important;
 }
 
 .ui-icon-loading h1{
@@ -21,6 +21,10 @@ display: flex!important;
   margin-left: unset!important;
   margin-right: unset!important;
   text-align: center;
+}
+
+#thours {
+  color: #333333;
 }
 
 .yy i {
@@ -176,9 +180,9 @@ padding-top: 3px;
 .menuname {
 text-align: center;
     margin-top: 0em;
-    color: white;
+    color: #333333;
     font-size: 15px;
-    background: #B8351D;
+    background: #F8DD09;
     line-height: 8px;
     padding-top: 2em;
     padding-bottom: 0.1em;
@@ -261,7 +265,7 @@ header {
     position: fixed;
     width: 100%;
     height: fit-content;
-    background: #B8351D;
+    background: #F8DD09;
     top: 0;
     left: 0;
     color: white;
@@ -270,7 +274,7 @@ header {
 
 .row2 {
 margin-top: 0px!important;
-    background: #9A2C18;
+    background: #987F53;
     font-size: small!important;
     left: 0;
     padding-left: 29px!important;
@@ -286,6 +290,8 @@ margin-top: 0px!important;
     margin: 0px;
     font-size: 39px!important;
     margin-right: 12px;
+        color: #333333!important;
+
     margin-top: -15px;}
 
 #headernav table {
@@ -338,6 +344,7 @@ text-align: center;}
 
     #headernav table .fa-clock
     {    margin-top: -9px;
+    color: #333333!important;
 
           font-size: 44px!important;
     margin-left: -33px!important;
@@ -361,7 +368,7 @@ text-align: center;}
     background: transparent;
     margin-top: 12px!important;
     margin-left: 2.8em;
-    color: ghostwhite;
+    color: #333333;
   }
 
 .navigation {
@@ -436,7 +443,7 @@ text-align: center;}
 }
 
 #menu .fa-bars {
-  color: white;
+  color: #333333;
 }
 
 .sidenav {
@@ -504,14 +511,21 @@ text-align: center;}
 }
 
 #menuz > div:hover {
-    background: #B8351D;
-    color: white;
+    background: #F8DD09;
+    color: #333333;
   }
 
+  .ftype > .selected {
+    background: #F8DD09;
+    color: #333333;
+}
+
   #menuz > .selected {
-    background: #B8351D;
-    color: white;
+    background: #F8DD09;
+    color: #333333;
   }
+
+
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
