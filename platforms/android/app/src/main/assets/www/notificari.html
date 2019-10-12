@@ -180,10 +180,10 @@ $(function() {
           window.location = "./login.html";
 
         openLoader()
-    var url = "https://citygrillgroup.jobs/manager-api/get-notifications?restaurant=1&id_manager=" + user.id  
+    var url = root_url + "/manager-api/get-notifications?restaurant=1&id_manager=" + user.id  
     console.log(user.roles)
     if(user.roles == "ROLE_ANGAJAT" || user.roles == "ROLE_ADMIN")
-      url = "https://citygrillgroup.jobs/api/get-notifications?employee=" + user.employee    
+      url = root_url + "/api/get-notifications?employee=" + user.employee    
     $.ajax
       ({
       beforeSend: function (xhr) {
@@ -200,18 +200,18 @@ $(function() {
           for(var i=0;i<v.length;i++)
           {
             console.log(i)
-              var img =  e[v[i]].icon.includes("<i") ? e[v[i]].icon : '<img src="https://citygrillgroup.jobs'+e[v[i]].icon+'">'
+              var img =  e[v[i]].icon.includes("<i") ? e[v[i]].icon : '<img src="'+root_url + e[v[i]].icon+'">'
 
               var arhiveaza = "", accepta = "", cancel = "", profil = ""
 
               if("archive_url" in e[v[i]])
-               arhiveaza = "<p onclick="+'remove(`https://citygrillgroup.jobs'+ e[v[i]].archive_url +'`,'+i+')'+">Arhiveaza</p>"
+               arhiveaza = "<p onclick="+'remove(`'+root_url +  e[v[i]].archive_url +'`,'+i+')'+">Arhiveaza</p>"
               if("accept_url" in e[v[i]])
-                accepta = "<p onclick="+'remove(`https://citygrillgroup.jobs'+ e[v[i]].accept_url +'`,'+i+')'+">Accepta</p>"              
+                accepta = "<p onclick="+'remove(`'+root_url +  e[v[i]].accept_url +'`,'+i+')'+">Accepta</p>"              
               if("cancel_url" in e[v[i]])
-               cancel = "<p onclick="+'remove(`https://citygrillgroup.jobs'+ e[v[i]].cancel_url +'`,'+i+')'+">Cancel</p>"
+               cancel = "<p onclick="+'remove(`'+ root_url + e[v[i]].cancel_url +'`,'+i+')'+">Cancel</p>"
               if("cancasd" in e[v[i]])
-               profil = "<p onclick="+'remove(`https://citygrillgroup.jobs'+ e[v[i]].archive_url +'`,'+i+')'+">Proasd</p>"
+               profil = "<p onclick="+'remove(`'+root_url +  e[v[i]].archive_url +'`,'+i+')'+">Proasd</p>"
 
 
 

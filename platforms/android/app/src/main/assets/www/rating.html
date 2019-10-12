@@ -173,6 +173,16 @@ if ( device.platform === 'Android' ) {
 
          </div>
 </div></div>
+<div class="filters">
+
+                <div class="ftype">
+                  <div onclick="route(100)" id="alerta">
+                      <i class="fas fa-star"></i>
+                  </div>          
+                    <div id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
+                    <div id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
+                </div>
+</div>
 </body>
 
 
@@ -293,7 +303,7 @@ $(function() {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "POST",
-        url: "https://citygrillgroup.jobs/api/get-my-ratings?employee=" + user.employee,
+        url: root_url + "/api/get-my-ratings?employee=" + user.employee,
         dataType: 'json',
         async: true,
         complete: function (json){
@@ -313,6 +323,10 @@ $(function() {
 
   }
 
+.note_t {
+      padding-right: 2em;
+}
+
 .app {
       margin-top: 5.6em;
 }
@@ -327,15 +341,16 @@ $(function() {
 .starrs {
     font-size: 19px;
     margin-top: 7px;
-    margin-left: -0.1em;
-    width: 37%;
+    margin-right: 1.2em;
     float: right;
+    right: 0;
     text-align: right;
+    width: 100%;
 }
 
 .note_c {
   margin-top: 7px;
-    width: 45%;
+    width: 100%;
     text-align: left;
 
 }
@@ -385,7 +400,7 @@ text-align: center;
 .row2 .fa-star {
       font-size: 24px;
           margin-top: 6px;
-
+color: white;
 }
 
 .row2 p {
@@ -438,7 +453,78 @@ text-align: center;
 
 
 .golden {
-    color: #fff700;
+    color: #009966!important;
 
 }
+
+
+
+</style>
+
+
+<style>
+  #alerta > i {
+    font-size: 30px;
+        margin-top: 9px!important;
+    margin-left: -4px;
+
+    color: ghostwhite;
+}
+  #alerta {
+    position: fixed;
+    margin-top: -5em;
+    text-align: right;
+    margin-left: -1em;
+    /* font-size: 35px; */
+    /* border: 1px solid black; */
+    /* margin-left: 83%; */
+    border-radius: 50%;
+    background: #9A2C18;
+    padding: 0.5em;
+    box-shadow: 0 1px 2px rgb(0, 0, 0);
+    padding-top: 0;
+    margin-right: 1em;
+    right: 0;
+    width: 2em;
+padding-right: 2.46em;
+    padding-left: 0.9em;}
+  .ftype {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+  .filters {
+    position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 3.5em;
+    padding-top: 0.5em;
+}
+  .ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}
+.ftype > .selected {
+    background: #9A2C18;
+    color: ghostwhite;
+}
+.ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}#typew p, #typem p {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: 0.5em;
+} 
+
 </style>

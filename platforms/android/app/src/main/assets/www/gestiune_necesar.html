@@ -619,7 +619,7 @@ function    pop(day, restaurant, team, day_part_name , day_part_id, _in, out,cat
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/manager-api/acoperire-necesar-restaurant-zi?restaurant="+restaurant+"&day="+_day+"&category="+categorie+"&job="+job+"",
+        url: root_url + "/manager-api/acoperire-necesar-restaurant-zi?restaurant="+restaurant+"&day="+_day+"&category="+categorie+"&job="+job+"",
         dataType: 'json',
         async: true,
         success: function (e){
@@ -761,7 +761,7 @@ function ajax(r=1, w, y)
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/manager-api/get-program-restaurant-week?restaurant="+r+"&week="+w+"&year="+y+"&category="+categorie,
+        url: root_url + "/manager-api/get-program-restaurant-week?restaurant="+r+"&week="+w+"&year="+y+"&category="+categorie,
         dataType: 'json',
         async: true,
         success: function (e){

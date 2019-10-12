@@ -156,7 +156,7 @@ function fetch_data()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-my-prize-orders",
+        url: root_url + "/api/get-my-prize-orders",
         dataType: 'json',
         async: true,
         complete: function (json){
