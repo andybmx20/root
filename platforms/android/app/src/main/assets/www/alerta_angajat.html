@@ -215,7 +215,7 @@ if ( device.platform === 'Android' ) {
           xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
         },
           type: "GET",
-          url: "https://citygrillgroup.jobs/api/calculate-total-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
+          url: root_url + "/api/calculate-total-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
           dataType: 'json',
           async: false,
           success: function (r){              
@@ -228,7 +228,7 @@ if ( device.platform === 'Android' ) {
           xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
         },
           type: "GET",
-          url: "https://citygrillgroup.jobs/api/calculate-day-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
+          url: root_url + "/api/calculate-day-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
           dataType: 'json',
           async: false,
           success: function (r){              
@@ -292,7 +292,7 @@ if ( device.platform === 'Android' ) {
 
 
     var data = "username=" + username + "&employee=" + cnp +"&start_work_date=" + start_work_date +"&start_work_time=" + start_work_time +"&end_work_date=" + end_work_date +"&end_work_time=" + end_work_time +"&id_restaurant=" + id_restaurant + "&id_job=" + id_job;
-    var url = "https://citygrillgroup.jobs/api/new-plan?"
+    var url = root_url + "/api/new-plan?"
     if(_frecventa == 1) {
       data += "&id_frequency=1";
       url += data;

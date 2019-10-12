@@ -267,12 +267,12 @@ function fetch_data(d)
                  var title = ""
                  if("status" in d[j][i])
                   title = d[j][i].status.title
-        if(title == "" || title == "prezent")
-          url = "https://citygrillgroup.jobs" + d[j][i]["set-absent"]
+        if(title == "null" || title == "prezent")
+          url = root_url +  d[j][i]["set-absent"]
         if(title == "absent")
-          url = "https://citygrillgroup.jobs" + d[j][i]["set-liber"]        
+          url =root_url +  d[j][i]["set-liber"]        
         if(title == "liber")
-          url = "https://citygrillgroup.jobs" + d[j][i]["set-prezent"]  
+          url = root_url +  d[j][i]["set-prezent"]  
 
           th += "<td onclick='status(`"+(url)+"`)' style='background: "+bg+";color:"+cl+"'>" + h + "</td>"
       }
@@ -306,7 +306,7 @@ function fetch_ajax(cnp, week, year, restaurant=1)
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/manager-api/get-weekly-restaurant-presence?week="+week+"&year="+year+"&restaurant=" + restaurant,
+        url: root_url + "/manager-api/get-weekly-restaurant-presence?week="+week+"&year="+year+"&restaurant=" + restaurant,
         dataType: 'json',
         async: true,
         success: function (e){

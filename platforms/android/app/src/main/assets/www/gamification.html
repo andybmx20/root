@@ -183,7 +183,7 @@ function  fetch_data()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-gamification-leaderboard?start="+$("#startdate").val()+"&end="+$("#enddate").val()+"",
+        url: root_url + "/api/get-gamification-leaderboard?start="+$("#startdate").val()+"&end="+$("#enddate").val()+"",
         dataType: 'json',
         async: true,
         complete: function (e){
@@ -194,9 +194,9 @@ function  fetch_data()
               var counter = 0 ;
                 for(i in e) {
                   if(counter==0)
-                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="https://citygrillgroup.jobs/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p style="    margin-top: 0.4em;"><i class="fas fa-crown"></i>'+e[i].points+'p</p></div></div>' 
+                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url +'/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p style="    margin-top: 0.4em;"><i class="fas fa-crown"></i>'+e[i].points+'p</p></div></div>' 
                       else
-                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="https://citygrillgroup.jobs/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p>'+e[i].points+'p</p></div></div>' 
+                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url + '/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p>'+e[i].points+'p</p></div></div>' 
 
                 counter++;
                 $("#items").append(div)
@@ -276,7 +276,7 @@ th {
 .fa-crown {
       font-size: 24px;
     margin-top: 6px;
-    color: #495600;
+    color: #F8DD09;
 }
 
 .row2  > div {
@@ -310,8 +310,8 @@ footer div {
 }
 
 footer .selected {
-      background: #B8351D;
-      color: ghostwhite;
+      background: #F8DD09;
+      color: #333333;
 
 }
 

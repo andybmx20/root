@@ -88,7 +88,7 @@ if(x && y)
     $.ajax({
          contentType: "application/json",
        dataType: 'applicaton/json',
-        url: "https://citygrillgroup.jobs/register?username="+x+"&password="+y+"&phone="+z+"&accepted_terms="+1+"&role=1",  
+        url: root_url +"/register?username="+x+"&password="+y+"&phone="+z+"&accepted_terms="+1+"&role=1",  
         type: "POST",
         success: function(response) {
             console.log(response);

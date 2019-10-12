@@ -102,7 +102,7 @@
                 </div>
                 <div class="selects">
                 <p> Joburile mele </p>
-                <select><option>Toate</option></select>
+                <select id="pozitii">></select>
                 <p> Confirmari </p>
                 <select><option>Toate</option></select>
                 </div>
@@ -169,7 +169,18 @@ function weekmonth(d)
     }
     filter_date()
 }
+function fetch_poziti()
+{
+          
+          r = user.jobs
+      for(var j=0;j<r.length;j++) {
+        $("#pozitii").append("<option value="+r[j].id+">"+r[j].pozitie+"</option>").trigger("change")
+      }
 
+  $("#pozitii").prop("selectedIndex", 0);
+
+
+}
 $(function() {
           user = getUser();
       parola = window.localStorage.getItem('parola');
@@ -177,7 +188,7 @@ $(function() {
       if(!user || ! parola)
           window.location = "./login.html";    filter_date()
     //fetch_ajax('', getWeekNumber(new Date())+ week_counter, new Date().getFullYear() + year_counter);
- 
+    fetch_poziti()
 });
 
 var week_counter = 0;
@@ -500,9 +511,9 @@ function    fetch_ajax(cnp='', week='', year='')
     console.log(week)
     var _url = "";
     if(week_or_month == 0)
-        _url = "https://citygrillgroup.jobs/api/get-my-agenda?employee="+user.employee+"&week="+week+"&year=" + year;
+        _url = root_url + "/api/get-my-agenda?employee="+user.employee+"&week="+week+"&year=" + year;
     else
-        _url = "https://citygrillgroup.jobs/api/get-my-monthly-agenda?employee="+user.employee+"&month="+week+"&year=" + year;
+        _url = root_url +"/api/get-my-monthly-agenda?employee="+user.employee+"&month="+week+"&year=" + year;
     $.ajax
       ({
       beforeSend: function (xhr) {
@@ -519,6 +530,7 @@ function    fetch_ajax(cnp='', week='', year='')
     }); 
 }
             var hours = 0;
+
 
 
 function    fetch_agenda(e)
@@ -723,10 +735,6 @@ position: fixed;
     z-index: 1;
     display: flex;
 }
-.ftype > .selected {
-    background: #9A2C18;
-    color: ghostwhite;
-}
 
 .qw >  p {
         margin-left: -6.8px;
@@ -762,7 +770,8 @@ position: fixed;
 
 #alerta > i {
         font-size: 30px;
-        color : ghostwhite;
+    color: #333333;
+;
 
 }
 #alerta {
@@ -774,7 +783,7 @@ position: fixed;
     /* border: 1px solid black; */
     /* margin-left: 83%; */
     border-radius: 50%;
-    background: #9A2C18;
+    background: #F8DD09;
     padding: 0.5em;
     box-shadow: 0 1px 2px rgb(0, 0, 0);
     padding-top: 0;

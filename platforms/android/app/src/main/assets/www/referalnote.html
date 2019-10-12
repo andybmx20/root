@@ -110,7 +110,8 @@ request.onreadystatechange = function (response) {
 input.placeholder = "Loading options...";
 
 // Set up and make the request.
-request.open('GET', 'https://citygrillgroup.jobs/api/search-my-team', true);
+let url = root_url + '/api/search-my-team'
+request.open('GET', url, true);
 request.send();
 }
 </script>
@@ -202,7 +203,7 @@ $(function() {
       if(!user || ! parola)
           window.location = "./login.html";
       f()
-    $("#menu").replaceWith("<i onclick=\"route(9)  \" class=\"fas fa-arrow-circle-left\"></i>")
+    $("#menu").replaceWith("<i onclick=\"route(10)  \" class=\"fas fa-arrow-circle-left\"></i>")
 });
 
 

@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.andrei.cg;
+package com.andrei.ima;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

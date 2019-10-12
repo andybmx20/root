@@ -217,7 +217,7 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
-    document.getElementById("zimg").src = 'https://citygrillgroup.jobs/' + user.image
+    document.getElementById("zimg").src = root_url +  '/' + user.image
     fetch_profile(user);
     $("#menu").replaceWith("<i onclick=\"route(11)  \" class=\"fas fa-arrow-circle-left\"></i>")
 });

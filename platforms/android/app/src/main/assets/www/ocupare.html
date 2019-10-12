@@ -238,7 +238,7 @@ function fetch_data()
                 xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
         },
             type: "POST",
-            url: "https://citygrillgroup.jobs/manager-api/acoperire-necesar-restaurant-zi?restaurant=1&day="+$("#date").val()+"&category=&job=",
+            url: root_url + "/manager-api/acoperire-necesar-restaurant-zi?restaurant=1&day="+$("#date").val()+"&category=&job=",
             dataType: 'json',
             async: true,
             success: function (e){
