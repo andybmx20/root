@@ -253,6 +253,8 @@ function  fetch_data(data)
 
 function fetch_ajax()
 {
+    openLoader()
+
       $.ajax
       ({
       beforeSend: function (xhr) {
@@ -263,7 +265,8 @@ function fetch_ajax()
         dataType: 'json',
         async: true,
         complete: function (json){
-          fetch_data(json.responseJSON)
+          fetch_data(json.responseJSON);
+          closeLoader()
             }
     });
 }
