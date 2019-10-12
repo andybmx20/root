@@ -231,9 +231,9 @@ function filter_date(x)
         else if(week_counter == 1)
             document.getElementById("datetext").innerText = "Peste o saptamana";
         else if(week_counter < -1)
-            document.getElementById("datetext").innerText = "Acum "+week_counter*-1+" saptamana";
+            document.getElementById("datetext").innerText = "Acum "+week_counter*-1+" saptamani";
         else if(week_counter > 1)
-            document.getElementById("datetext").innerText = "Peste "+week_counter+" saptamana";
+            document.getElementById("datetext").innerText = "Peste "+week_counter+" saptamani";
         }else {
             console.log("zzzzzzzzzzzz  ")
             if(x == 1)
@@ -242,21 +242,22 @@ function filter_date(x)
                 month_counter--;
 
             var year = new Date().getFullYear();
-
-            if((new Date()).getMonth() + month_counter > 12)
-            while( (new Date()).getMonth() + month_counter > 12) {
-                month_counter-=12;
+            let mm = month_counter
+            year_counterm = 0
+            if((new Date()).getMonth() + mm >= 12)
+            while( (new Date()).getMonth() + mm >= 12) {
+                mm-=12;
                 year_counterm++;
             }
 
-         if( (new Date()).getMonth() + month_counter < 0)
-            while( (new Date()).getMonth() + month_counter < 0) {
-                month_counter+=12;
+         if( (new Date()).getMonth() + mm < 0)
+            while( (new Date()).getMonth() + mm < 0) {
+                mm+=12;
                 year_counterm--;
             }      
             var m = (new Date()).getMonth()+ month_counter + 1;
 
-            document.getElementById("fweek").innerText = m;
+            document.getElementById("fweek").innerText = m - (12*year_counterm);
             document.getElementById("fyear").innerText =  (new Date()).getFullYear() + year_counterm;
             fetch_ajax('', m, new Date().getFullYear() + year_counterm);
             console.log(month_counter)
@@ -267,9 +268,9 @@ function filter_date(x)
             else if(month_counter == 1)
                 document.getElementById("datetext").innerText = "Peste o luna";
             else if(month_counter < -1)
-                document.getElementById("datetext").innerText = "Acum "+((month_counter*-1))+" luna";
+                document.getElementById("datetext").innerText = "Acum "+((month_counter*-1))+" luni";
             else if(month_counter > 1)
-                document.getElementById("datetext").innerText = "Peste "+(month_counter)+" luna";
+                document.getElementById("datetext").innerText = "Peste "+(month_counter)+" luni";
             }
     
 }
