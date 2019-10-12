@@ -101,7 +101,7 @@ if ( device.platform === 'Android' ) {
 <body>
 
 
-   
+
 <div class="app">
 <div class="">
 
@@ -158,7 +158,7 @@ if ( device.platform === 'Android' ) {
             </div>
           </div>
         </div>
-      </div>  
+      </div>
 
        <div class="rating">
           <p style="opacity: 0" class="rating_score">-</p>
@@ -178,7 +178,7 @@ if ( device.platform === 'Android' ) {
                 <div class="ftype">
                   <div onclick="route(100)" id="alerta">
                       <i class="fas fa-star"></i>
-                  </div>          
+                  </div>
                     <div id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
                     <div id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
                 </div>
@@ -194,7 +194,7 @@ if ( device.platform === 'Android' ) {
   <tr>
     <th><i class="far fa-clock"></i></th>
      <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
-    <th><i class="fas fa-crown"></i></th>   
+    <th><i class="fas fa-crown"></i></th>
   </tr>
 </table>
 <div style="display: flex!important" class="zlop">
@@ -229,7 +229,7 @@ if ( device.platform === 'Android' ) {
            <div>
 
             <div class="note_i"><img src="https://citygrillgroup.jobs/media/cache/small_thumb/images/rating.png"></div>
-             
+
              <div class="note_c">
                 <div class="note_t">Rcenzie</div>
                 <div class="note_m">Mesaj</div>
@@ -286,7 +286,7 @@ function  fetch_data(data)
     var a = i + ' recenzii'
     $($(".rating_counter")[0]).html(a)
 
-    
+
 
 }
 
@@ -296,7 +296,7 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
-    
+
     $.ajax
       ({
       beforeSend: function (xhr) {
@@ -522,6 +522,6 @@ padding-right: 2.46em;
     font-size: 16px;
     padding-top: 0;
     margin-top: 0.5em;
-} 
+}
 
 </style>
