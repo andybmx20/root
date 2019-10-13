@@ -219,6 +219,8 @@ document.getElementById("adresa_value").innerText = adresa;
 
 function  fetch_data(data)
 {
+  var _data = data;
+  data = data.list
   var i = 0;
   total_rating = 0;
   console.log(data)
@@ -239,7 +241,7 @@ function  fetch_data(data)
  //   $("#note").append(div)
   }
   total_rating /= i;
-  var div = "<p class='qwer'> "+total_rating+" </p>"
+  var div = "<p class='qwer'> "+_data.rating.total+" </p>"
    for(var j=0;j<5;j++)
     {
       if(total_rating > j)
@@ -328,10 +330,10 @@ $(function() {
         url: root_url + "/api/login",
         dataType: 'json',
         async: true,
-        complete: function (json){
+        complete: function (e){
               window.localStorage.setItem("user", JSON.stringify(e.responseJSON));
               document.getElementById("zimg").src = root_url +  '/' + user.image
-              fetch_profile(user);
+              fetch_profile(e.responseJSON);
               fetch_ajax()
               document.getElementById('startdate').valueAsDate = new Date(new Date() - 1000 * 60 * 60 * 24 * 31);
           document.getElementById('enddate').valueAsDate = new Date();
@@ -582,12 +584,13 @@ display: flex;
 .item img {
     height: 50px;
     border-radius: 50%;
-    margin-left: -2.1em;
-    margin-top: 0.6em;
+margin-left: -3.3em;
+    margin-top: 0.3em;
     width: 50px;
 }
 
-.left p {
-    white-space: initial;
-}
+.left p , .ytr p{
+white-space: initial;
+    margin-top: 4px;
+    font-size: 14px;}
 </style>

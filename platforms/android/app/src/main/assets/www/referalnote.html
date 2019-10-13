@@ -72,6 +72,31 @@ if ( device.platform === 'Android' ) {
     $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
 }
 
+
+var id, job, value, rating=0;
+
+
+function send()
+{ 
+    var r =rating++;
+    $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: root_url + "/api/new-rating?employee="+id+"&rating="+r+"&note="+$("#rtext").val(),
+        dataType: 'json',
+        async: true,
+        complete: function (json){
+            alert(json.responseText)
+
+        }
+    }); 
+}
+
+
+
 function cand(bla)
 {
     console.log(bla)
@@ -84,10 +109,10 @@ function cand(bla)
     if(!document.getElementById("json-datalist").options.namedItem(a))
         return;
     document.getElementById("rr").style.display = ""
-   let id = document.getElementById(bla.value).getAttribute("value")
-    let image = document.getElementById(bla.value).getAttribute("image")
-    let job = document.getElementById(bla.value).getAttribute("job")
-    let value = document.getElementById(bla.value).getAttribute("text")
+    id = document.getElementById(bla.value).getAttribute("value")
+     image = document.getElementById(bla.value).getAttribute("image")
+     job = document.getElementById(bla.value).getAttribute("job")
+     value = document.getElementById(bla.value).getAttribute("text")
 
     document.getElementById("rnume").innerText = value;
     document.getElementById("rimg").src = image;
@@ -97,6 +122,7 @@ function cand(bla)
 
 function ffstar(id)
 {
+    rating = id.id
     $('.fa-star').removeClass('golden');
     fstar(id.id)
 }
@@ -130,7 +156,7 @@ var input = document.getElementById('ajax');
                 for(i in values) {
                     var option = document.createElement('option');
                     var z = values[i].name
-                    var ss = "<option job="+values[i].job+" text="+z+" id="+keys[i]+" image="+values[i].image+" value="+keys[i]+">"+values[i].name+"</option>"
+                    var ss = '<option job="'+values[i].job+'" text="'+z+'" id='+keys[i]+' image='+values[i].image+' value='+keys[i]+'>'+values[i].name+'</option>'
                     $(dataList).append(ss);
 
             }
@@ -203,7 +229,7 @@ let url = root_url + '/api/search-my-team'
                     </div>
                     <p>Descrie motivul acordarii notei</p>
                     <textarea id="rtext"></textarea>
-                    <button>Trimite</button>
+                    <button onclick="send()">Trimite</button>
 
                 </div>
 

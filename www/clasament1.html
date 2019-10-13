@@ -201,7 +201,7 @@ function  fetch_data()
                                 tbalance += n ;
               if(n > 0)
               	n = "+" + e[i].points
-                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' ('+n+')</p></div></div>' 
+                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' <span>('+n+' <img class="coins" src="https://citygrillgroup.jobs/media/cache/small_thumb/images/coins.png"/>)</span></p></div></div>' 
 
                 counter++;
                 $("#items").append(div)
@@ -244,6 +244,19 @@ document.getElementById('enddate').valueAsDate = new Date();
 
 
 <style>
+.ytr span {
+  padding-top: 8px;
+    margin-left: -35px;
+    position: absolute;
+}
+  .coins {
+        height: 15px!important;
+    border-radius: 25%;
+    margin-left: -2.1em;
+    margin-right: 3.4px;
+    padding-left: 2em;
+    margin-top: 13px;
+  }
 
 #items {
   margin-top: 5.6em;

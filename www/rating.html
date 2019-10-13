@@ -62,8 +62,9 @@
 
 
 .menuname h2 {
-    font-size: 24px!important;
-    height: 2em!important;
+font-size: 24px!important;
+    height: 2.2em!important;
+    margin-top: 17px;
 }
 
 th {
@@ -76,10 +77,12 @@ th {
 }
 
 .progress {
-      margin-right: 2em;
+    margin-right: 2em;
     margin-left: 2em;
-    margin-top: 1.7em;
-    height: 1.9em;
+    margin-top: 2.1em;
+    height: 2.1em;
+    border: 1px solid #565656;
+    color: green;
 }
 
 .fa-bars {
@@ -124,37 +127,38 @@ if ( device.platform === 'Android' ) {
         <div id="alls">
           <div class="star_container">
             <div style="width: 15%"><p class="index">5</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div id="s5" style="width: 35%" class="stars">
+              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              <div id="p1" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
                   <div class="star_container">
             <div style="width: 15%"><p class="index">4</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div  id="s4" style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              <div id="p2" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
                   <div class="star_container">
             <div style="width: 15%"><p class="index">3</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div  id="s3" style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              <div id="p3" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
                   <div class="star_container">
             <div style="width: 15%"><p class="index">2</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div  id="s2" style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              <div id="p4" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
                   <div class="star_container">
             <div style="width: 15%"><p class="index">1</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div  id="s1" style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              <div id="p5" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
         </div>
@@ -177,7 +181,7 @@ if ( device.platform === 'Android' ) {
 
                 <div class="ftype">
                   <div onclick="route(100)" id="alerta">
-                      <i class="fas fa-star"></i>
+                      <i class="fas golden fa-star"></i>
                   </div>          
                     <div id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
                     <div id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
@@ -250,11 +254,31 @@ if ( device.platform === 'Android' ) {
 
 var total_rating = 0;
 
+
+function fetch_starrs(x, note, nr)
+{
+  var div = ""
+   for(var j=0;j<5;j++)
+      {
+      if(note > j)
+          div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
+      else
+          div += '                <i class="fa fa-star" aria-hidden="true"></i>'
+      }  
+    var a= "s" + (6-x);
+    if(parseInt(note)>0 && note)
+      document.getElementById("p"+x).innerText = note;
+    $("#"+a).html(div)
+}
+
+
 function  fetch_data(data)
 {
+   var _data = data;
+
+  data = data.list
   var i = 0;
   total_rating = 0;
-  console.log(data)
   for(i in data)
   {
     var div = '<div><div class="note_i"><img src="'+data[i].icon+'"></div><div class="note_c"><div class="note_t">' + data[i].title + '</div><div class="note_m">' + data[i].message + '</div>                <div class="note_d">' + data[i].date + '</div>             </div>             <div class="starrs">                     ';
@@ -268,11 +292,10 @@ function  fetch_data(data)
 
     }
     div+="</div> </div>           </div>"
-    console.log(div)
     $("#note").append(div)
   }
   total_rating /= i;
-  var div = "<p> "+total_rating+" </p>"
+  var div = "<p> "+_data.rating.total +" </p>"
    for(var j=0;j<5;j++)
     {
       if(total_rating > j)
@@ -286,7 +309,14 @@ function  fetch_data(data)
     var a = i + ' recenzii'
     $($(".rating_counter")[0]).html(a)
 
-    
+  for(var x=5;x>0;x--) {
+    var id = "p" + (6-x);
+    var u = parseInt(_data.rating[x]/i*100)
+    document.getElementById(id).style.width = (u) + "%"
+    fetch_starrs(6-x, _data.rating[x], u) 
+  }
+
+
 
 }
 
@@ -320,6 +350,14 @@ $(function() {
 
 <style>
 
+.row2 .fa-star {
+    color: #fdfdfd!important;
+}
+
+.star_container > .stars > i { 
+   margin-right: -5px;
+}
+
   .row2 {
         margin-left: -0.6em!important;
 
@@ -351,6 +389,7 @@ $(function() {
 }
 #note {
       padding-bottom: 4em;
+    font-size: 13px;
 
 }
 
@@ -359,6 +398,25 @@ $(function() {
     width: 100%;
     text-align: left;
 
+}
+
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    /* text-align: right; */
+    font-size: 16px;
+    white-space: nowrap;
+    transition: width .6s ease;
+    right: 0;
+        background: : #009966!important;
+
+    text-align: right;
+    color: white!important;
 }
 
 .note_i > img {
@@ -412,8 +470,8 @@ color: white;
 .row2 p {
     margin-left: 4px;
     font-size: 19px;
-    margin-top: 5px;
-    margin-bottom: 8px;
+    margin-top: 7.6px;
+    margin-bottom: 5.9px;
     margin-right: 1.4em;
 }
 
