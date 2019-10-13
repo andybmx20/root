@@ -306,8 +306,8 @@ var n = $("#pun").html()
   }
 
   var data = '<p>' +user.firstname + ' ' + user.lastname + ' : ' + user.phone + '</p>'
-  data += '<p>' + 'adresa ' + '</p>'
-  data += "<button class='btn' onclick=route('e')>Schimba adresa</button>"
+  data += '<p>' + 'Adresa: ' + getAdresa() + '</p>'
+  data += "<button class='btn' onclick=route('eredirect')>Schimba adresa</button>"
 openLoader();
 
  $.ajax
@@ -372,7 +372,7 @@ if(!basket) {
   document.getElementById("menu").setAttribute("onclick", "reload()");
   data += '<div class="golire" onclick="removeBasket()"">Golire cos</div>'
 
-  data += "<div class='sumar'><p>Sumar comandă</p><div class='qwe'><p>Cost total produse</p><p id='final'></p></div><p>Produsele vor fi livrate prin curier, în maxim 5 zile lucrătoare de la efectuarea comenzii.</p><button id='cont' onclick='_continue()' class='btn btn-succes'>Continua</button</div>"
+  data += "<div class='sumar'><p>Sumar comandă</p><div class='qwe'><p>Cost total produse</p><p id='final'></p></div><p>Daca sunt produse livrabile prin curier, acestea vor fi trimise in maxim 5 zile de la efectuarea comenzii.</p><button id='cont' onclick='_continue()' class='btn btn-succes'>Continua spre adresa</button</div>"
 
   data += "</div>"
 

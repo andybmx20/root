@@ -163,12 +163,12 @@ if ( device.platform === 'Android' ) {
       </div>
         <div>
           <div>
-            <p>Oras</p>
-            <select onchange="fetch_city()" id="oras"></select>
+            <p>Judet</p>
+            <select  onchange="fetch_city()" id="judet"></select>
           </div>
           <div>
-            <p>Judet</p>
-            <select id="judet"></select>
+            <p>Oras</p>
+            <select id="oras"></select>
           </div>
       </div>
         <div>
@@ -249,7 +249,7 @@ function    fetch_city(id)
 {
 
 
-$("#judet").html("")
+$("#oras").html("")
 
  $.ajax
       ({
@@ -257,14 +257,14 @@ $("#judet").html("")
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: root_url + "/api/cities-by-county?id=" + $("#oras").val(),
+        url: root_url + "/api/cities-by-county?id=" + $("#judet").val(),
         dataType: 'json',
         async: false,
         success: function (json){
         for(var i=0;i<json.length;i++)
         {
            var option = "<option value=" + json[i].id_city + ">" + json[i].city + "</option>"
-          $("#judet").append(option)
+          $("#oras").append(option)
         }        
       }
     });
@@ -274,10 +274,10 @@ function    fetch_county(query, json)
 {
   if(typeof json == "string")
     json = JSON.parse(json);
-
+console.log(json)
 if(!json)
   return;
-  for(var i=0;i<json.length;i++)
+  for(var i in json)
   {
      var option = "<option value=" + json[i].id + ">" + json[i].title + "</option>"
     $(query).append(option)
@@ -348,6 +348,12 @@ function  fetch_profile()
     if("id_restaurant" in _user)
       if(_user.id_restaurant)
         $("#restaurant").val(_user.id_restaurant).trigger("change")
+     if("floor" in _user)
+      if(_user.floor)
+        $("#apartament").val(_user.floor)
+     if("flat" in _user)
+      if(_user.flat)
+        $("#etaj").val(_user.flat)
 }
 
 function  send_data()
@@ -366,6 +372,8 @@ function  send_data()
   data += "&id_restaurant=" + $("#id_restaurant").val()
   data += "&floor=" + $("#apartament").val()
   data += "&flat=" + $("#etaj").val()
+  data += "&id_city=" + $("#oras").val()
+  data += "&id_county=" + $("#judet").val()
 
 openLoader()
 
@@ -417,7 +425,7 @@ $(function() {
 
     var res = "" +  window.localStorage.getItem('brands');
     fetch_poziti("#poziti", window.localStorage.getItem('poziti'));
-    fetch_county("#oras", window.localStorage.getItem('countries'));
+    fetch_county("#judet", window.localStorage.getItem('countries'));
     fetch_restaurant("#restaurant", res);
         $("#menu").replaceWith("<i onclick=\"route('p')  \" class=\"fas fa-arrow-circle-left\"></i>")
 

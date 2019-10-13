@@ -72,47 +72,87 @@ if ( device.platform === 'Android' ) {
     $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
 }
 
+function cand(bla)
+{
+    console.log(bla)
+    if(!bla)
+        return;
+
+   a = bla.value
+   if(!a)
+    return;
+    if(!document.getElementById("json-datalist").options.namedItem(a))
+        return;
+    document.getElementById("rr").style.display = ""
+   let id = document.getElementById(bla.value).getAttribute("value")
+    let image = document.getElementById(bla.value).getAttribute("image")
+    let job = document.getElementById(bla.value).getAttribute("job")
+    let value = document.getElementById(bla.value).getAttribute("text")
+
+    document.getElementById("rnume").innerText = value;
+    document.getElementById("rimg").src = image;
+    document.getElementById("rjob").innerText = job;
+
+}
+
+function ffstar(id)
+{
+    $('.fa-star').removeClass('golden');
+    fstar(id.id)
+}
+
 function f(){
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');
 var input = document.getElementById('ajax');
 
-// Create a new XMLHttpRequest.
-var request = new XMLHttpRequest();
 
-// Handle state changes for the request.
-request.onreadystatechange = function (response) {
-    if (request.readyState === 4) {
-        if (request.status === 200) {
-            // Parse the JSON
-            var jsonOptions = JSON.parse(request.responseText);
 
-            // Loop over the JSON array.
-            jsonOptions.forEach(function (item) {
-                // Create a new <option> element.
-                var option = document.createElement('option');
-                // Set the value using the item in the JSON array.
-                option.value = item;
-                // Add the <option> element to the <datalist>.
-                dataList.appendChild(option);
-            });
+//  openLoader()
+   $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: root_url + "/api/search-my-team",
+        dataType: 'json',
+        data:{search: input.value},
+        async: true,
+        complete: function (json){
+              jsonOptions = json.responseJSON
+        $(dataList).html("")
+            if(jsonOptions)
+            {
+                var keys = Object.keys(jsonOptions)
+                var values = Object.values(jsonOptions)
+
+                for(i in values) {
+                    var option = document.createElement('option');
+                    var z = values[i].name
+                    var ss = "<option job="+values[i].job+" text="+z+" id="+keys[i]+" image="+values[i].image+" value="+keys[i]+">"+values[i].name+"</option>"
+                    $(dataList).append(ss);
+
+            }
+                                $(dataList).trigger("change");
+                    $('json-datalist').selectmenu('refresh', true);
+
+
+            }
+
 
             // Update the placeholder text.
-            input.placeholder = "e.g. datalist";
-        } else {
-            // An error occured :(
-            input.placeholder = "Couldn't load datalist options :(";
+            input.placeholder = "Ex. Car";
+          closeLoader()
         }
-    }
-};
+    }); 
 
 // Update the placeholder text.
-input.placeholder = "Loading options...";
+input.placeholder = "Ex. Car.";
 
 // Set up and make the request.
 let url = root_url + '/api/search-my-team'
-request.open('GET', url, true);
-request.send();
+
 }
 </script>
 
@@ -135,9 +175,35 @@ request.send();
                 </header>
 
                 <div class="rating"><h2>Cauta colegul</h2>
- <input type="text" id="ajax" list="json-datalist" placeholder="e.g. datalist">
-    <datalist id="json-datalist"></datalist>
-                
+ <input type="text"  onkeyup="f()" id="ajax"  placeholder="Exemplu: car">
+    <select onchange="cand(this)" id='json-datalist' data-native-menu="false">
+
+    </select>
+
+                </div>
+                <div id="rr" style="display: none" class="rrating">
+                    <h2>Scrie recenzia</h2>
+                    <div class="zara">
+                        <div>
+                            <p>Pentru: <span id="rnume">gigel</span></p>
+                            <p id="rjob">bucatar</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <img id="rimg" src="">
+                        </div>
+                    </div>
+                    <p>Nota acordata</p>
+                    <div style="    font-size: 18px;
+    margin-top: -8px;">
+                        <i id="0" onclick="ffstar(this)" class="fa fa-star"></i>
+                        <i id="1" onclick="ffstar(this)" class="fa fa-star"></i>
+                        <i id="2" onclick="ffstar(this)" class="fa fa-star"></i>
+                        <i id="3" onclick="ffstar(this)" class="fa fa-star"></i>
+                        <i id="4" onclick="ffstar(this)" class="fa fa-star"></i>
+                    </div>
+                    <p>Descrie motivul acordarii notei</p>
+                    <textarea id="rtext"></textarea>
+                    <button>Trimite</button>
 
                 </div>
 
@@ -196,6 +262,16 @@ function    fetch_profile(user)
 
 }
 
+function fstar(x)
+{
+    if(x>=0)
+    {
+        $($(".fa-star")[x]).addClass("golden")
+        fstar(x-1)
+    }
+    return;
+}
+
 $(function() {
   user = getUser();
       parola = window.localStorage.getItem('parola');
@@ -211,6 +287,7 @@ $(function() {
 
 
 <style>
+
 html, body {
     margin: 0;
     padding: 0;
@@ -218,7 +295,15 @@ html, body {
     overflow: hidden;
       overflow-y: scroll; 
 -webkit-overflow-scrolling: touch;}
+.golden {
+    color: #009966!important;
 
+}
+button {
+    background: #009966!important;
+    color: white!important;
+        font-weight: 400!important;
+}
 .fa-arrow-circle-left{
       font-size: 23px;
     color: ghostwhite;
@@ -254,15 +339,32 @@ html, body {
     min-width: 3em;
     height: 1.6em;
 }
+.zara > div {
+  width: 50%;
+}
+
+.zara img {
+  right: 0;
+    text-align: right;
+}
+
+
 
 .rating {
     padding-left: 2em;
     padding-right: 2em;
         margin-top: 4em;
+    padding-top: 1em;
 
 }
 
-
+.rrating {
+margin-top: 3em;
+    padding-top: 7em;
+    font-size: 14px;
+    padding-left: 3.4em;
+    margin-right: 3em;
+}
 
 .profile-pic {
     margin-top:-5em;
@@ -293,6 +395,9 @@ text-align: left;
     }
 
 
+.zara {
+    display: flex;
+}
 
 #profile_content {
     left: 0;
@@ -348,14 +453,16 @@ display: flex;
 
 .app {
     font-size: 12px;
+}img {
+    height: 75px;
+    width: 75px;
+    border: 1px solid #d8d8d8;
+    border-radius: 50%;
+    background: white;
 }
 
-img {
-    height: inherit;
-    width: inherit;
-    border: 1px solid #d8d8d8;
-    border-radius: inherit;
-    background: white;
+.zara > div > img {
+    text-align: right;
 }
 
 .rating {

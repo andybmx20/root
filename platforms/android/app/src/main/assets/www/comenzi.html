@@ -164,7 +164,7 @@ function fetch_data()
           closeLoader()
           for(i in json)
           {
-            var div = '<div class="prize"><div ><p>' + json[i].title + ' | ' + json[i].prize_name + "</p><p>" + json[i].message + "</p></div>                  </div>"
+            var div = '<div class="prize"><div><img src="'+json[i].prize_image+'"/></div><div ><p>' + json[i].title + ' | ' + json[i].prize_name + "</p><p>" + json[i].message + "</p></div>            <div><p style='font-size: 12px;margin-right: -2em;'>"+json[i].date+" </p></div>     </div>"
             $("#prizes").append(div)
           }
           closeLoader()
@@ -210,6 +210,7 @@ $(function() {
 
 .prize {
   text-align: center;
+  display: flex;
 }
 
 #prizes, #prize, #basket {
@@ -222,7 +223,8 @@ $(function() {
 .prize img {
     width: auto;
     height: 6em;
-    padding-top: 1em;
+        margin-right: 1em;
+
 }
 
 #number {
@@ -239,6 +241,15 @@ $(function() {
     margin-bottom: 1em;
     margin-left: -8px;
     margin-right: -10px;
+}
+
+.prize img {
+  height: 50px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #d8d8d8;
+        width: 50px!important;
+
 }
 
 #basket img {

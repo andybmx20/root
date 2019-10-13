@@ -201,11 +201,10 @@ function  fetch_data()
                                 tbalance += n ;
               if(n > 0)
               	n = "+" + e[i].points
-                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="'+root_url +'/'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' ('+n+')</p></div></div>' 
+                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' ('+n+')</p></div></div>' 
 
                 counter++;
                 $("#items").append(div)
-                document.getElementById("thours").innerText = "+" + tbalance + " puncte out4food"
               }
               } 
             });
@@ -263,6 +262,13 @@ document.getElementById('enddate').valueAsDate = new Date();
       text-align: center!important;
     }
 
+.row2 p {
+      float: left;
+}
+
+.row2 input {
+padding-right: 0em;
+    padding-left: 2px;}
 .item {
     display: flex;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);

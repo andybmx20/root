@@ -297,6 +297,7 @@ $(function() {
       if(!user || ! parola)
           window.location = "./login.html";
     
+    openLoader()
     $.ajax
       ({
       beforeSend: function (xhr) {
@@ -308,6 +309,7 @@ $(function() {
         async: true,
         complete: function (json){
           fetch_data(json.responseJSON)
+          closeLoader()
             }
     });
 

@@ -94,14 +94,14 @@ if ( device.platform === 'Android' ) {
                 <div class="rating"><h2>Invita un prieten</h2>
 
                 <div>
-                	<div><span>Prenume *</span><input type="text" name="fname"></div>
-                	<div><span>Nume *</span><input type="text" name="flast"></div>
+                	<div><span>Prenume *</span><input type="text" id="fname"></div>
+                	<div><span>Nume *</span><input type="text" id="flast"></div>
 
                 </div>
                 <div><div>
                 	<span>Telefon *</span>
                 	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
-                		<input type="phone" name="phone">
+                		<input type="phone" id="phone">
                 	</div>
                 </div>
                 	<div><span>Pozitie *</span>    <select id="pozitii"></select>
@@ -113,6 +113,7 @@ if ( device.platform === 'Android' ) {
                 	<span>Mesaj</span>
                 	<textarea>Te rocomand pentru angajare ca ospătar în Grupul City Grill. Aplică online: citygrillgroup.jobs/candidat?rf=sdfs23&fn=fname&ln=lname&ph=phone&job=job. Succes!</textarea>
                 </div>
+                <button onclick="send()">Trimite</button>
 
                 </div>
 
@@ -156,6 +157,54 @@ if ( device.platform === 'Android' ) {
 </html>
 
 <script type="text/javascript">
+
+function send()
+{
+    var a = "", b ="", c="", d="";
+    
+    if($("#fname").val())
+        a = $("#fname").val()
+    else {
+        alert("Completeaza campurile");
+        return;
+    }
+
+    if($("#flast").val())
+        b = $("#flast").val()
+    else {
+        alert("Completeaza campurile");
+        return;
+    }
+
+    if($("#phone").val())
+        c = $("#phone").val()
+    else {
+        alert("Completeaza campurile");
+        return;
+    }
+
+    if($("#pozitii").val())
+        d = $("#pozitii").val()
+    else {
+        alert("Completeaza campurile");
+        return;
+    }
+
+
+        $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "POST",
+        url: root_url + "/api/new-referral?fn="+a+"&ln="+b+"&ph="+c+"&job="+d,
+        dataType: 'json',
+        async: true,
+        complete: function (json){
+          alert(json.responseText)
+            }
+    });
+}
 
 function fetch_poziti()
 {
@@ -247,6 +296,10 @@ html, body {
     margin-left: 2.8em;
     color: ghostwhite;
 }
+button {
+    background: #009966!important;
+    color: white!important;
+}
 
 .profile_key{
     width: auto;
@@ -260,7 +313,7 @@ html, body {
 .rating {
 	padding-left: 2em;
 	padding-right: 2em;
-	    margin-top: 2.5em;
+	    margin-top: 4em;
 
 }
 
@@ -361,7 +414,6 @@ img {
 .rating {
 	text-align: left;
     height: 2em;
-    margin-top: 2.5em;
     font-size: 18px;
 }
 
@@ -370,6 +422,8 @@ img {
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
+
+
 
 .rating_score {
     left: 0;
