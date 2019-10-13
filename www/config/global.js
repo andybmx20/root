@@ -80,6 +80,8 @@ function      expand_filters()
 function route(id)
 {
   console.log(id)
+  if(id==101)
+        window.location.href="./oferite.html"
   if(id==100)
         window.location.href = "./referalnote.html"  
   if(id==155)

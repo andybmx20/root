@@ -567,7 +567,7 @@ function    fetch_agenda(e)
                 div+='<div style="display: grid">'
                 for(var j in values[i].plan) {
                     div+='<div class="_content"> '
-                    img = '<div class="_img"> <img src="imgs/logo.png"> </div>';
+                    img = '<div class="_img"> <img src="'+values[i].plan[j].restaurant.icon+'"> </div>';
                     var h = values[i].plan[j].total_hours.split('.')[0]
                      div+=img;
                     var start_end = values[i].plan[j].in.date.substr(11, 5) + " - " + values[i].plan[j].out.date.substr(11, 5)
@@ -609,9 +609,9 @@ function    fetch_agenda(e)
 }
 
 ._img {
-    margin-top: 8px;
-    margin-left: 21px;
-    margin-right: 5px;
+margin-top: 16px;
+    margin-left: 17px;
+    margin-right: 9px;
 }
 
 

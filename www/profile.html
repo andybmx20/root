@@ -318,12 +318,27 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
-    document.getElementById("zimg").src = root_url +  '/' + user.image
-    fetch_profile(user);
-    fetch_ajax()
-    document.getElementById('startdate').valueAsDate = new Date(new Date() - 1000 * 60 * 60 * 24 * 31);
-document.getElementById('enddate').valueAsDate = new Date();
-    $("#menu").replaceWith("<i onclick=\"route(11)  \" class=\"fas fa-arrow-circle-left\"></i>")
+
+      $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "POST",
+        url: root_url + "/api/login",
+        dataType: 'json',
+        async: true,
+        complete: function (json){
+              window.localStorage.setItem("user", JSON.stringify(e.responseJSON));
+              document.getElementById("zimg").src = root_url +  '/' + user.image
+              fetch_profile(user);
+              fetch_ajax()
+              document.getElementById('startdate').valueAsDate = new Date(new Date() - 1000 * 60 * 60 * 24 * 31);
+          document.getElementById('enddate').valueAsDate = new Date();
+              $("#menu").replaceWith("<i onclick=\"route(11)  \" class=\"fas fa-arrow-circle-left\"></i>")
+            }
+    });
+
 });
 
 

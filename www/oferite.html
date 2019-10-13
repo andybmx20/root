@@ -179,8 +179,8 @@ if ( device.platform === 'Android' ) {
                   <div onclick="route(100)" id="alerta">
                       <i class="fas fa-star"></i>
                   </div>          
-                    <div id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
-                    <div id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
+                    <div id="typew" onclick="route(10)" ><p>Recenziile primite</p></div>
+                    <div id="typem" class="selected" onclick="route(101)"><p>Recenziile oferite</p></div>
                 </div>
 </div>
 </body>
@@ -304,7 +304,7 @@ $(function() {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "POST",
-        url: root_url + "/api/get-my-ratings?employee=" + user.employee,
+        url: root_url + "/api/get-offered-ratings?employee=" + user.employee,
         dataType: 'json',
         async: true,
         complete: function (json){
@@ -349,15 +349,15 @@ $(function() {
     text-align: right;
     width: 100%;
 }
-#note {
-      padding-bottom: 4em;
-
-}
 
 .note_c {
   margin-top: 7px;
     width: 100%;
     text-align: left;
+}
+
+#note {
+      padding-bottom: 4em;
 
 }
 
