@@ -19,6 +19,35 @@ function removeA(arr) {
     return arr;
 }
 
+function getAdresa()
+{
+  var adresa = "";
+
+
+if("street" in user)
+  if(user.street)
+    adresa += "Str " + user.street
+
+if("street_no" in user)
+  if(user.street_no)
+    adresa += ", Nr " + user.street_no
+
+if("stair" in user)
+  if(user.stair)
+    adresa += ", Sc " + user.stair
+
+if("flat" in user)
+  if(user.flat)
+    adresa += ", Et " + user.flat
+
+if("flat" in user)
+  if(user.floor)
+    adresa += ", Ap " + user.floor
+
+  return adresa;
+
+}
+
 function    fetch_poziti(query, json)
 {
   if(typeof json == "string")
@@ -51,6 +80,8 @@ function      expand_filters()
 function route(id)
 {
   console.log(id)
+  if(id==101)
+        window.location.href="./oferite.html"
   if(id==100)
         window.location.href = "./referalnote.html"
   if(id==155)

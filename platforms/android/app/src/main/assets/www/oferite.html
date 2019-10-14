@@ -183,8 +183,8 @@ if ( device.platform === 'Android' ) {
                   <div onclick="route(100)" id="alerta">
                       <i class="fas golden fa-star"></i>
                   </div>          
-                    <div id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
-                    <div id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
+                    <div id="typew" onclick="route(10)" ><p>Recenziile primite</p></div>
+                    <div id="typem" onclick="route(101)" class="selected"><p>Recenziile oferite</p></div>
                 </div>
 </div>
 </body>
@@ -334,8 +334,8 @@ $(function() {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "POST",
-        url: root_url + "/api/get-my-ratings?employee=" + user.employee,
-        dataType: 'json',
+ url: root_url + "/api/get-offered-ratings?employee=" + user.employee,
+         dataType: 'json',
         async: true,
         complete: function (json){
           fetch_data(json.responseJSON)
@@ -350,30 +350,8 @@ $(function() {
 
 <style>
 
-#alerta .fa-star {
-  color: white!important;
-}
-
 .row2 .fa-star {
     color: #fdfdfd!important;
-}
-.progress-bar {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: center;
-    justify-content: center;
-    color: #fff;
-    /* text-align: right; */
-    font-size: 16px;
-    white-space: nowrap;
-    transition: width .6s ease;
-    right: 0;
-        background: #009966!important;
-
-    text-align: right;
-    color: white!important;
 }
 
 .star_container > .stars > i { 
@@ -422,7 +400,24 @@ $(function() {
 
 }
 
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    /* text-align: right; */
+    font-size: 16px;
+    white-space: nowrap;
+    transition: width .6s ease;
+    right: 0;
+        background: : #009966!important;
 
+    text-align: right;
+    color: white!important;
+}
 
 .note_i > img {
   width: 50px;
@@ -537,7 +532,7 @@ color: white;
         margin-top: 9px!important;
     margin-left: -4px;
 
-    color: #333333;
+    color: ghostwhite;
 }
   #alerta {
     position: fixed;
@@ -548,7 +543,7 @@ color: white;
     /* border: 1px solid black; */
     /* margin-left: 83%; */
     border-radius: 50%;
-    background: #F8DD09;
+    background: #9A2C18;
     padding: 0.5em;
     box-shadow: 0 1px 2px rgb(0, 0, 0);
     padding-top: 0;
@@ -579,7 +574,10 @@ padding-right: 2.46em;
     padding-top: 5px;
     text-align: center;
 }
-
+.ftype > .selected {
+    background: #9A2C18;
+    color: ghostwhite;
+}
 .ftype > div {
     width: 50%;
     background: white;

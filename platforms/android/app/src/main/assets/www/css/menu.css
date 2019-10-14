@@ -385,8 +385,23 @@ text-align: center;}
     position: absolute;
     margin-right: 20px  ;
 }
+
+.golden {
+  font-weight: 900!important;
+}
+
+#menuz {
+  color: black!important;
+    font-weight: 900!important;
+
+}
+
+.fa-star  {
+      color: #009966!important;
+    font-weight: 500;
+}
   
-.fas {
+.fas, .far {
     color: #555;
         font-size: large;
 

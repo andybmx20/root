@@ -385,8 +385,29 @@ text-align: center;}
     position: absolute;
     margin-right: 20px  ;
 }
+
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -63px!important;
+}
+
+.golden {
+  font-weight: 900!important;
+}
+
+#menuz .fa-star{
+  color: black!important;
+    font-weight: 900!important;
+
+}
+
+.fa-star  {
+      color: #009966!important;
+    font-weight: 500;
+}
   
-.fas {
+.fas, .far {
     color: #555;
         font-size: large;
 
