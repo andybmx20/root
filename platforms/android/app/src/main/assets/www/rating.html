@@ -350,8 +350,30 @@ $(function() {
 
 <style>
 
+#alerta .fa-star {
+  color: white!important;
+}
+
 .row2 .fa-star {
     color: #fdfdfd!important;
+}
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    /* text-align: right; */
+    font-size: 16px;
+    white-space: nowrap;
+    transition: width .6s ease;
+    right: 0;
+        background: #009966!important;
+
+    text-align: right;
+    color: white!important;
 }
 
 .star_container > .stars > i { 
@@ -400,24 +422,7 @@ $(function() {
 
 }
 
-.progress-bar {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: center;
-    justify-content: center;
-    color: #fff;
-    /* text-align: right; */
-    font-size: 16px;
-    white-space: nowrap;
-    transition: width .6s ease;
-    right: 0;
-        background: : #009966!important;
 
-    text-align: right;
-    color: white!important;
-}
 
 .note_i > img {
   width: 50px;
@@ -474,6 +479,13 @@ color: white;
     margin-bottom: 5.9px;
     margin-right: 1.4em;
 }
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -32px!important;
+}
+
+
 
 .rating {
     display: flex;

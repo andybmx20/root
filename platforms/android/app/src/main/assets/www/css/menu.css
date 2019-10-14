@@ -328,6 +328,7 @@ text-align: center;}
     width: 75px;
     margin-top: 20px;
     background: white;
+    margin-left: -11px!important;
     height: 75px;
     border-radius: 100%;
     border: 1px solid #d8d8d8;
@@ -379,11 +380,17 @@ text-align: center;}
     margin-right: 20px  ;
 }
 
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -63px!important;
+}
+
 .golden {
   font-weight: 900!important;
 }
 
-#menuz {
+#menuz .fa-star{
   color: black!important;
     font-weight: 900!important;
 

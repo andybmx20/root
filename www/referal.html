@@ -171,6 +171,7 @@ function    remove(url)
         async: true,
         complete: function (e){  
         closeLoader()
+        alert(e.responseText)
 
           }
         
@@ -203,7 +204,7 @@ function  fetch_data()
                         if("actions" in e[i])
                          if("reminder" in e[i].actions)
                           resend = e[i].actions.reminder
-                                                var arhivaza = '<p onclick="remove('+resend+')">Arhiveaza</p>'
+                                                var arhivaza = '<p onclick="remove(`'+resend+'`)">Arhiveaza</p>'
 
                         if("employment_period" in e[i]) {
                           arhivaza = ""
