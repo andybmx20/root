@@ -215,7 +215,7 @@ document.getElementById("fullimg").src = root_url + user.image
 
 
 function closeNav() {
-  document.getElementById("mySidenav").style.left = "-350px";
+  document.getElementById("mySidenav").style.left = "-10050px";
   document.getElementsByClassName("closebtn")[0].style.display = "none"
 }
 

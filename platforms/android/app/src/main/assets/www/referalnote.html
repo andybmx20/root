@@ -211,7 +211,8 @@ let url = root_url + '/api/search-my-team'
                     <h2>Scrie recenzia</h2>
                     <div class="zara">
                         <div>
-                            <p>Pentru: <span id="rnume">gigel</span></p>
+                            <p>Pentru:</p>
+                             <span id="rnume">gigel</span>
                             <p id="rjob">bucatar</p>
                         </div>
                         <div style="text-align: right;">
@@ -386,10 +387,30 @@ button {
 
 .rrating {
 margin-top: 3em;
-    padding-top: 7em;
-    font-size: 14px;
-    padding-left: 3.4em;
-    margin-right: 3em;
+    padding-top: 5em;
+font-size: 17px;
+    padding-left: 2.4em;
+        margin-right: 3em;
+}
+
+.zara {
+        margin-top: 0.5em;
+} 
+
+h2 {
+    text-align: center;
+}
+.zara p {
+        margin-top: 0.5em;
+            margin-bottom: 0;
+}
+
+.zara span {
+        font-weight: 700;
+}
+
+.zara > div > * {
+    text-transform: capitalize;
 }
 
 .profile-pic {
