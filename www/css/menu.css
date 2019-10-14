@@ -379,11 +379,17 @@ text-align: center;}
     margin-right: 20px  ;
 }
 
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -63px!important;
+}
+
 .golden {
   font-weight: 900!important;
 }
 
-#menuz {
+#menuz .fa-star{
   color: black!important;
     font-weight: 900!important;
 

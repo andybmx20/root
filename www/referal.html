@@ -166,7 +166,7 @@ function    remove(url)
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: url,
+        url: root_url + url,
         dataType: 'json',
         async: true,
         complete: function (e){  
@@ -197,7 +197,23 @@ function  fetch_data()
               var div=""
               var counter = 0 ;
                 for(i in e) {
-                        div = '<div><div class="item"><div style="width:15%"></div><div class="left"><img src="'+e[i].icon+'"></div><div class="left"><p>'+e[i].name + '</p></div><div><p class="date">'+e[i].date+'</p></div></div><div class="ph"><p>'+e[i].phone+'</p></div><div class="item_b"><p>Arhiveaza</p><p onclick="remove('+e[i].actions.resend+')">??? Luni de la angajare</p><p>+??RON</p></div><div'
+                        var luni = "", resend = "", ron = "", message = "", bb="";
+                        if("reward_value" in e[i])
+                          ron = e[i].reward_value + " RON";
+                        if("actions" in e[i])
+                         if("reminder" in e[i].actions)
+                          resend = e[i].actions.reminder
+                                                var arhivaza = '<p onclick="remove('+resend+')">Arhiveaza</p>'
+
+                        if("employment_period" in e[i]) {
+                          arhivaza = ""
+                          luni = e[i].employment_period;
+                          message = e[i].message
+                          var bb= ""
+                          ron = ""
+                        }
+
+                        div = '<div><div class="item"><div style="width:15%"></div><div class="left"><img src="'+e[i].icon+'"></div><div class="left"><p>'+e[i].name + '</p></div><div><p class="date">'+e[i].date+'</p></div></div><div class="ph"><p>'+e[i].phone+'</p></div><div style="margin-top: -3em;    width: 65%;    display: block;    margin-left: 5.4em;    margin-right: -6em;    word-break: break-word;" class="item_b">'+arhivaza+'<p>'+message+'</p><p>'+luni+'</p><p>'+ron+'</p></div><div'
 
                 counter++;
                 $("#items").append(div)
@@ -253,12 +269,12 @@ $(function() {
 #items > div {
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     background: ghostwhite;
-    width: fit-content;
+    width: 100%;
 }
 
 .item_b {
-margin-top: -4em;
-    width: fit-content;
+margin-top: -3em;
+    width: 100%;
     display: flex;
     margin-left: 5.4em;
 }
@@ -283,6 +299,7 @@ display: flex;
     width: 100%;
     text-align: right;
         text-transform: capitalize;
+    margin-left: -0.6px;
 
     margin-right: 1em;
 }
