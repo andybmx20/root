@@ -222,7 +222,7 @@ function fetch_res(ids)
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
       },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/restaurants-by-brand?id="+ids[i],
+        url: root_url + "/api/restaurants-by-brand?id="+ids[i],
         dataType: 'json',
         async: true,
         success: function (r){              

@@ -396,17 +396,13 @@ $(function() {
       user = JSON.parse(user)
       if(!user || !parola)
           window.location = "./login.html";
-      if("restaurants" in user)
-        if(user.restaurants)
-                  if(user.restaurants.length)
-          if("id" in user.restaurants[0])
-            if(user.restaurants[0].id) {
-              fill_restaurants(user.restaurants[0].id, "");
-              if($("#" + user.brands[0].id))
-                  $("#" + user.brands[0].id).addClass("imgselected")
-                    fetch_poziti()
+        if($("#" + user.brands[0].id))
+                $("#" + user.brands[0].id).addClass("imgselected")
+              fetch_poziti()
 
-            }
+                  fill_restaurants(user.restaurants[0].id_restaurant, "");
+
+          
 });
 
 </script>

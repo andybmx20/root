@@ -102,7 +102,7 @@
                 </div>
                 <div class="selects">
                 <p> Joburile mele </p>
-                <select><option>Toate</option></select>
+                <select id="pozitii">></select>
                 <p> Confirmari </p>
                 <select><option>Toate</option></select>
                 </div>
@@ -169,7 +169,18 @@ function weekmonth(d)
     }
     filter_date()
 }
+function fetch_poziti()
+{
+          
+          r = user.jobs
+      for(var j=0;j<r.length;j++) {
+        $("#pozitii").append("<option value="+r[j].id+">"+r[j].pozitie+"</option>").trigger("change")
+      }
 
+  $("#pozitii").prop("selectedIndex", 0);
+
+
+}
 $(function() {
           user = getUser();
       parola = window.localStorage.getItem('parola');
@@ -177,7 +188,7 @@ $(function() {
       if(!user || ! parola)
           window.location = "./login.html";    filter_date()
     //fetch_ajax('', getWeekNumber(new Date())+ week_counter, new Date().getFullYear() + year_counter);
- 
+    fetch_poziti()
 });
 
 var week_counter = 0;
@@ -220,9 +231,9 @@ function filter_date(x)
         else if(week_counter == 1)
             document.getElementById("datetext").innerText = "Peste o saptamana";
         else if(week_counter < -1)
-            document.getElementById("datetext").innerText = "Acum "+week_counter*-1+" saptamana";
+            document.getElementById("datetext").innerText = "Acum "+week_counter*-1+" saptamani";
         else if(week_counter > 1)
-            document.getElementById("datetext").innerText = "Peste "+week_counter+" saptamana";
+            document.getElementById("datetext").innerText = "Peste "+week_counter+" saptamani";
         }else {
             console.log("zzzzzzzzzzzz  ")
             if(x == 1)
@@ -231,21 +242,22 @@ function filter_date(x)
                 month_counter--;
 
             var year = new Date().getFullYear();
-
-            if((new Date()).getMonth() + month_counter > 12)
-            while( (new Date()).getMonth() + month_counter > 12) {
-                month_counter-=12;
+            let mm = month_counter
+            year_counterm = 0
+            if((new Date()).getMonth() + mm >= 12)
+            while( (new Date()).getMonth() + mm >= 12) {
+                mm-=12;
                 year_counterm++;
             }
 
-         if( (new Date()).getMonth() + month_counter < 0)
-            while( (new Date()).getMonth() + month_counter < 0) {
-                month_counter+=12;
+         if( (new Date()).getMonth() + mm < 0)
+            while( (new Date()).getMonth() + mm < 0) {
+                mm+=12;
                 year_counterm--;
             }      
             var m = (new Date()).getMonth()+ month_counter + 1;
 
-            document.getElementById("fweek").innerText = m;
+            document.getElementById("fweek").innerText = m - (12*year_counterm);
             document.getElementById("fyear").innerText =  (new Date()).getFullYear() + year_counterm;
             fetch_ajax('', m, new Date().getFullYear() + year_counterm);
             console.log(month_counter)
@@ -256,9 +268,9 @@ function filter_date(x)
             else if(month_counter == 1)
                 document.getElementById("datetext").innerText = "Peste o luna";
             else if(month_counter < -1)
-                document.getElementById("datetext").innerText = "Acum "+((month_counter*-1))+" luna";
+                document.getElementById("datetext").innerText = "Acum "+((month_counter*-1))+" luni";
             else if(month_counter > 1)
-                document.getElementById("datetext").innerText = "Peste "+(month_counter)+" luna";
+                document.getElementById("datetext").innerText = "Peste "+(month_counter)+" luni";
             }
     
 }
@@ -500,9 +512,9 @@ function    fetch_ajax(cnp='', week='', year='')
     console.log(week)
     var _url = "";
     if(week_or_month == 0)
-        _url = "https://citygrillgroup.jobs/api/get-my-agenda?employee="+user.employee+"&week="+week+"&year=" + year;
+        _url = root_url + "/api/get-my-agenda?employee="+user.employee+"&week="+week+"&year=" + year;
     else
-        _url = "https://citygrillgroup.jobs/api/get-my-monthly-agenda?employee="+user.employee+"&month="+week+"&year=" + year;
+        _url = root_url +"/api/get-my-monthly-agenda?employee="+user.employee+"&month="+week+"&year=" + year;
     $.ajax
       ({
       beforeSend: function (xhr) {
@@ -519,6 +531,7 @@ function    fetch_ajax(cnp='', week='', year='')
     }); 
 }
             var hours = 0;
+
 
 
 function    fetch_agenda(e)
@@ -554,7 +567,7 @@ function    fetch_agenda(e)
                 div+='<div style="display: grid">'
                 for(var j in values[i].plan) {
                     div+='<div class="_content"> '
-                    img = '<div class="_img"> <img src="../imgs/pins/cafe-pin.png"> </div>';
+                    img = '<div class="_img"> <img src="'+values[i].plan[j].restaurant.icon+'"> </div>';
                     var h = values[i].plan[j].total_hours.split('.')[0]
                      div+=img;
                     var start_end = values[i].plan[j].in.date.substr(11, 5) + " - " + values[i].plan[j].out.date.substr(11, 5)
@@ -595,12 +608,24 @@ function    fetch_agenda(e)
         margin-top: 8px;
 }
 
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -64px!important;
+}
+
+._img {
+margin-top: 16px;
+    margin-left: 17px;
+    margin-right: 9px;
+}
+
 
 
 #typew p, #typem p {
     font-size: 16px;
     padding-top: 0;
-    margin-top: 0.3em;
+    margin-top: 0.5em;
 }
 
 #planificare p {
@@ -635,7 +660,7 @@ function    fetch_agenda(e)
     height: 30%;
     margin-top: 0.8em;
     background: #7ffa7f;
-    margin-right: 10px;
+    margin-right: 14px;
     color: #f6f2f2;
         min-width: fit-content;
     padding-top: 15px;
@@ -652,6 +677,11 @@ function    fetch_agenda(e)
 .selects {
         margin-top: 5em;
         color: white;
+}
+
+.item_header {
+        margin-left: 23px;
+
 }
 
 .selects p {

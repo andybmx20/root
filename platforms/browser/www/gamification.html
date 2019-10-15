@@ -74,7 +74,11 @@ td, th {
 tr:nth-child(odd) {
   background-color: #dddddd;
 }
-
+#thours {
+    font-size: 16px;
+    margin-top: 11px;
+    margin-right: 0.2em;
+}
 </style>
 
 
@@ -98,11 +102,12 @@ if ( device.platform === 'Android' ) {
                         <div id="menu" onclick="openNav(8)"><i class="fas fa-bars"></i></div>
                         <h2 class="title">Gamification</h2>
                         <div class="navigation">
-                            <div></div>
-                        </div>
+<div><p id="thours">8 puncte</p> </div>                        </div>
                 </div>
                 <div class="row2">
+                  <div><p>De la </p></div>
                     <div><input onchange="fetch_data()" id="startdate" type="date" name=""></div>
+                   <div> <p>Pana la</p></div>
                     <div><input onchange="fetch_data()" id="enddate" type="date" name=""></div>
                 </div>
                 </header>
@@ -180,7 +185,7 @@ function  fetch_data()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-gamification-leaderboard?start="+$("#startdate").val()+"&end="+$("#enddate").val()+"",
+        url: root_url + "/api/get-gamification-leaderboard?start="+$("#startdate").val()+"&end="+$("#enddate").val()+"",
         dataType: 'json',
         async: true,
         complete: function (e){
@@ -191,9 +196,9 @@ function  fetch_data()
               var counter = 0 ;
                 for(i in e) {
                   if(counter==0)
-                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="https://citygrillgroup.jobs/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p style="    margin-top: 0.4em;"><i class="fas fa-crown"></i>'+e[i].points+'p</p></div></div>' 
+                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url +'/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p style="    margin-top: 0.4em;"><i class="fas fa-crown"></i>'+e[i].points+'p</p></div></div>' 
                       else
-                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="https://citygrillgroup.jobs/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p>'+e[i].points+'p</p></div></div>' 
+                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url + '/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p>'+e[i].points+'p</p></div></div>' 
 
                 counter++;
                 $("#items").append(div)
@@ -208,6 +213,7 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
+        document.getElementById("thours").innerText = user.points + " puncte"
 document.getElementById('startdate').valueAsDate = new Date(new Date() - 1000 * 60 * 60 * 24 * 31);
 document.getElementById('enddate').valueAsDate = new Date();
 
@@ -235,6 +241,15 @@ document.getElementById('enddate').valueAsDate = new Date();
 
 
 <style>
+
+.row2 p {
+      float: left;
+}
+
+.row2 input {
+padding-right: 0em;
+    padding-left: 2px;}
+
 
 #items {
   margin-top: 5.6em;
@@ -272,7 +287,7 @@ th {
 .fa-crown {
       font-size: 24px;
     margin-top: 6px;
-    color: #495600;
+    color: #B8351D;
 }
 
 .row2  > div {

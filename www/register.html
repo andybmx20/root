@@ -123,7 +123,12 @@ function        check_username(x)
             console.log(e)
             if(typeof e == "string")
                 e = JSON.parse(e);
-           alert(JSON.stringify(e));
+                console.log(e.responseText) 
+                if(e.responseText == "user not registered") {
+                    $("#login_username").removeClass("invalid").addClass("valid");
+                    return;
+                }
+                $("#login_username").removeClass("valid").addClass("invalid");
          //   window.location = "./login.html";
         }
     });
@@ -216,6 +221,17 @@ $(function() {
     /* margin-left: -6em; */
 }
 
+.invalid {
+        background: #ff7a7a!important;
+    color: white!important;
+    border: 2px solid #670404;
+}
+
+.valid {
+    border: 2px solid #16e013;
+    background: #94f37c!important;
+    color: white!important;
+}
     </style>
 
 

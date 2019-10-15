@@ -31,7 +31,6 @@
     <meta name="msapplication-tap-highlight" content="no" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
     <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *;connect-src *;" />
     <!-- Good default declaration:
     * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
     * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
@@ -72,6 +71,10 @@
 if ( device.platform === 'Android' ) {
     $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
 }
+
+
+
+
 </script>
 
 <body>
@@ -85,9 +88,9 @@ if ( device.platform === 'Android' ) {
                     <div class="row1">
                         <div id="menu" onclick="openNav(9)"><i class="fas fa-bars"></i></div>
                         <h2 class="title">Referral</h2>
-                        <div class="navigation">
-                            <div></div>
-                        </div>
+                          <div class="navigation">
+                          <div><p id="thours">0 RON</p> </div>  
+                                                </div>
                 </div>
                 <div class="row2">
                     <p></p>
@@ -95,7 +98,24 @@ if ( device.platform === 'Android' ) {
                 </header>
 
 
-</div></div>
+</div>
+
+
+                <i class="fas fa-share-alt"></i>            </div>
+<div id="items">
+
+
+
+</div>
+                <div class="ftype">
+                  <div onclick="route('rn')" id="alerta">
+                      <i class="fas fa-share-alt"></i>
+                  </div>          
+                    <div style="display: none" id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
+                    <div style="display: none" id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
+                </div>
+</div>
+
 </body>
 
 
@@ -132,17 +152,241 @@ if ( device.platform === 'Android' ) {
   </div>
 </div>
 
+
 </html>
 
 <script type="text/javascript">
 
+function    remove(url)
+{
+  openLoader()
+      $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: root_url + url,
+        dataType: 'json',
+        async: true,
+        complete: function (e){  
+        closeLoader()
+        alert(e.responseText)
+
+          }
+        
+    });
+}
+
+function  fetch_data()
+{
+  openLoader()
+  $("#items").html("")
+   $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: "https://test.citygrillgroup.jobs/api/get-my-referrals?employee=" + user.employee,
+        dataType: 'json',
+        async: true,
+        complete: function (e){
+                          closeLoader()
+
+              e = e.responseJSON
+              var div=""
+              document.getElementById("thours").innerText = e.reward_total + " RON"
+              var counter = 0 ;
+                for(i in e) {
+                        var luni = "", resend = "", ron = "", message = "", bb="";
+                        if(e[i].reward_value)
+                          ron = e[i].reward_value + " RON";
+                         if(e[i].actions)
+                          resend = e[i].actions.reminder
+                                                var arhivaza = '<p onclick="remove(`'+resend+'`)">Arhiveaza</p>'
+
+                        if(e[i].employment_period) {
+                          arhivaza = ""
+                          luni = e[i].employment_period;
+                          message = e[i].message
+                          var bb= ""
+                          ron = ""
+                        }
+
+                        div = '<div><div class="item"><div style="width:15%"></div><div class="left"><img src="'+e[i].icon+'"></div><div class="left"><p>'+e[i].name + '</p></div><div><p class="date">'+e[i].date+'</p></div></div><div class="ph"><p>'+e[i].phone+'</p></div><div style="margin-top: -3em;    width: 65%;    display: block;    margin-left: 5.4em;    margin-right: -6em;    word-break: break-word;" class="item_b">'+arhivaza+'<p>'+message+'</p><p>'+luni+'</p><p>'+ron+'</p></div><div'
+
+                counter++;
+                $("#items").append(div)
+              }
+              }
+            });
+}
+
 $(function() {
-    var user = getUser();
+   user = getUser();
+      parola = window.localStorage.getItem('parola');
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
+    fetch_data()
+
 });
 
 </script>
 
 
 <style>
+.date {
+  font-size: 12px;
+    margin-top: 18px;
+    right: 0;
+    position: absolute;
+    margin-right: 1.2em;
+}
+
+.ph {
+  margin-top: -4.5em;
+    padding-bottom: 2.1em;
+    margin-left: 5.4em;
+}
+
+
+.fa-share-alt {
+        color: ghostwhite;
+    margin-right: 4px;
+    font-size: 24px;
+}
+
+.row2 {
+  display: none;
+}
+
+#items {
+    margin-top: 1.2em;
+      overflow: auto;
+
+}
+.item_b p {
+    padding-right: 1em;
+}
+
+#items > div {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    background: ghostwhite;
+    width: 100%;
+
+
+}
+
+
+#thours {
+    font-size: 16px;
+    margin-top: 11px;
+    margin-right: 0.2em;
+}
+.item_b {
+margin-top: -3em;
+    width: 100%;
+    display: flex;
+    margin-left: 5.4em;
+}
+
+.item {
+display: flex;
+    width: fit-content;
+    height: 6em;
+    border-radius: 3%;
+    margin: 3px;
+
+}
+
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -66px!important;
+}
+
+.item > div {
+    white-space: nowrap;
+    width: 100%;
+    text-align: right;
+        text-transform: capitalize;
+    margin-left: -0.6px;
+
+    margin-right: 1em;
+}
+.item img {
+ height: 53px;
+    border-radius: 50%;
+    margin-top: 14px;
+    background: white;
+}
+
+</style>
+<style>
+  #alerta > i {
+    font-size: 30px;
+        margin-top: 9px!important;
+    margin-left: -4px;
+
+    color: ghostwhite;
+}
+  #alerta {
+       position: fixed;
+    margin-top: -5em;
+    text-align: right;
+    margin-left: -1em;
+    border-radius: 50%;
+    background: #9A2C18;
+    padding: 0.5em;
+    box-shadow: 0 1px 2px rgb(0, 0, 0);
+    padding-top: 3.5px;
+    margin-right: 1em;
+    right: 0;
+    padding-bottom: 0px;
+    width: 2em;
+    padding-right: 0.76em;
+    padding-left: 0.9em;
+}
+  .ftype {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+}
+  .filters {
+    position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 3.5em;
+    padding-top: 0.5em;
+}
+  .ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}
+.ftype > .selected {
+    background: #9A2C18;
+    color: ghostwhite;
+}
+.ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}#typew p, #typem p {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: 0.5em;
+} 
 
 </style>

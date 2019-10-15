@@ -43,7 +43,6 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
 
 
 
@@ -80,15 +79,14 @@ input[type="phone"]
 
 
 <script type="text/javascript">
+
     function register(x, y, z)
 {
-    console.log(x)
-    alert(x + ' ' + y + ' ' + z)
 if(x && y)
     $.ajax({
          contentType: "application/json",
        dataType: 'applicaton/json',
-        url: "https://citygrillgroup.jobs/register?username="+x+"&password="+y+"&phone="+z+"&accepted_terms="+1+"&role=1",  
+        url: root_url +"/register?username="+x+"&password="+y+"&phone="+z+"&accepted_terms="+1+"&role=1",  
         type: "POST",
         success: function(response) {
             console.log(response);
@@ -100,7 +98,7 @@ if(x && y)
             if(typeof e == "string")
                 e = JSON.parse(e);
            alert(JSON.stringify(e));
-         //   window.location = "./login.html";
+           window.location = "./login.html";
         }
     });
 }
@@ -125,7 +123,12 @@ function        check_username(x)
             console.log(e)
             if(typeof e == "string")
                 e = JSON.parse(e);
-           alert(JSON.stringify(e));
+                console.log(e.responseText) 
+                if(e.responseText == "user not registered") {
+                    $("#login_username").removeClass("invalid").addClass("valid");
+                    return;
+                }
+                $("#login_username").removeClass("valid").addClass("invalid");
          //   window.location = "./login.html";
         }
     });
@@ -139,7 +142,7 @@ function        check_username(x)
 </div>
 
     <div id="bg" class="z">
-      <img src="./imgs/background.png" alt="">
+      <img  src="./imgs/background.png" alt="">
     </div>
   
    
@@ -148,10 +151,10 @@ function        check_username(x)
                 <div id="deviceready" class="blink login">
 
          <div id="logotop">
-            <p><img src="./imgs/logo.png" alt=""></p>
+            <p><img style="margin-top: 2em!important;" src="./imgs/logo.png" alt=""></p>
         </div>
         <form id="zzzz" action="#">
-        <p class="title" style="margin-top: 54%;background: none;">Munceste liber<p>
+        <p class="title" style="margin-top: 54%;background: none;    padding-top: 7vh;">Munceste liber<p>
             <div>
                     <i class="fa fa_css fa-envelope"></i>
                     <input required="required" onchange="check_username(document.getElementById('login_username').value)" type="text" name="username" id="login_username" required="" value="" placeholder="Utilizator" />
@@ -166,15 +169,16 @@ function        check_username(x)
             </div>
                 <input type="checkbox" required="required" class="checkboxxx" name="">
                 <p style="    font-size: 14px;
-    margin-left: 1em;
+    margin-left: 2.5em;
     margin-top: -1em;
 ">accept termenii și condițiile Grupului City grill</p>
-
+                <div class="bottom">
                 <button type="submit" id="submit" value="Submit" onclick="register(document.getElementById('login_username').value, document.getElementById('login_password').value, document.getElementById('login_phone').value)">Register</button>
                 <p onclick="route('13')">Ai cont deja?</p>
+            </div>
+            </div>
                 <form>
 
-            </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
 </body>
@@ -184,6 +188,7 @@ function        check_username(x)
 <script type="text/javascript">
 
 $(function() {
+
     console.log('00000000000000000000000000000000000000000000000000000');
 
 
@@ -191,6 +196,16 @@ $(function() {
 });</script>
 
 <style>
+
+#bg {
+    top: 0;
+}
+
+.bottom {
+    margin-top: 75%;
+       position: initial;
+
+}
 
 #submit {
     height: 2.5em;
@@ -206,6 +221,17 @@ $(function() {
     /* margin-left: -6em; */
 }
 
+.invalid {
+        background: #ff7a7a;
+    color: white;
+    border: 2px solid #670404;
+}
+
+.valid {
+    border: 2px solid #16e013;
+    background: #94f37c!important;
+    color: white!important;
+}
     </style>
 
 

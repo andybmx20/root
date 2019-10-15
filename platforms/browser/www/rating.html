@@ -62,8 +62,9 @@
 
 
 .menuname h2 {
-    font-size: 24px!important;
-    height: 2em!important;
+font-size: 24px!important;
+    height: 2.2em!important;
+    margin-top: 17px;
 }
 
 th {
@@ -76,10 +77,12 @@ th {
 }
 
 .progress {
-      margin-right: 2em;
+    margin-right: 2em;
     margin-left: 2em;
-    margin-top: 1.7em;
-    height: 1.9em;
+    margin-top: 2.1em;
+    height: 2.1em;
+    border: 1px solid #565656;
+    color: green;
 }
 
 .fa-bars {
@@ -124,53 +127,66 @@ if ( device.platform === 'Android' ) {
         <div id="alls">
           <div class="star_container">
             <div style="width: 15%"><p class="index">5</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div id="s5" style="width: 35%" class="stars">
+              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
+              <div id="p1" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
                   <div class="star_container">
             <div style="width: 15%"><p class="index">4</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div  id="s4" style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
+              <div id="p2" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
                   <div class="star_container">
             <div style="width: 15%"><p class="index">3</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div  id="s3" style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
+              <div id="p3" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
                   <div class="star_container">
             <div style="width: 15%"><p class="index">2</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div  id="s2" style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
+              <div id="p4" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
                   <div class="star_container">
             <div style="width: 15%"><p class="index">1</p></div>
-            <div style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+            <div  id="s1" style="width: 35%" class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0</div>
+              <div id="p5" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
         </div>
       </div>  
 
        <div class="rating">
-          <p class="rating_score">-</p>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
+          <p style="opacity: 0" class="rating_score">-</p>
+          <i style="opacity: 0" class="fa fa-star" aria-hidden="true"></i>
+          <i style="opacity: 0" class="fa fa-star" aria-hidden="true"></i>
+          <i style="opacity: 0"class="fa fa-star" aria-hidden="true"></i>
+          <i style="opacity: 0"class="fa fa-star" aria-hidden="true"></i>
+          <i style="opacity: 0"class="fa fa-star" aria-hidden="true"></i>
           <p class="rating_counter">0 recenzii</p>
        </div>
+         <div id="note" class="note">
 
+         </div>
 </div></div>
+<div class="filters">
+
+                <div class="ftype">
+                  <div onclick="route(100)" id="alerta">
+                      <i class="fas golden fa-star"></i>
+                  </div>          
+                    <div id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
+                    <div id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
+                </div>
+</div>
 </body>
 
 
@@ -212,6 +228,97 @@ if ( device.platform === 'Android' ) {
 
 <script type="text/javascript">
 
+/*
+
+           <div>
+
+            <div class="note_i"><img src="https://citygrillgroup.jobs/media/cache/small_thumb/images/rating.png"></div>
+             
+             <div class="note_c">
+                <div class="note_t">Rcenzie</div>
+                <div class="note_m">Mesaj</div>
+                <div class="note_d">2012</div>
+             </div>
+
+             <div class="starrs">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+             </div>
+           </div>
+
+
+*/
+
+var total_rating = 0;
+
+
+function fetch_starrs(x, note, nr)
+{
+  var div = ""
+   for(var j=0;j<5;j++)
+      {
+      if(note > j)
+          div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
+      else
+          div += '                <i class="fa fa-star" aria-hidden="true"></i>'
+      }  
+    var a= "s" + (6-x);
+    if(parseInt(note)>0 && note)
+      document.getElementById("p"+x).innerText = note;
+    $("#"+a).html(div)
+}
+
+
+function  fetch_data(data)
+{
+   var _data = data;
+
+  data = data.list
+  var i = 0;
+  total_rating = 0;
+  for(i in data)
+  {
+    var div = '<div><div class="note_i"><hr><img src="'+data[i].icon+'"></div><div class="note_c"><div class="note_t">' + data[i].title + '</div><div class="note_m">' + data[i].message + '</div>                <div class="note_d">' + data[i].date + '</div>             </div>             <div class="starrs">                     ';
+    total_rating += data[i].rating;
+    for(var j=0;j<5;j++)
+    {
+      if(data[i].rating > j)
+        div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
+      else
+                div += '                <i class="fa fa-star" aria-hidden="true"></i>'
+    }
+    div+="</div> </div>           </div>"
+    $("#note").append(div)
+  }
+  total_rating /= i;
+  var div = "<p> "+_data.rating.total +" </p>"
+   for(var j=0;j<5;j++)
+    {
+      if(total_rating > j)
+        div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
+      else
+                div += '                <i class="fa fa-star" aria-hidden="true"></i>'
+
+    }
+    $($(".row2")[0]).html(div)
+    if(i)
+    var a = i + ' recenzii'
+    $($(".rating_counter")[0]).html(a)
+
+  for(var x=5;x>0;x--) {
+    var id = "p" + (6-x);
+    var u = parseInt(_data.rating[x]/i*100)
+    document.getElementById(id).style.width = (u) + "%"
+    fetch_starrs(6-x, _data.rating[x], u) 
+  }
+
+
+
+}
+
 $(function() {
    user = getUser();
       parola = window.localStorage.getItem('parola');
@@ -219,17 +326,19 @@ $(function() {
       if(!user || ! parola)
           window.location = "./login.html";
     
+    openLoader()
     $.ajax
       ({
       beforeSend: function (xhr) {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "POST",
-        url: "https://citygrillgroup.jobs/api/get-my-ratings?id_user=" + user.id,
+        url: root_url + "/api/get-my-ratings?employee=" + user.employee,
         dataType: 'json',
         async: true,
         complete: function (json){
-          console.log(json.responseText)   
+          fetch_data(json.responseJSON)
+          closeLoader()
             }
     });
 
@@ -240,8 +349,102 @@ $(function() {
 
 <style>
 
+  #alls .fa-star {
+    color: #666!important;
+  }
+
+#alerta .fa-star {
+  color: white!important;
+}
+
+hr {
+    margin-bottom: 1rem;
+    position: absolute;
+    border: 2px solid #8e8d8d;
+    margin-left: 42.4px;
+    height: 9em;
+    margin-top: -1px;
+    z-index: -1;
+}
+
+.row2 .fa-star {
+    color: #fdfdfd!important;
+}
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    /* text-align: right; */
+    font-size: 16px;
+    white-space: nowrap;
+    transition: width .6s ease;
+    right: 0;
+        background: #009966!important;
+
+    text-align: right;
+    color: white!important;
+}
+
+.star_container > .stars > i { 
+   margin-right: -5px;
+}
+
+  .row2 {
+        margin-left: -0.6em!important;
+
+  }
+
+.note_t {
+      padding-right: 2em;
+}
+
 .app {
       margin-top: 5.6em;
+}
+
+.note > div {
+  display: flex;
+}
+.note_i {
+      margin-right: 1em;
+}
+
+.starrs {
+    font-size: 19px;
+    margin-top: 7px;
+    margin-right: 1.2em;
+    float: right;
+    right: 0;
+    text-align: right;
+    width: 100%;
+}
+#note {
+      padding-bottom: 4em;
+    font-size: 13px;
+
+}
+
+.note_c {
+  margin-top: 7px;
+    width: 100%;
+    text-align: left;
+
+}
+
+
+
+.note_i > img {
+  width: 50px;
+    margin-top: 8px;
+    background: white;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid #d8d8d8;
+    margin-left: 20px;
 }
 
 .star_container {
@@ -269,24 +472,33 @@ $(function() {
 }
 
 .index {
-      text-align: center;
+text-align: center;
     font-size: 19px;
-    margin-top: 15px;
+    padding: 8px;
+    margin-top: 18px;
+
 }
 
 .row2 .fa-star {
       font-size: 24px;
           margin-top: 6px;
-
+color: white;
 }
 
 .row2 p {
     margin-left: 4px;
     font-size: 19px;
-    margin-top: 5px;
-    margin-bottom: 8px;
+    margin-top: 7.6px;
+    margin-bottom: 5.9px;
     margin-right: 1.4em;
 }
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -32px!important;
+}
+
+
 
 .rating {
     display: flex;
@@ -325,7 +537,83 @@ $(function() {
     font-size: 18px;
     font-weight: 600;
     text-align: right;
-    margin-right: 1em;
+    margin-right: 1.4em;
 }
+
+
+.golden {
+    color: #009966!important;
+
+}
+
+
+
+</style>
+
+
+<style>
+  #alerta > i {
+    font-size: 30px;
+        margin-top: 9px!important;
+    margin-left: -4px;
+
+    color: ghostwhite;
+}
+  #alerta {
+    position: fixed;
+    margin-top: -5em;
+    text-align: right;
+    margin-left: -1em;
+    /* font-size: 35px; */
+    /* border: 1px solid black; */
+    /* margin-left: 83%; */
+    border-radius: 50%;
+    background: #9A2C18;
+    padding: 0.5em;
+    box-shadow: 0 1px 2px rgb(0, 0, 0);
+    padding-top: 0;
+    margin-right: 1em;
+    right: 0;
+    width: 2em;
+padding-right: 2.46em;
+    padding-left: 0.9em;}
+  .ftype {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+  .filters {
+    position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 3.5em;
+    padding-top: 0.5em;
+}
+  .ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}
+.ftype > .selected {
+    background: #9A2C18;
+    color: ghostwhite;
+}
+.ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}#typew p, #typem p {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: 0.5em;
+} 
 
 </style>

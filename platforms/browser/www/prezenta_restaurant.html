@@ -215,9 +215,34 @@ if ( device.platform === 'Android' ) {
             document.getElementById("datetext").innerText = "Peste "+week_counter+" saptamana";
   }
 
+function    status(url)
+{
+  if(url && url != "undefined" && url.length > 0){
+  openLoader()
+      $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: url,
+        dataType: 'json',
+        async: true,
+        complete: function (e){  
+        closeLoader()
+        alert("Status schimbat" + ' | apasa din nou pentru a schimba status ul')
+        filter_date()
+          }
+        
+    });
+    }
+}
+
 function fetch_data(d)
 {
     var length = 0;
+    var bg = ""
+    var color = ""
     for( j in d[0])
       length++;
     document.getElementById("nra").innerText = length-1 + " Angajati";
@@ -229,7 +254,27 @@ function fetch_data(d)
       for(j = 0 ; j < d.length ; j++)
       {
           var h = d[j][i].hours
-          th += "<td>" + h + "</td>"
+          if("status" in d[j][i] ) {
+            cl = d[j][i].status.color
+            title = d[j][i].status.title
+             bg = d[j][i].status.background
+          }
+         else {
+          bg = null
+          cl = null
+         }
+        var url
+                 var title = ""
+                 if("status" in d[j][i])
+                  title = d[j][i].status.title
+        if(title == "null" || title == "prezent")
+          url = root_url +  d[j][i]["set-absent"]
+        if(title == "absent")
+          url =root_url +  d[j][i]["set-liber"]        
+        if(title == "liber")
+          url = root_url +  d[j][i]["set-prezent"]  
+
+          th += "<td onclick='status(`"+(url)+"`)' style='background: "+bg+";color:"+cl+"'>" + h + "</td>"
       }
       th += "</tr>";
       $("#angajati").append(th)
@@ -261,7 +306,7 @@ function fetch_ajax(cnp, week, year, restaurant=1)
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/manager-api/get-weekly-restaurant-presence?week="+week+"&year="+year+"&restaurant=" + restaurant,
+        url: root_url + "/manager-api/get-weekly-restaurant-presence?week="+week+"&year="+year+"&restaurant=" + restaurant,
         dataType: 'json',
         async: true,
         success: function (e){
@@ -301,6 +346,16 @@ width: auto;
 
 [data-role~="page"] {
   overflow: auto!important;
+}
+
+td, tr {
+    margin: 0!important;
+    height: 4em!important;
+    font-size: 11px!important;
+    min-width: 3.2em!important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    padding: 0.1em;
+    height: 4.2em;
 }
 
 .hours p {

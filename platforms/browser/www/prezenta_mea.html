@@ -160,13 +160,14 @@ var year_counterm = 0;
  function       fetch_data(month, year)
   {
     openLoader()
+    $("#table").html('  <tr>    <th>Ore Saptamana</th>    <th>Lun</th>    <th>Mar</th>    <th>Mie</th>    <th>Joi</th>    <th>Vin</th>    <th>Sam</th>    <th>Dum</th></tr>')
            $.ajax
       ({
       beforeSend: function (xhr) {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/prezenta-luna?employee="+user.employee+"&month="+month+"&year="+year,
+        url: root_url + "/api/prezenta-luna?employee="+user.employee+"&month="+month+"&year="+year,
         dataType: 'json',
         async: true,
         complete: function (json){
@@ -183,7 +184,15 @@ var year_counterm = 0;
             var data = "<tr><th>" + keys[i] + "</th>";
             for(var j=0;j<_values.length;j++)
             {
-              data += "<th>" + _values[j].hours + "</th>"
+              var color = ""
+              var background = ""
+
+              if("color" in  _values[j])
+                color =  _values[j].color
+
+              if("background" in  _values[j])
+                background =  _values[j].background
+              data += "<th style='color:"+color+";background:"+background+"'>" + _values[j].hours + "</th>"
             }
             data += "</tr>"
                       $("#table").append(data)
@@ -203,22 +212,24 @@ var year_counterm = 0;
             else if(x==-1)
                 month_counter--;
 
-            var year = new Date().getFullYear();
-
-            if((new Date()).getMonth() + month_counter > 12)
-            while( (new Date()).getMonth() + month_counter > 12) {
-                month_counter-=12;
+ var year = new Date().getFullYear();
+            let mm = month_counter
+            year_counterm = 0
+            if((new Date()).getMonth() + mm >= 12)
+            while( (new Date()).getMonth() + mm >= 12) {
+                mm-=12;
                 year_counterm++;
             }
 
-         if( (new Date()).getMonth() + month_counter < 0)
-            while( (new Date()).getMonth() + month_counter < 0) {
-                month_counter+=12;
+         if( (new Date()).getMonth() + mm < 0)
+            while( (new Date()).getMonth() + mm < 0) {
+                mm+=12;
                 year_counterm--;
             }      
+     
             var m = (new Date()).getMonth()+ month_counter + 1;
 
-            document.getElementById("fweek").innerText = m;
+            document.getElementById("fweek").innerText = m - (12*year_counterm);
             document.getElementById("fyear").innerText =  (new Date()).getFullYear() + year_counterm;
             fetch_data(m, new Date().getFullYear() + year_counterm);
             if(month_counter == 0)
@@ -228,9 +239,9 @@ var year_counterm = 0;
             else if(month_counter == 1)
                 document.getElementById("datetext").innerText = "Peste o luna";
             else if(month_counter < -1)
-                document.getElementById("datetext").innerText = "Acum "+((month_counter*-1)+1)+" luna";
+                document.getElementById("datetext").innerText = "Acum "+((month_counter*-1))+" luni";
             else if(month_counter > 1)
-                document.getElementById("datetext").innerText = "Peste "+(month_counter+1)+" luna";
+                document.getElementById("datetext").innerText = "Peste "+(month_counter)+" luni";
             }
 
 
@@ -256,26 +267,27 @@ $(function() {
   display: flex;
 }
 
-table {
-      margin-top: 7em;
+#table {
+    margin-top: 7em;
     height: 100%;
         overflow: auto;
 
     width: 100%;
 }
 
-tr{  
+#table tr{  
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     height: 3em;
 }
 
 
-th {    border: 1px solid white;
+#table th {    border: 1px solid white;
+    min-width: 4em;
 
       box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 
-thead tr {
+#table thead tr {
   display: block;
 }
 

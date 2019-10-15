@@ -163,12 +163,12 @@ if ( device.platform === 'Android' ) {
       </div>
         <div>
           <div>
-            <p>Oras</p>
-            <select onchange="fetch_city()" id="oras"></select>
+            <p>Judet</p>
+            <select  onchange="fetch_city()" id="judet"></select>
           </div>
           <div>
-            <p>Judet</p>
-            <select id="judet"></select>
+            <p>Oras</p>
+            <select id="oras"></select>
           </div>
       </div>
         <div>
@@ -247,10 +247,9 @@ if ( device.platform === 'Android' ) {
 
 function    fetch_city(id)
 {
-      var option = "<option>Alege</option>"
-    $(query).append(option)
 
-$("#judet").html("")
+
+$("#oras").html("")
 
  $.ajax
       ({
@@ -258,14 +257,14 @@ $("#judet").html("")
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/cities-by-county?id=" + $("#oras").val(),
+        url: root_url + "/api/cities-by-county?id=" + $("#judet").val(),
         dataType: 'json',
         async: false,
         success: function (json){
         for(var i=0;i<json.length;i++)
         {
            var option = "<option value=" + json[i].id_city + ">" + json[i].city + "</option>"
-          $("#judet").append(option)
+          $("#oras").append(option)
         }        
       }
     });
@@ -273,50 +272,47 @@ $("#judet").html("")
 
 function    fetch_county(query, json)
 {
-      var option = "<option>Alege</option>"
-    $(query).append(option)
-
   if(typeof json == "string")
     json = JSON.parse(json);
-
-  for(var i=0;i<json.length;i++)
+console.log(json)
+if(!json)
+  return;
+  for(var i in json)
   {
      var option = "<option value=" + json[i].id + ">" + json[i].title + "</option>"
     $(query).append(option)
   }
 }
   
-function    fetch_poziti(query, json)
-{
-      var option = "<option>Alege</option>"
-    $(query).append(option)
-
-  if(typeof json == "string")
-    json = JSON.parse(json);
-
-  for(var i=0;i<json.length;i++)
-  {
-     var option = "<option value=" + json[i].id + ">" + json[i].pozitie + "</option>"
-    $(query).append(option)
-  }
-}
-
-
-function    fetch_restaurant(query, json)
-{
-    var option = "<option>Alege</option>"
-    $(query).append(option)
-  if(typeof json == "string")
-    json = JSON.parse(json);
-console.log(json)
-  for(var i=0;i<json.length;i++)
-  {
-     var option = "<option value=" + json[i].id + ">" + json[i].title + "</option>"
-    $(query).append(option)
-  }
-}
 
 var _user = {}
+
+function fetch_poziti()
+{
+          
+          r = user.jobs
+      for(var j=0;j<r.length;j++) {
+        $("#poziti").append("<option value="+r[j].id+">"+r[j].pozitie+"</option>").trigger("change")
+      }
+
+  $("#poziti").prop("selectedIndex", 0);
+
+
+}
+
+function fetch_restaurant()
+{
+          
+          r = user.restaurants
+      for(var j=0;j<r.length;j++) {
+        $("#restaurant").append("<option value="+r[j].id+">"+r[j].restaurant+"</option>").trigger("change")
+      }
+
+  $("#restaurant").prop("selectedIndex", 0);
+
+
+}
+
 
 function  fetch_profile()
 {
@@ -352,6 +348,12 @@ function  fetch_profile()
     if("id_restaurant" in _user)
       if(_user.id_restaurant)
         $("#restaurant").val(_user.id_restaurant).trigger("change")
+     if("floor" in _user)
+      if(_user.floor)
+        $("#apartament").val(_user.floor)
+     if("flat" in _user)
+      if(_user.flat)
+        $("#etaj").val(_user.flat)
 }
 
 function  send_data()
@@ -370,6 +372,8 @@ function  send_data()
   data += "&id_restaurant=" + $("#id_restaurant").val()
   data += "&floor=" + $("#apartament").val()
   data += "&flat=" + $("#etaj").val()
+  data += "&id_city=" + $("#oras").val()
+  data += "&id_county=" + $("#judet").val()
 
 openLoader()
 
@@ -379,7 +383,7 @@ openLoader()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "POST",
-        url: "https://citygrillgroup.jobs/api/update-profile?" + data,
+        url: root_url + "/api/update-profile?" + data,
         dataType: 'json',
         async: true,
         complete: function (json){
@@ -397,7 +401,7 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
-        document.getElementById("img").src = "https://citygrillgroup.jobs" + user.image;
+        document.getElementById("img").src = root_url  + user.image;
       console.log(user.username + " " + parola)
       openLoader()
        $.ajax
@@ -406,7 +410,7 @@ $(function() {
              xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola))  ;
           },
             type: "POST",
-            url: "https://citygrillgroup.jobs/api/login",
+            url: root_url + "/api/login",
             dataType: 'json',
             async: true,
             success: function (e){
@@ -421,7 +425,7 @@ $(function() {
 
     var res = "" +  window.localStorage.getItem('brands');
     fetch_poziti("#poziti", window.localStorage.getItem('poziti'));
-    fetch_county("#oras", window.localStorage.getItem('countries'));
+    fetch_county("#judet", window.localStorage.getItem('countries'));
     fetch_restaurant("#restaurant", res);
         $("#menu").replaceWith("<i onclick=\"route('p')  \" class=\"fas fa-arrow-circle-left\"></i>")
 
@@ -456,6 +460,11 @@ $(function() {
   display: flex;
 }
 
+.profile {
+  padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
 .gender > div {
 height: 2.45em;
     border: 1px solid #555555;
@@ -471,12 +480,14 @@ height: 2.45em;
     padding-left: 6px;}
 
 img {
-      width: 125px;
+width: 125px;
     height: 125px;
     margin: 1em;
+    margin-left: 0.9em;
     border: 1px solid #d8d8d8;
     border-radius: 50%;
     background: white;
+    margin-right: 1.4em;
 }
 
 p {
@@ -500,6 +511,8 @@ p {
 
 .profilecontent > div > div{
     width: 100%;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
 }
 
 .profilecontent input[type=date]{
