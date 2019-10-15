@@ -135,11 +135,9 @@ if ( device.platform === 'Android' ) {
                 </div>
                 <p>Restaurantul unde voi munci</p>
                 <select id="res">
-                  <option>Alege o optiune</option>
                 </select>
                 <p >Poziția</p>
                 <select id="pozitii">
-                                    <option>Alege o optiune</option>
                 </select>
                 <p id="frev">Frecvență</p>
                 <select onchange="daily(value)">
@@ -217,7 +215,7 @@ if ( device.platform === 'Android' ) {
           xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
         },
           type: "GET",
-          url: "https://citygrillgroup.jobs/api/calculate-total-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
+          url: root_url + "/api/calculate-total-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
           dataType: 'json',
           async: false,
           success: function (r){              
@@ -230,7 +228,7 @@ if ( device.platform === 'Android' ) {
           xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
         },
           type: "GET",
-          url: "https://citygrillgroup.jobs/api/calculate-day-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
+          url: root_url + "/api/calculate-day-hours?in=" + $("#date_in").val() + " " + $("#hour_in").val() + "&out=" + $("#date_out").val() + " " +$("#hour_out").val(),
           dataType: 'json',
           async: false,
           success: function (r){              
@@ -267,6 +265,11 @@ if ( device.platform === 'Android' ) {
       alert("Nr ore total negativ")
       return 0;
     }
+    if(document.getElementById("total").innerText > 24)
+    {
+      alert("Nr ore total > 24")
+      return 0;
+    }
   }
 
   function  send_data(x)
@@ -289,7 +292,7 @@ if ( device.platform === 'Android' ) {
 
 
     var data = "username=" + username + "&employee=" + cnp +"&start_work_date=" + start_work_date +"&start_work_time=" + start_work_time +"&end_work_date=" + end_work_date +"&end_work_time=" + end_work_time +"&id_restaurant=" + id_restaurant + "&id_job=" + id_job;
-    var url = "https://citygrillgroup.jobs/api/new-plan?"
+    var url = root_url + "/api/new-plan?"
     if(_frecventa == 1) {
       data += "&id_frequency=1";
       url += data;
@@ -353,12 +356,13 @@ function  daily(x)
 function fetch_res(ids)
   {
       $("#res").html("");
-    $("#res").append("<option>Alege o optiune</option>")
     
     r = user.restaurants        
             for(var j=0;j<r.length;j++) {
-              $("#res").append("<option value="+r[j].id+">"+r[j].restaurant+"</option>")
+              $("#res").append("<option value="+r[j].id+">"+r[j].restaurant+"</option>").trigger("change")
             }
+            $("#res").prop("selectedIndex", 0);
+
 
   }
 
@@ -367,10 +371,11 @@ function fetch_poziti()
           
           r = user.jobs
       for(var j=0;j<r.length;j++) {
-        $("#pozitii").append("<option value="+r[j].id+">"+r[j].pozitie+"</option>")
+        $("#pozitii").append("<option value="+r[j].id+">"+r[j].pozitie+"</option>").trigger("change")
       }
 
-  
+  $("#pozitii").prop("selectedIndex", 0);
+
 
 }
 
@@ -391,17 +396,13 @@ $(function() {
       user = JSON.parse(user)
       if(!user || !parola)
           window.location = "./login.html";
-      if("restaurants" in user)
-        if(user.restaurants)
-                  if(user.restaurants.length)
-          if("id" in user.restaurants[0])
-            if(user.restaurants[0].id) {
-              fill_restaurants(user.restaurants[0].id, "");
-              if($("#" + user.restaurants[0].id))
-                  $("#" + user.restaurants[0].id).addClass("imgselected")
-                    fetch_poziti()
+        if($("#" + user.brands[0].id))
+                $("#" + user.brands[0].id).addClass("imgselected")
+              fetch_poziti()
 
-            }
+                  fill_restaurants(user.restaurants[0].id_restaurant, "");
+
+          
 });
 
 </script>
@@ -511,7 +512,17 @@ max-width: 100%;
         max-height: 3.3em;
 
 }
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -63px!important;
+}
 
+button {
+      background: #009966!important;
+    color: white!important;
+
+}
 
 .imgcontainer > div > p{
 margin: 0;

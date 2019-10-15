@@ -231,7 +231,7 @@ function   fetch_interval(data)
       var margin = ((8 * interval_counter++) + 3 ) + 'em';
       var height = 54.4 * hours+'px';
       var z_index = _in.substr(0, 2);
-      var interval = '<div style=z-index:'+z_index+';margin-left:'+margin+';height:'+height+' class="interval"><div><p class="interval_title">' + title + '</p></div><div class="interval_content"><div class="_1con"><div><p class="inter_h">' + date + '</p></div><div><p><i class="fas fa-hourglass"></i> ' + hours + '</p></div><div class="content_restaurant"><p>' + restaurant_name + '</p></div></div><div class="_1con"><img src="https://cdn.pixabay.com/photo/2015/12/01/20/28/fall-1072821__340.jpg"></div></div></div>';
+      var interval = '<div style=z-index:'+z_index+';margin-left:'+margin+';height:'+height+' class="interval"><div><p class="interval_title">' + title + '</p></div><div class="interval_content"><div class="_1con"><div><p class="inter_h">' + date + '</p></div><div><p class="zupa"><i class="fas fa-hourglass"></i> ' + hours + '</p></div><div class="content_restaurant"><p>' + restaurant_name + '</p></div></div><div class="_1con"><img src="https://cdn.pixabay.com/photo/2015/12/01/20/28/fall-1072821__340.jpg"></div></div></div>';
       console.log(query)
       $(query).append(interval)
     }
@@ -256,7 +256,7 @@ $(function() {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
         },
             type: "POST",
-            url: "https://citygrillgroup.jobs/manager-api/get-program-restaurant-week?restaurant=1&week=10&year=2019&category=",
+            url: root_url + "/manager-api/get-program-restaurant-week?restaurant=1&week=10&year=2019&category=",
             dataType: 'json',
             async: true,
             success: function (e){
@@ -291,13 +291,26 @@ $(function() {
     z-index: 1;
     display: flex;
 }
-.ftype > .selected {
-    background: #B8351D;
-    color: white;
-}
+
+
 
 .title {
       margin-top: 0.6em;
+}
+
+.content_restaurant {
+  margin-top: -21px;
+    font-weight: 500;
+}
+
+.fa-hourglass {
+  color: green;
+}
+
+.zupa {
+      font-size: 20px;
+    margin-left: 4px;
+    margin-top: -20px;
 }
 
 .fa-arrow-up:before, .fa-arrow-down:before  {
@@ -396,7 +409,7 @@ background: grey;
 
   
 .inter_h {
-  font-size: 10px;
+  font-size: 13px;
 }
 
 table > tr {
@@ -427,16 +440,18 @@ th {
 }
 
 ._1con p {
-  margin-top: -0.2em;
-    margin-left: 4px;
+    margin-top: 0em;
+    margin-left: -1px;
 }
 
 ._1con  img{
-        width: 59.5px;
-    height: 43px;
-    margin-top: 0.9em;
+    width: 45px;
+    height: 45px;
+    margin-top: -0.1em;
     border-radius: 25%;
-    margin-left: -1em;
+    margin-left: 0em;
+        margin-left: 0.3em;
+
 }
 
 #menu {

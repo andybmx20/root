@@ -94,8 +94,13 @@ if ( device.platform === 'Android' ) {
                 </div>
                 </header>
 
+<div class="filters">
 
-</div></div>
+                <div class="ftype">
+                    <div id="typew" onclick="route(15)" class="selected"><p>Premii</p></div>
+                    <div id="typem" onclick="route(155)"><p>Comenzile mele</p></div>
+                </div>
+</div>
 
 </body>
 
@@ -161,22 +166,19 @@ function  counter(x)
 
 function favorite(x, i)
 {
-    if($(x).hasClass("far"))
-      $(x).removeClass("far").addClass("fas")
-    else
-      $(x).removeClass("fas").addClass("far")
-
+    
         $.ajax
       ({
       beforeSend: function (xhr) {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/toggle-favorite-prize?id="+i+"&employee=" + user.employee,
+        url: root_url + "/api/toggle-favorite-prize?id="+i+"&employee=" + user.employee,
         dataType: 'json',
         async: true,
-        success: function (r){
-            alert(r)
+        complete: function (r){
+            alert(r.responseText)
+            reload()
         }
     }); 
 }
@@ -195,7 +197,7 @@ function    show_item(i)
   document.getElementsByClassName("title")[0].innerText = "Premiu selectat"
   document.getElementsByClassName("fa-bars")[0].className = "fas fa-arrow-circle-left"
 
-  var img = "https://citygrillgroup.jobs"+r[i].image
+  var img = root_url + r[i].image
              var fav = '<i onclick="favorite(this, '+r[i].id+')" class="far fa-heart"></i>'
 
   var data = "<div id='prize'>"
@@ -247,7 +249,7 @@ function  removeBasket()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/empty-basket?employee=" + user.employee,
+        url: root_url + "/api/empty-basket?employee=" + user.employee,
         dataType: 'json',
         async: true,
         complete: function (z){
@@ -267,7 +269,7 @@ function  confirm()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/confirm-order?order=" + order,
+        url: root_url + "/api/confirm-order?order=" + order,
         dataType: 'json',
         async: true,
         complete: function (z){
@@ -278,7 +280,7 @@ function  confirm()
                 xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
             },
                 type: "POST",
-                url: "https://citygrillgroup.jobs/api/login",
+                url: root_url + "/api/login",
                 dataType: 'json',
                 async: true,
                 complete: function (e){
@@ -304,8 +306,8 @@ var n = $("#pun").html()
   }
 
   var data = '<p>' +user.firstname + ' ' + user.lastname + ' : ' + user.phone + '</p>'
-  data += '<p>' + 'adresa ' + '</p>'
-  data += "<button class='btn' onclick=route('e')>Schimba adresa</button>"
+  data += '<p>' + 'Adresa: ' + getAdresa() + '</p>'
+  data += "<button class='btn' onclick=route('eredirect')>Schimba adresa</button>"
 openLoader();
 
  $.ajax
@@ -314,7 +316,7 @@ openLoader();
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/update-prize-order?order="+order+"&quantity="+$("#number").val(),
+        url: root_url + "/api/update-prize-order?order="+order+"&quantity="+$("#number").val(),
         dataType: 'json',
         async: true,
         complete: function (z){
@@ -347,7 +349,7 @@ if(!basket) {
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/add-prize-to-basket?id="+r[i].id+"&employee="+user.employee+"&quantity=1",
+        url: root_url + "/api/add-prize-to-basket?id="+r[i].id+"&employee="+user.employee+"&quantity=1",
         dataType: 'json',
         async: true,
         success: function (z){
@@ -363,14 +365,14 @@ if(!basket) {
   document.getElementsByClassName("title")[0].innerText = "Premiu selectat"
   document.getElementsByClassName("fa-bars")[0].className = "fas fa-arrow-circle-left"
 
-  var img = "https://citygrillgroup.jobs"+r[i].image
+  var img = root_url + r[i].image
 
   var data = `<div id="basket"><img src="`+img+`"><div><p class="matitle">`+r[i].title+`</p><p class="description">`+r[i].description+`</p><div class="basket_bottom"><div class='a1sd'><div><button class=' ui-btn ui-shadow ui-corner-all' onclick="counter(-1)">-</button></div><div><input id="number" onchange="counter(0)" value="1" type="number" name=""></div><div><button class=' ui-btn ui-shadow ui-corner-all' onclick="counter(1)">+</button></div></div><div class="balance"><p>`+r[i].points+` puncte</p></div></div>
   </div></div>`
   document.getElementById("menu").setAttribute("onclick", "reload()");
   data += '<div class="golire" onclick="removeBasket()"">Golire cos</div>'
 
-  data += "<div class='sumar'><p>Sumar comandă</p><div class='qwe'><p>Cost total produse</p><p id='final'></p></div><p>Produsele vor fi livrate prin curier, în maxim 5 zile lucrătoare de la efectuarea comenzii.</p><button id='cont' onclick='_continue()' class='btn btn-succes'>Continua</button</div>"
+  data += "<div class='sumar'><p>Sumar comandă</p><div class='qwe'><p>Cost total produse</p><p id='final'></p></div><p>Daca sunt produse livrabile prin curier, acestea vor fi trimise in maxim 5 zile de la efectuarea comenzii.</p><button id='cont' onclick='_continue()' class='btn btn-succes'>Continua spre adresa</button</div>"
 
   data += "</div>"
 
@@ -393,7 +395,7 @@ function check_basket()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-basket?employee=" + user.employee,
+        url: root_url + "/api/get-basket?employee=" + user.employee,
         dataType: 'json',
         async: false,
         success: function (p){
@@ -418,7 +420,7 @@ function    fetch_prizes()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-prizes",
+        url: root_url + "/api/get-prizes",
         dataType: 'json',
         async: true,
         success: function (r){
@@ -431,9 +433,11 @@ function    fetch_prizes()
               var text = (r[i].points < user.points) ? "Adauga in cos" : "Acumuleaza puncte" 
               var grey = (r[i].points < user.points) ? "" : "grey" 
               var opacity = (r[i].points < user.points) ? "1" : "0.8" 
-
-              var img = "https://citygrillgroup.jobs"+r[i].image
-             var fav = '<i onclick="favorite(this, '+r[i].id+')" class="far fa-heart"></i>'
+              var favorite = ""
+              var img = root_url + r[i].image
+              if(r[i].favourite == 1)
+                favorite = "#B8351D"
+             var fav = '<i style="color: '+favorite+'" onclick="favorite(this, '+r[i].id+')" class="fas fa-heart"></i>'
               var data = "<div style='opacity:"+opacity+"'  class='prize'>  <div onclick='show_item("+i+")'><img src="+img+"></div>  <div><p onclick='show_item("+i+")' class='ztitle'>"+r[i].title+"</p></div>  <div class='asd'><p>"+r[i].points+" puncte</p><p>"+fav+"</p></div>  <button onclick='basket_item("+i+")' style='background:"+grey+"' class='btn btn-succes'>"+text+"</button></div>"
               $("#prizes").append(data)
               if(r[i].id == basket)
@@ -466,16 +470,17 @@ $(function() {
 
 <style>
 
-.menuname p {
-    font-size: 14px;
-    font-weight: 200;
-    margin-top: -10px;
+.menuname h2 {
+    font-size: 24px!important;
+    height: 2.3em!important;
+    margin-top: 7px;
 }
-
 .golire {
   color: red;
     font-weight: bold;
     padding: 1em;
+        margin-left: 1em;
+
     padding-bottom: 0;
 }
 
@@ -518,15 +523,18 @@ $(function() {
     width: auto;
 }
 
+.asd {
+  color: #B8351D;
+}
+
 #basket {
     text-align: center;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-    margin: 0.4em;
-
+    margin: 1.5em;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
-
-    margin-top: 6em;}
+    margin-top: 6em;
+    padding: 1em;}
 
 .fa-arrow-circle-left{
       color: white;
@@ -545,6 +553,9 @@ $(function() {
 }
 
 .sumar {
+      margin-left: 1em;
+    margin-right: 1em;
+
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
@@ -582,9 +593,14 @@ $(function() {
     font-weight: bold;
 }
 
+button {
+    background: #009966!important;
+    color: white!important;
+}
+
 .btn-succes {
     background: #289828;
-    color: white;
+    color: white!important;
     width: 100%;
 }
 
@@ -614,6 +630,7 @@ $(function() {
 .asd > * {
   width: 50%;
   text-align: center;
+    font-weight: 550;
 }
 
 .fa-heart {
@@ -624,7 +641,7 @@ $(function() {
 
 .menuname h2 {
     font-size: 24px!important;
-    height: 2em!important;
+    height: 2.7em!important;
 }
 
 .blaa {
@@ -645,5 +662,50 @@ $(function() {
 
 #prize {
   margin-top:5.5em;
+}#cont {
+      margin-bottom: 4em;
 }
+</style>
+
+<style>
+  .ftype {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+  .filters {
+    position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 3.5em;
+    z-index: 2;
+    padding-top: 0.5em;
+}
+  .ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}
+.ftype > .selected {
+    background: #9A2C18;
+    color: ghostwhite;
+}
+.ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 5px;
+    text-align: center;
+}#typew p, #typem p {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: 0.5em;
+} 
+
 </style>

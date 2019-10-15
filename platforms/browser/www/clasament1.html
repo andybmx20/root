@@ -104,7 +104,9 @@ if ( device.platform === 'Android' ) {
                         </div>
                 </div>
                 <div class="row2">
+                  <div><p>De la </p></div>
                     <div><input onchange="fetch_data()" id="startdate" type="date" name=""></div>
+                   <div> <p>Pana la</p></div>
                     <div><input onchange="fetch_data()" id="enddate" type="date" name=""></div>
                 </div>
                 </header>
@@ -184,7 +186,7 @@ function  fetch_data()
         xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-my-points?start="+$("#startdate").val()+"&end="+$("#enddate").val()+"&employee=" + user.employee,
+        url: root_url + "/api/get-my-points?start="+$("#startdate").val()+"&end="+$("#enddate").val()+"&employee=" + user.employee,
         dataType: 'json',
         async: true,
         complete: function (e){
@@ -199,11 +201,10 @@ function  fetch_data()
                                 tbalance += n ;
               if(n > 0)
               	n = "+" + e[i].points
-                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="https://citygrillgroup.jobs/'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' ('+n+')</p></div></div>' 
+                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' <span>('+n+' <img class="coins" src="https://citygrillgroup.jobs/media/cache/small_thumb/images/coins.png"/>)</span></p></div></div>' 
 
                 counter++;
                 $("#items").append(div)
-                document.getElementById("thours").innerText = "+" + tbalance + " puncte out4food"
               }
               } 
             });
@@ -215,6 +216,7 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
+                document.getElementById("thours").innerText = user.points + " puncte"
 document.getElementById('startdate').valueAsDate = new Date(new Date() - 1000 * 60 * 60 * 24 * 31);
 document.getElementById('enddate').valueAsDate = new Date();
 
@@ -242,6 +244,19 @@ document.getElementById('enddate').valueAsDate = new Date();
 
 
 <style>
+.ytr span {
+  padding-top: 8px;
+    margin-left: -35px;
+    position: absolute;
+}
+  .coins {
+        height: 15px!important;
+    border-radius: 25%;
+    margin-left: -2.1em;
+    margin-right: 3.4px;
+    padding-left: 2em;
+    margin-top: 13px;
+  }
 
 #items {
   margin-top: 5.6em;
@@ -260,6 +275,13 @@ document.getElementById('enddate').valueAsDate = new Date();
       text-align: center!important;
     }
 
+.row2 p {
+      float: left;
+}
+
+.row2 input {
+padding-right: 0em;
+    padding-left: 2px;}
 .item {
     display: flex;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);

@@ -71,6 +71,115 @@
 if ( device.platform === 'Android' ) {
     $('.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active ').css("position", "initial");
 }
+
+
+var id, job, value, rating=0;
+
+
+function send()
+{ 
+    var r =rating++;
+    $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: root_url + "/api/new-rating?employee="+id+"&rating="+r+"&note="+$("#rtext").val(),
+        dataType: 'json',
+        async: true,
+        complete: function (json){
+            alert(json.responseText)
+
+        }
+    }); 
+}
+
+
+
+function cand(bla)
+{
+    console.log(bla)
+    if(!bla)
+        return;
+
+   a = bla.value
+   if(!a)
+    return;
+    if(!document.getElementById("json-datalist").options.namedItem(a))
+        return;
+    document.getElementById("rr").style.display = ""
+    id = document.getElementById(bla.value).getAttribute("value")
+     image = document.getElementById(bla.value).getAttribute("image")
+     job = document.getElementById(bla.value).getAttribute("job")
+     value = document.getElementById(bla.value).getAttribute("text")
+
+    document.getElementById("rnume").innerText = value;
+    document.getElementById("rimg").src = image;
+    document.getElementById("rjob").innerText = job;
+
+}
+
+function ffstar(id)
+{
+    rating = id.id
+    $('.fa-star').removeClass('golden');
+    fstar(id.id)
+}
+
+function f(){
+// Get the <datalist> and <input> elements.
+var dataList = document.getElementById('json-datalist');
+var input = document.getElementById('ajax');
+
+
+
+//  openLoader()
+   $.ajax
+      ({
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+    },
+        type: "GET",
+        url: root_url + "/api/search-my-team",
+        dataType: 'json',
+        data:{search: input.value},
+        async: true,
+        complete: function (json){
+              jsonOptions = json.responseJSON
+        $(dataList).html("")
+            if(jsonOptions)
+            {
+                var keys = Object.keys(jsonOptions)
+                var values = Object.values(jsonOptions)
+
+                for(i in values) {
+                    var option = document.createElement('option');
+                    var z = values[i].name
+                    var ss = '<option job="'+values[i].job+'" text="'+z+'" id='+keys[i]+' image='+values[i].image+' value='+keys[i]+'>'+values[i].name+'</option>'
+                    $(dataList).append(ss);
+
+            }
+                                $(dataList).trigger("change");
+                    $('json-datalist').selectmenu('refresh', true);
+
+
+            }
+
+
+            // Update the placeholder text.
+            input.placeholder = "Ex. Car";
+          closeLoader()
+        }
+    }); 
+
+// Update the placeholder text.
+input.placeholder = "Ex. Car.";
+
+// Set up and make the request.
+let url = root_url + '/api/search-my-team'
+
+}
 </script>
 
 <body>
@@ -83,7 +192,7 @@ if ( device.platform === 'Android' ) {
                 <header>
                     <div class="row1">
                         <div id="menu" onclick="openNav()"><i class="fas fa-bars"></i></div>
-                        <h2 class="title">Invita pentru angajare</h2>
+                        <h2 class="title">Scrie o recenzie</h2>
                         <div class="navigation">
                             <div><p> <i  class="fas fa-user"></i> </p> </div>
                         </div>
@@ -91,29 +200,37 @@ if ( device.platform === 'Android' ) {
 
                 </header>
 
-                <div class="rating"><h2>Invita un prieten</h2>
+                <div class="rating"><h2>Cauta colegul</h2>
+ <input type="text"  onkeyup="f()" id="ajax"  placeholder="Exemplu: car">
+    <select onchange="cand(this)" id='json-datalist' data-native-menu="false">
 
-                <div>
-                	<div><span>Prenume *</span><input type="text" id="fname"></div>
-                	<div><span>Nume *</span><input type="text" id="flast"></div>
-
-                </div>
-                <div><div>
-                	<span>Telefon *</span>
-                	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
-                		<input type="phone" id="phone">
-                	</div>
-                </div>
-                	<div><span>Pozitie *</span>    <select id="pozitii"></select>
-</div>
+    </select>
 
                 </div>
-
-                <div>
-                	<span>Mesaj</span>
-                	<textarea>Salut! Grupul City Grill angajeaza si m-am gandit sa te recomand pentru pozitia de {job}. Aplica online aici [link] si vei fi sunat pentru interviu</textarea>
-                </div>
-                <button onclick="send()">Trimite</button>
+                <div id="rr" style="display: none" class="rrating">
+                    <h2>Scrie recenzia</h2>
+                    <div class="zara">
+                        <div>
+                            <p>Pentru:</p>
+                             <span id="rnume">gigel</span>
+                            <p id="rjob">bucatar</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <img id="rimg" src="">
+                        </div>
+                    </div>
+                    <p>Nota acordata</p>
+                    <div style="    font-size: 18px;
+    margin-top: -8px;">
+                        <i id="0" onclick="ffstar(this)" class="fa fa-star"></i>
+                        <i id="1" onclick="ffstar(this)" class="fa fa-star"></i>
+                        <i id="2" onclick="ffstar(this)" class="fa fa-star"></i>
+                        <i id="3" onclick="ffstar(this)" class="fa fa-star"></i>
+                        <i id="4" onclick="ffstar(this)" class="fa fa-star"></i>
+                    </div>
+                    <p>Descrie motivul acordarii notei</p>
+                    <textarea id="rtext"></textarea>
+                    <button onclick="send()">Trimite</button>
 
                 </div>
 
@@ -158,68 +275,6 @@ if ( device.platform === 'Android' ) {
 
 <script type="text/javascript">
 
-function send()
-{
-    var a = "", b ="", c="", d="";
-    
-    if($("#fname").val())
-        a = $("#fname").val()
-    else {
-        alert("Completeaza campurile");
-        return;
-    }
-
-    if($("#flast").val())
-        b = $("#flast").val()
-    else {
-        alert("Completeaza campurile");
-        return;
-    }
-
-    if($("#phone").val())
-        c = $("#phone").val()
-    else {
-        alert("Completeaza campurile");
-        return;
-    }
-
-    if($("#pozitii").val())
-        d = $("#pozitii").val()
-    else {
-        alert("Completeaza campurile");
-        return;
-    }
-
-
-        $.ajax
-      ({
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
-    },
-        type: "POST",
-        url: root_url + "/api/new-referral?fn="+a+"&ln="+b+"&ph="+c+"&job="+d,
-        dataType: 'json',
-        async: true,
-        complete: function (json){
-          alert(json.responseText)
-            }
-    });
-}
-
-function fetch_poziti()
-{
-          
-          r = user.jobs
-      for(var j=0;j<r.length;j++) {
-        $("#pozitii").append("<option value="+r[j].id+">"+r[j].pozitie+"</option>").trigger("change")
-      }
-
-  $("#pozitii").prop("selectedIndex", 0);
-
-
-}
-
-
 function    fetch_profile(user)
 {
     if(typeof user == "string")
@@ -234,14 +289,24 @@ function    fetch_profile(user)
 
 }
 
+function fstar(x)
+{
+    if(x>=0)
+    {
+        $($(".fa-star")[x]).addClass("golden")
+        fstar(x-1)
+    }
+    return;
+}
+
 $(function() {
   user = getUser();
       parola = window.localStorage.getItem('parola');
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
-      fetch_poziti()
-    $("#menu").replaceWith("<i onclick=\"route(9)  \" class=\"fas fa-arrow-circle-left\"></i>")
+      f()
+    $("#menu").replaceWith("<i onclick=\"route(10)  \" class=\"fas fa-arrow-circle-left\"></i>")
 });
 
 
@@ -249,6 +314,7 @@ $(function() {
 
 
 <style>
+
 html, body {
     margin: 0;
     padding: 0;
@@ -256,7 +322,15 @@ html, body {
     overflow: hidden;
       overflow-y: scroll; 
 -webkit-overflow-scrolling: touch;}
+.golden {
+    color: #009966!important;
 
+}
+button {
+    background: #009966!important;
+    color: white!important;
+        font-weight: 400!important;
+}
 .fa-arrow-circle-left{
       font-size: 23px;
     color: ghostwhite;
@@ -284,23 +358,6 @@ html, body {
     margin-right: unset!important;
 }
 
-.title {
-    /* font-family: 'Arial'; */
-    font-weight: 400!important;
-    font-style: normal;
-    font-size: 17px;
-    position: absolute;
-    background: transparent;
-    margin-top: 1.7px!important;
-    width: 73%;
-    margin-left: 2.8em;
-    color: ghostwhite;
-}
-button {
-    background: #009966!important;
-    color: white!important;
-}
-
 .profile_key{
     width: auto;
     color: #0000009e;
@@ -309,12 +366,51 @@ button {
     min-width: 3em;
     height: 1.6em;
 }
+.zara > div {
+  width: 50%;
+}
+
+.zara img {
+  right: 0;
+    text-align: right;
+}
+
+
 
 .rating {
-	padding-left: 2em;
-	padding-right: 2em;
-	    margin-top: 4em;
+    padding-left: 2em;
+    padding-right: 2em;
+        margin-top: 4em;
+    padding-top: 1em;
 
+}
+
+.rrating {
+margin-top: 3em;
+    padding-top: 5em;
+font-size: 17px;
+    padding-left: 2.4em;
+        margin-right: 3em;
+}
+
+.zara {
+        margin-top: 0.5em;
+} 
+
+h2 {
+    text-align: center;
+}
+.zara p {
+        margin-top: 0.5em;
+            margin-bottom: 0;
+}
+
+.zara span {
+        font-weight: 700;
+}
+
+.zara > div > * {
+    text-transform: capitalize;
 }
 
 .profile-pic {
@@ -346,6 +442,9 @@ text-align: left;
     }
 
 
+.zara {
+    display: flex;
+}
 
 #profile_content {
     left: 0;
@@ -401,19 +500,22 @@ display: flex;
 
 .app {
     font-size: 12px;
-}
-
-img {
-    height: inherit;
-    width: inherit;
+}img {
+    height: 75px;
+    width: 75px;
     border: 1px solid #d8d8d8;
-    border-radius: inherit;
+    border-radius: 50%;
     background: white;
 }
 
+.zara > div > img {
+    text-align: right;
+}
+
 .rating {
-	text-align: left;
+    text-align: left;
     height: 2em;
+    margin-top: 2.5em;
     font-size: 18px;
 }
 
@@ -422,8 +524,6 @@ img {
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
-
-
 
 .rating_score {
     left: 0;

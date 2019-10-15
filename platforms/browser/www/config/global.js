@@ -2,6 +2,8 @@ let user, today, dd, mm, yyyy, week_id;
 
 let parola;
 
+let root_url = "https://citygrillgroup.jobs";
+
 function 	fetch_config(response)
 {
 	user = response;
@@ -15,6 +17,48 @@ function removeA(arr) {
         }
     }
     return arr;
+}
+
+function getAdresa()
+{
+  var adresa = "";
+
+
+if("street" in user)
+  if(user.street)
+    adresa += "Str " + user.street
+
+if("street_no" in user)
+  if(user.street_no)
+    adresa += ", Nr " + user.street_no
+
+if("stair" in user)
+  if(user.stair)
+    adresa += ", Sc " + user.stair
+
+if("flat" in user)
+  if(user.flat)
+    adresa += ", Et " + user.flat
+
+if("flat" in user)
+  if(user.floor)
+    adresa += ", Ap " + user.floor
+
+  return adresa;
+
+}
+
+function    fetch_poziti(query, json)
+{
+  if(typeof json == "string")
+    json = JSON.parse(json);
+  if(!json)
+    return;
+  for(var i=0;i<json.length;i++)
+  {
+     var option = "<option value=" + json[i].id + ">" + json[i].pozitie + "</option>"
+    $(query).append(option)
+  }
 }
   
 function      expand_filters()
@@ -36,6 +80,14 @@ function      expand_filters()
 function route(id)
 {
   console.log(id)
+  if(id==101)
+        window.location.href="./oferite.html"
+  if(id==100)
+        window.location.href = "./referalnote.html"  
+  if(id==155)
+        window.location.href = "./comenzi.html"
+  if(id=="rn")
+    window.location.href = "./ratingnote.html"
   if(id==1)
     window.location.href = "./agendamealogat.html"
   if(id==2)
@@ -121,6 +173,19 @@ if(document.getElementById("menuz").childNodes.length < 4)
     div.setAttribute("id", "route(" + menu[i].id + ")") 
     div.setAttribute("onclick", "route(" + menu[i].id + ")") 
 
+    var stars = ''
+
+      for(var j=0;j<5;j++)
+    {
+      if(user.rating > j)
+        stars += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
+      else
+        stars += '                <i class="fa fa-star" aria-hidden="true"></i>'
+    }
+    $($("#mySidenav > .rating")[0]).html( stars + '<p class="rating_counter">' + user.pareri + ' recenzii</p>')
+
+//    document.getElementsByClassName("rating")[0].innerHTML = '<p class="rating_counter" style="    margin-left: -60px;    margin-right: 0;">' + user.rating + '</p>'+stars + '<p class="rating_counter">' + user.pareri + ' recenzii</p>'
+
     $(div).append(menu[i].icon);
     a.innerText = menu[i].title;
     $(div).append(a);
@@ -157,13 +222,13 @@ if(document.getElementById("menuz").childNodes.length < 4)
 //document.getElementById("imgbor").children[0].src = "https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"
 
 document.getElementById("fullname").innerText = user.firstname + ' ' + user.lastname;
-document.getElementById("fullimg").src = "https://citygrillgroup.jobs" + user.image
+document.getElementById("fullimg").src = root_url + user.image
 }
 
 
 
 function closeNav() {
-  document.getElementById("mySidenav").style.left = "-350px";
+  document.getElementById("mySidenav").style.left = "-10050px";
   document.getElementsByClassName("closebtn")[0].style.display = "none"
 }
 
@@ -189,10 +254,10 @@ function get_compani()
   $.ajax
       ({
       beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "carmen"));
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/companii",
+        url: root_url + "/api/companii",
         dataType: 'json',
         async: true,
         success: function (e){
@@ -213,10 +278,10 @@ function    get_countries()
     $.ajax
       ({
       beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "carmen"));
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/counties?",
+        url: root_url + "/api/counties",
         dataType: 'json',
         async: true,
         success: function (a){
@@ -240,10 +305,10 @@ function      get_poziti()
       $.ajax
       ({
       beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "carmen"));
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/pozitii",
+        url: root_url + "/api/pozitii",
         dataType: 'json',
         async: true,
         success: function (a){
@@ -267,10 +332,10 @@ function get_brands()
   $.ajax
       ({
       beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "carmen"));
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/brands",
+        url: root_url + "/api/brands",
         dataType: 'json',
         async: true,
         success: function (e){
@@ -290,10 +355,10 @@ function get_brands()
   $.ajax
       ({
       beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "carmen"));
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-all-brands",
+        url: root_url + "/api/get-all-brands",
         dataType: 'json',
         async: true,
         success: function (e){
@@ -314,10 +379,10 @@ function get_brands()
   $.ajax
       ({
       beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "carmen"));
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + window.localStorage.getItem('parola')));
     },
         type: "GET",
-        url: "https://citygrillgroup.jobs/api/get-all-restaurants",
+        url: root_url + "/api/get-all-restaurants",
         dataType: 'json',
         async: true,
         success: function (e){
@@ -345,7 +410,7 @@ $( ".row1 .title" ).click(function() {
   today = mm + '/' + dd + '/' + yyyy;
   get_compani();
   get_brands();
-  get_poziti();
+ // get_poziti();
   get_countries();
   get_restaurants();
   return window.localStorage.getItem('user');

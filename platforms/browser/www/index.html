@@ -51,6 +51,8 @@
 <a href="#" onClick="redirect()" rel="external">
 
 <body>
+    <div id="overlay">
+</div>
     <div id="bg">
       <img src="./imgs/background.png" alt="">
     </div>
@@ -93,7 +95,7 @@ function redirect()
     if(!window.localStorage.getItem('user'))
         document.location.href = "./login.html";
     else
-        document.location.href = "./agendamealogat.html"
+        document.location.href = "./agendamealogat.html";
 }
 
 $(function() {
@@ -115,6 +117,16 @@ $(function() {
 
 
 <style>
+.app {
+    z-index: 3;
+    position: absolute;
+}
+    #subtitles , .title{
+    background: rgba(47, 43, 43, 0.25);
+
+    font-weight: 500;
+
+    }
 
 .event {
     display: none!important;
