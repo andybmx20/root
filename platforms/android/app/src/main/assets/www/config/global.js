@@ -60,7 +60,7 @@ function    fetch_poziti(query, json)
     $(query).append(option)
   }
 }
-
+  
 function      expand_filters()
 {
     if($("#arrow").hasClass("fa-arrow-up"))
@@ -83,7 +83,7 @@ function route(id)
   if(id==101)
         window.location.href="./oferite.html"
   if(id==100)
-        window.location.href = "./referalnote.html"
+        window.location.href = "./referalnote.html"  
   if(id==155)
         window.location.href = "./comenzi.html"
   if(id=="rn")
@@ -127,7 +127,7 @@ function route(id)
     localStorage.clear()
       window.location.href = "./login.html"
   }
-  if(id=="re")
+  if(id=="re") 
       window.location.href = "./register.html"
 }
 
@@ -170,8 +170,21 @@ if(document.getElementById("menuz").childNodes.length < 4)
     if(select == menu[i].id)
       $(div).addClass("selected")
 
-    div.setAttribute("id", "route(" + menu[i].id + ")")
-    div.setAttribute("onclick", "route(" + menu[i].id + ")")
+    div.setAttribute("id", "route(" + menu[i].id + ")") 
+    div.setAttribute("onclick", "route(" + menu[i].id + ")") 
+
+    var stars = ''
+
+      for(var j=0;j<5;j++)
+    {
+      if(user.rating > j)
+        stars += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
+      else
+        stars += '                <i class="fa fa-star" aria-hidden="true"></i>'
+    }
+    $($("#mySidenav > .rating")[0]).html( stars + '<p class="rating_counter">' + user.pareri + ' recenzii</p>')
+
+//    document.getElementsByClassName("rating")[0].innerHTML = '<p class="rating_counter" style="    margin-left: -60px;    margin-right: 0;">' + user.rating + '</p>'+stars + '<p class="rating_counter">' + user.pareri + ' recenzii</p>'
 
     $(div).append(menu[i].icon);
     a.innerText = menu[i].title;
@@ -388,11 +401,11 @@ function getUser()
 
 $( ".row1 .title" ).click(function() {
   openNav()
-});
+}); 
 
   today = new Date();
   dd = String(today.getDate()).padStart(2, '0');
-  mm = String(today.getMonth() + 1).padStart(2, '0');
+  mm = String(today.getMonth() + 1).padStart(2, '0'); 
   yyyy = today.getFullYear();
   today = mm + '/' + dd + '/' + yyyy;
   get_compani();

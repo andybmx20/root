@@ -80,7 +80,7 @@ if ( device.platform === 'Android' ) {
 <body>
 
 
-
+   
 <div class="app">
 <div class="">
 
@@ -88,9 +88,9 @@ if ( device.platform === 'Android' ) {
                     <div class="row1">
                         <div id="menu" onclick="openNav(9)"><i class="fas fa-bars"></i></div>
                         <h2 class="title">Referral</h2>
-                        <div class="navigation">
-                            <div></div>
-                        </div>
+                          <div class="navigation">
+                          <div><p id="thours">0 RON</p> </div>  
+                                                </div>
                 </div>
                 <div class="row2">
                     <p></p>
@@ -110,7 +110,7 @@ if ( device.platform === 'Android' ) {
                 <div class="ftype">
                   <div onclick="route('rn')" id="alerta">
                       <i class="fas fa-share-alt"></i>
-                  </div>
+                  </div>          
                     <div style="display: none" id="typew" onclick="route(10)" class="selected"><p>Recenziile primite</p></div>
                     <div style="display: none" id="typem" onclick="route(101)"><p>Recenziile oferite</p></div>
                 </div>
@@ -126,7 +126,7 @@ if ( device.platform === 'Android' ) {
   <tr>
     <th><i class="far fa-clock"></i></th>
      <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
-    <th><i class="fas fa-crown"></i></th>
+    <th><i class="fas fa-crown"></i></th>   
   </tr>
 </table>
 <div style="display: flex!important" class="zlop">
@@ -169,12 +169,12 @@ function    remove(url)
         url: root_url + url,
         dataType: 'json',
         async: true,
-        complete: function (e){
+        complete: function (e){  
         closeLoader()
         alert(e.responseText)
 
           }
-
+        
     });
 }
 
@@ -196,17 +196,17 @@ function  fetch_data()
 
               e = e.responseJSON
               var div=""
+              document.getElementById("thours").innerText = e.reward_total + " RON"
               var counter = 0 ;
                 for(i in e) {
                         var luni = "", resend = "", ron = "", message = "", bb="";
-                        if("reward_value" in e[i])
+                        if(e[i].reward_value)
                           ron = e[i].reward_value + " RON";
-                        if("actions" in e[i])
-                         if("reminder" in e[i].actions)
+                         if(e[i].actions)
                           resend = e[i].actions.reminder
                                                 var arhivaza = '<p onclick="remove(`'+resend+'`)">Arhiveaza</p>'
 
-                        if("employment_period" in e[i]) {
+                        if(e[i].employment_period) {
                           arhivaza = ""
                           luni = e[i].employment_period;
                           message = e[i].message
@@ -258,8 +258,12 @@ $(function() {
     font-size: 24px;
 }
 
+.row2 {
+  display: none;
+}
+
 #items {
-    margin-top: 3.2em;
+    margin-top: 1.2em;
       overflow: auto;
 
 }
@@ -271,8 +275,16 @@ $(function() {
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     background: ghostwhite;
     width: 100%;
+
+
 }
 
+
+#thours {
+    font-size: 16px;
+    margin-top: 11px;
+    margin-right: 0.2em;
+}
 .item_b {
 margin-top: -3em;
     width: 100%;
@@ -371,6 +383,6 @@ display: flex;
     font-size: 16px;
     padding-top: 0;
     margin-top: 0.5em;
-}
+} 
 
 </style>

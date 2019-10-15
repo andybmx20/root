@@ -93,7 +93,7 @@ if ( device.platform === 'Android' ) {
 <body>
 
 
-
+   
 <div class="app">
 <div class="">
 
@@ -136,7 +136,7 @@ if ( device.platform === 'Android' ) {
   <tr>
     <th><i class="far fa-clock"></i></th>
      <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
-    <th><i class="fas fa-crown"></i></th>
+    <th><i class="fas fa-crown"></i></th>   
   </tr>
 </table>
 <div style="display: flex!important" class="zlop">
@@ -196,9 +196,9 @@ function  fetch_data()
               var counter = 0 ;
                 for(i in e) {
                   if(counter==0)
-                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url +'/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p style="    margin-top: 0.4em;"><i class="fas fa-crown"></i>'+e[i].points+'p</p></div></div>'
+                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url +'/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p style="    margin-top: 0.4em;"><i class="fas fa-crown"></i>'+e[i].points+'p</p></div></div>' 
                       else
-                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url + '/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p>'+e[i].points+'p</p></div></div>'
+                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url + '/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p>'+e[i].points+'p</p></div></div>' 
 
                 counter++;
                 $("#items").append(div)
@@ -217,7 +217,7 @@ $(function() {
 document.getElementById('startdate').valueAsDate = new Date(new Date() - 1000 * 60 * 60 * 24 * 31);
 document.getElementById('enddate').valueAsDate = new Date();
 
-
+    
 
    fetch_data()
 
@@ -293,7 +293,7 @@ th {
 .row2  > div {
   width: 50%;
   text-align: center;
-}
+} 
 
 .row2 > div > div {
       width: 85%;

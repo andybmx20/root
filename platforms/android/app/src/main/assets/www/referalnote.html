@@ -77,7 +77,7 @@ var id, job, value, rating=0;
 
 
 function send()
-{
+{ 
     var r =rating++;
     $.ajax
       ({
@@ -92,7 +92,7 @@ function send()
             alert(json.responseText)
 
         }
-    });
+    }); 
 }
 
 
@@ -171,7 +171,7 @@ var input = document.getElementById('ajax');
             input.placeholder = "Ex. Car";
           closeLoader()
         }
-    });
+    }); 
 
 // Update the placeholder text.
 input.placeholder = "Ex. Car.";
@@ -184,8 +184,8 @@ let url = root_url + '/api/search-my-team'
 
 <body>
 
-
-
+  
+   
 <div class="app">
 <div class="">
 
@@ -245,7 +245,7 @@ let url = root_url + '/api/search-my-team'
   <tr>
     <th><i class="far fa-clock"></i></th>
      <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
-    <th><i class="fas fa-crown"></i></th>
+    <th><i class="fas fa-crown"></i></th>   
   </tr>
 </table>
 <div style="display: flex!important" class="zlop">
@@ -320,7 +320,7 @@ html, body {
     padding: 0;
     height: 100%;
     overflow: hidden;
-      overflow-y: scroll;
+      overflow-y: scroll; 
 -webkit-overflow-scrolling: touch;}
 .golden {
     color: #009966!important;
