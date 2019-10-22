@@ -2,7 +2,7 @@ let user, today, dd, mm, yyyy, week_id;
 
 let parola;
 
-let root_url = "https://citygrillgroup.jobs";
+let root_url = "http://ima.tech-it-up.com/";
 
 function 	fetch_config(response)
 {
