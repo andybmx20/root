@@ -104,7 +104,7 @@ if ( device.platform === 'Android' ) {
 <body>
 
 
-   
+
 <div class="app">
 <div class="">
 
@@ -162,7 +162,7 @@ if ( device.platform === 'Android' ) {
             </div>
           </div>
         </div>
-      </div>  
+      </div>
 
        <div class="rating">
           <p style="opacity: 0" class="rating_score">-</p>
@@ -182,7 +182,7 @@ if ( device.platform === 'Android' ) {
                 <div class="ftype">
                   <div onclick="route(100)" id="alerta">
                       <i class="fas golden fa-star"></i>
-                  </div>          
+                  </div>
                     <div id="typew" onclick="route(10)" ><p>Recenziile primite</p></div>
                     <div id="typem" onclick="route(101)" class="selected"><p>Recenziile oferite</p></div>
                 </div>
@@ -198,7 +198,7 @@ if ( device.platform === 'Android' ) {
   <tr>
     <th><i class="far fa-clock"></i></th>
      <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
-    <th><i class="fas fa-crown"></i></th>   
+    <th><i class="fas fa-crown"></i></th>
   </tr>
 </table>
 <div style="display: flex!important" class="zlop">
@@ -233,7 +233,7 @@ if ( device.platform === 'Android' ) {
            <div>
 
             <div class="note_i"><img src="https://citygrillgroup.jobs/media/cache/small_thumb/images/rating.png"></div>
-             
+
              <div class="note_c">
                 <div class="note_t">Rcenzie</div>
                 <div class="note_m">Mesaj</div>
@@ -264,7 +264,7 @@ function fetch_starrs(x, note, nr)
           div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
       else
           div += '                <i class="fa fa-star" aria-hidden="true"></i>'
-      }  
+      }
     var a= "s" + (6-x);
     if(parseInt(note)>0 && note)
       document.getElementById("p"+x).innerText = note;
@@ -312,7 +312,7 @@ function  fetch_data(data)
     var id = "p" + (6-x);
     var u = parseInt(_data.rating[x]/i*100)
     document.getElementById(id).style.width = (u) + "%"
-    fetch_starrs(6-x, _data.rating[x], u) 
+    fetch_starrs(6-x, _data.rating[x], u)
   }
 
 
@@ -325,7 +325,7 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
-    
+
     openLoader()
     $.ajax
       ({
@@ -394,7 +394,7 @@ hr {
     color: white!important;
 }
 
-.star_container > .stars > i { 
+.star_container > .stars > i {
    margin-right: -5px;
 }
 
@@ -615,6 +615,6 @@ color: white;
     font-size: 16px;
     padding-top: 0;
     margin-top: 0.5em;
-} 
+}
 
 </style>
