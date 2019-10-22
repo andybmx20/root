@@ -62,11 +62,10 @@
     <div class="app">
 
         <div id="deviceready" class="blink">
-            <p class="title">Munceste liber</p>
         <div id="subtitles">
-            <div id="first"><p class="subtitle w3-container w3-center w3-animate-left">Planifică-ți câte ore</p></div>
-            <div id="secound"><p class="subtitle">vrei să muncești</p></div>
-            <div id="third"><p class="subtitle">Cand si unde vrei tu</p></div>
+            <div id="first"><p class="subtitle w3-container w3-center w3-animate-left">IMA</p></div>
+            <div style='display: none' id="secound"><p class="subtitle"></p></div>
+            <div style="display: none" id="third"><p class="subtitle"></p></div>
         </div>
 
             <p class="event listening">Connecting to Device</p>
@@ -107,7 +106,7 @@ $(function() {
   $("#first").toggle(750, "linear", function() {
     $("#secound").toggle(1000, "linear", function() {
         $("#third").toggle(1000, "linear", function() {
-            redirect()
+          //  redirect()
   })
   })  })
 
@@ -117,6 +116,42 @@ $(function() {
 
 
 <style>
+    .subtitle {
+    font-size: 41px;
+    z-index: 5;
+    padding-top: 15px;
+    padding-bottom: 0;
+    margin: 0;
+    margin-bottom: -9px;
+    width: 100%;
+}
+
+#subtitles {
+    width: 100%;
+    height: auto;
+     margin-left: 0em; 
+    margin-right: 1em;
+    background: rgba(0, 0, 0, 0.4);
+    position: relative;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 5;
+}
+
+#logotop img {
+    position: fixed;
+    flex: 2;
+    max-width: 100%;
+    left: 0;
+    min-width: 100%;
+    margin-bottom: 45px;
+    width: 100%;
+    margin-top: -0.3em!important;
+    border-radius: 2%;
+    background: #ffffffb0;
+    top: 0;
+}
 .app {
     z-index: 3;
     position: absolute;

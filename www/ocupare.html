@@ -233,7 +233,7 @@ function fetch_data()
 {
         openLoader()
         $.ajax
-          ({
+          ({  
           beforeSend: function (xhr) {
                 xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
         },

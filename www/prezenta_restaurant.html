@@ -59,7 +59,7 @@
 }
 }
 
-table {
+#angajati {
     font-size: 9px;
     font-weight: 700;
     color: #000000c2;
@@ -68,7 +68,9 @@ table {
 }
 
 
-
+#nra {
+  color: #333333!important;
+}
 
 </style>
 
@@ -91,7 +93,7 @@ if ( device.platform === 'Android' ) {
                 <header>
                     <div class="row1">
                         <div id="menu" onclick="openNav(5)"><i class="fas fa-bars"></i></div>
-                        <h2 class="title">Prezenta pe restaurant</h2>
+                        <h2 class="title">Prezenta pe punct de lucru</h2>
                         <div class="navigation">
                             <div><p id="nra">0 angajati </p></div>
                         </div>
@@ -229,7 +231,7 @@ function    status(url)
         dataType: 'json',
         async: true,
         complete: function (e){  
-        closeLoader()
+       closeLoader()
         alert("Status schimbat" + ' | apasa din nou pentru a schimba status ul')
         filter_date()
           }
@@ -346,6 +348,10 @@ width: auto;
 
 [data-role~="page"] {
   overflow: auto!important;
+}
+
+#angajati {
+  padding-right: 2.5em;
 }
 
 td, tr {
