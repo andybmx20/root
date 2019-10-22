@@ -281,7 +281,7 @@ function  fetch_data(data)
   total_rating = 0;
   for(i in data)
   {
-    var div = '<div><div class="note_i"><img src="'+data[i].icon+'"></div><div class="note_c"><div class="note_t">' + data[i].title + '</div><div class="note_m">' + data[i].message + '</div>                <div class="note_d">' + data[i].date + '</div>             </div>             <div class="starrs">                     ';
+    var div = '<div><div class="note_i"><hr><img src="'+data[i].icon+'"></div><div class="note_c"><div class="note_t">' + data[i].title + '</div><div class="note_m">' + data[i].message + '</div>                <div class="note_d">' + data[i].date + '</div>             </div>             <div class="starrs">                     ';
     total_rating += data[i].rating;
     for(var j=0;j<5;j++)
     {
@@ -289,7 +289,6 @@ function  fetch_data(data)
         div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
       else
                 div += '                <i class="fa fa-star" aria-hidden="true"></i>'
-
     }
     div+="</div> </div>           </div>"
     $("#note").append(div)
@@ -350,8 +349,22 @@ $(function() {
 
 <style>
 
+  #alls .fa-star {
+    color: #666!important;
+  }
+
 #alerta .fa-star {
   color: white!important;
+}
+
+hr {
+    margin-bottom: 1rem;
+    position: absolute;
+    border: 2px solid #8e8d8d;
+    margin-left: 42.4px;
+    height: 9em;
+    margin-top: -1px;
+    z-index: -1;
 }
 
 .row2 .fa-star {

@@ -281,7 +281,7 @@ function  fetch_data(data)
   total_rating = 0;
   for(i in data)
   {
-    var div = '<div><div class="note_i"><img src="'+data[i].icon+'"></div><div class="note_c"><div class="note_t">' + data[i].title + '</div><div class="note_m">' + data[i].message + '</div>                <div class="note_d">' + data[i].date + '</div>             </div>             <div class="starrs">                     ';
+    var div = '<div><div class="note_i"><hr><img src="'+data[i].icon+'"></div><div class="note_c"><div class="note_t">' + data[i].title + '</div><div class="note_m">' + data[i].message + '</div>                <div class="note_d">' + data[i].date + '</div>             </div>             <div class="starrs">                     ';
     total_rating += data[i].rating;
     for(var j=0;j<5;j++)
     {
@@ -289,7 +289,6 @@ function  fetch_data(data)
         div += '                <i class=" golden fa fa-star" aria-hidden="true"></i>'
       else
                 div += '                <i class="fa fa-star" aria-hidden="true"></i>'
-
     }
     div+="</div> </div>           </div>"
     $("#note").append(div)
@@ -335,7 +334,7 @@ $(function() {
     },
         type: "POST",
  url: root_url + "/api/get-offered-ratings?employee=" + user.employee,
-         dataType: 'json',
+        dataType: 'json',
         async: true,
         complete: function (json){
           fetch_data(json.responseJSON)
@@ -350,8 +349,44 @@ $(function() {
 
 <style>
 
+  #alls .fa-star {
+    color: #666!important;
+  }
+
+#alerta .fa-star {
+  color: white!important;
+}
+
+hr {
+    margin-bottom: 1rem;
+    position: absolute;
+    border: 2px solid #8e8d8d;
+    margin-left: 42.4px;
+    height: 9em;
+    margin-top: -1px;
+    z-index: -1;
+}
+
 .row2 .fa-star {
     color: #fdfdfd!important;
+}
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    /* text-align: right; */
+    font-size: 16px;
+    white-space: nowrap;
+    transition: width .6s ease;
+    right: 0;
+        background: #009966!important;
+
+    text-align: right;
+    color: white!important;
 }
 
 .star_container > .stars > i { 
@@ -369,10 +404,6 @@ $(function() {
 
 .app {
       margin-top: 5.6em;
-}
-
-#alerta .fa-star {
-  color: white!important;
 }
 
 .note > div {
@@ -404,25 +435,7 @@ $(function() {
 
 }
 
-.progress-bar {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: center;
-    justify-content: center;
-    color: #fff;
-    /* text-align: right; */
-    font-size: 16px;
-    white-space: nowrap;
-    transition: width .6s ease;
-    right: 0;
-    color: #009966!important;
-        background: #009966!important;
 
-    text-align: right;
-    color: white!important;
-}
 
 .note_i > img {
   width: 50px;
@@ -479,12 +492,13 @@ color: white;
     margin-bottom: 5.9px;
     margin-right: 1.4em;
 }
-
 #headernav table .fa-clock {
     margin-top: -9px;
     font-size: 44px!important;
-    margin-left: -31px!important;
+    margin-left: -32px!important;
 }
+
+
 
 .rating {
     display: flex;
