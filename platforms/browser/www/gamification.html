@@ -196,9 +196,9 @@ function  fetch_data()
               var counter = 0 ;
                 for(i in e) {
                   if(counter==0)
-                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url +'/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p style="    margin-top: 0.4em;"><i class="fas fa-crown"></i>'+e[i].points+'p</p></div></div>' 
+                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url +'/'+e[i].image+'"></div><div class="namee left"><p>'+e[i].username+'</p></div><div class="pointss"><p style="    margin-top: 0.4em;"><i class="fas fa-crown"></i>'+e[i].points+'p</p></div></div>' 
                       else
-                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url + '/'+e[i].image+'"></div><div class="left"><p>'+e[i].username+'</p></div><div><p>'+e[i].points+'p</p></div></div>' 
+                        div = '<div class="item"><div style="width:15%"><p>'+i+'</p></div><div class="left"><img src="'+root_url + '/'+e[i].image+'"></div><div class="namee left"><p>'+e[i].username+'</p></div><div class="pointss"><p>'+e[i].points+'p</p></div></div>' 
 
                 counter++;
                 $("#items").append(div)
@@ -241,10 +241,26 @@ document.getElementById('enddate').valueAsDate = new Date();
 
 
 <style>
+  #headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -33px!important;
+}
+
+  .pointss {
+    width: 100%;
+    text-align: right!important;
+    position:absolute;
+        margin-left: -2em!important;
+
+  }
 
 .row2 p {
-      float: left;
-}
+float: left;
+    width: 20%;
+    margin-left: -28px;
+    position: absolute;
+  }
 
 .row2 input {
 padding-right: 0em;
@@ -259,6 +275,14 @@ th {
   text-align: center;
 }
 
+.namee {
+  margin-left: 2em!important;t
+}
+
+.namee > p {
+    text-transform: capitalize;
+}
+
 .left {
     text-align: left!important;
     width: fit-content!important;}
@@ -271,17 +295,18 @@ th {
     border-radius: 3%;
     margin: 3px;}
 .item img {
-    height: 50px;
+height: 50px;
     border-radius: 50%;
     background: white;
+    position: absolute;
     border: 1px solid #d8d8d8;
+    margin-left: -1em;
 }
 
 .item > div {
-    white-space: nowrap;
-    width: 100%;
-    text-align: right;
+white-space: nowrap;
     margin-right: 1em;
+    text-align: center;
 }
 
 .fa-crown {

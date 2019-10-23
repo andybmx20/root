@@ -121,34 +121,16 @@
                     <div id="deviceready" class="blink login">
 
              <div id="logotop">
-                <p><img style="    margin-top: 2em;" src="./imgs/logo.png" alt=""></p>
+                <p><img src="./imgs/logo.png" alt=""></p>
             </div>
-            <form action="">
-            <p class="title" style="margin-top: 20%;background: none;    padding-top: 4vh;">Munceste liber<p>
-                <div>
-                        <i class="fa fa_css fa-envelope"></i>
-                        <input onchange="check_username()" type="text" name="username" id="login_username" required="" value="" placeholder="Utilizator" />
-                </div>
-                <div>
-                    <i class="fa fa_css fa-lock"></i>
-                    <input type="password" name="password" id="login_password" required="" value="" placeholder="Parola" />
-                </div>
-                    <button id="submit" onclick="login(document.getElementById('login_username').value, document.getElementById('login_password').value)">Sign in</button>
-                    <form>
-                        <div class="input_subbutton">
-                            <input id="lck" type="checkbox" name="">
-                            <span class="tinema_minte">Tine-mă minte</span>
-                            <a class="parolauit" href="#">Am uitat parola</a>
-                        </div>  
 
-                </div>
-        </div>
+            	<iframe src="https://ima.tech-it-up.com/app-legal"></iframe>
+                  
+                    <button style="background: green" id="submit">Accepta</button>
+                    <button id="submit">Refuza</button>
 
-                            <a onclick="route('re')" href="./register.html">
-                            <div class="input_subbutton bottom">
-                             <span class="_span1">Nu ai cont?</span>
-                                <span class="_span2">Creaza unul acum</span>
-                            </div>
+
+    
                         </a>
     </body>
 
@@ -164,6 +146,23 @@
 
 
     <style>
+#logotop img {
+    top: 0;
+    flex: 2;
+    width: 22em;
+    margin-left: 0em;
+    margin-top: -0.1em;
+    margin-bottom: 45px;
+}
+
+iframe {
+height: 45%;
+    margin-top: -1em;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 1%;
+}
+
         .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
         background-color: #f9f9f900;
         border-color: #bbb;

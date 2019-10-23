@@ -104,6 +104,47 @@ if(x && y)
 }
 
 
+function        check_pho(x)
+{
+    console.log(x);
+    if(x)
+    {
+        $.ajax({
+         contentType: "application/json",
+       dataType: 'applicaton/json',
+        url: root_url + "/check-unique-phone?phone="+x,  
+        type: "GET",
+        success: function(response) {
+            console.log(response);
+            console.log(JSON.parse(response));
+            alert(JSON.stringify(response));
+        },
+        error: function(e) {
+            console.log(e)
+            if(typeof e == "string")
+                e = JSON.parse(e);
+                console.log(e.responseText) 
+                if(e.responseText == "ok") {
+                    $("#login_phone").removeClass("invalid").addClass("valid");
+                    return;
+                }
+                $("#login_phone").removeClass("valid").addClass("invalid");
+         //   window.location = "./login.html";
+        }
+    });
+    }
+}
+
+function    check_pass(x)
+{
+    console.log(x.value.length)
+    if(x.value.length > 5)
+        $("#login_password").removeClass("invalid").addClass("valid");
+    else
+        $("#login_password").removeClass("valid").addClass("invalid");
+
+}
+
 function        check_username(x)
 {
     console.log(x);
@@ -112,7 +153,7 @@ function        check_username(x)
         $.ajax({
          contentType: "application/json",
        dataType: 'applicaton/json',
-        url: "https://citygrillgroup.jobs/check-username?username="+x,  
+        url: root_url + "/check-username?username="+x,  
         type: "GET",
         success: function(response) {
             console.log(response);
@@ -161,11 +202,11 @@ function        check_username(x)
             </div>
             <div>
                 <i class="fa fa_css fa-lock"></i>
-                <input type="password" name="password" id="login_password" required  value="" placeholder="Parola" />
+                <input onchange="check_pass(document.getElementById('login_password'))" type="password" name="password" id="login_password" required  value="" placeholder="Parola" />
             </div>
             <div>
                 <i class="fa fa_css fa-phone"></i>
-                <input type="phone" name="phone" id="login_phone" required="required" value="" placeholder="Telefon" />
+                <input type="phone" onchange="check_pho(document.getElementById('login_phone').value)"  name="phone" id="login_phone" required="required" value="" placeholder="40XX XXX XXX" />
             </div>
                 <input type="checkbox" required="required" class="checkboxxx" name="">
                 <p style="    font-size: 14px;
@@ -180,7 +221,6 @@ function        check_username(x)
                 <form>
 
     </div>
-    <script type="text/javascript" src="cordova.js"></script>
 </body>
 
 </html>
