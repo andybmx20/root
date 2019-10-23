@@ -185,7 +185,8 @@ if(document.getElementById("menuz").childNodes.length < 4)
     $($("#mySidenav > .rating")[0]).html( stars + '<p class="rating_counter">' + user.pareri + ' recenzii</p>')
 
 //    document.getElementsByClassName("rating")[0].innerHTML = '<p class="rating_counter" style="    margin-left: -60px;    margin-right: 0;">' + user.rating + '</p>'+stars + '<p class="rating_counter">' + user.pareri + ' recenzii</p>'
-
+if(user.jobs.length && user.restaurants)
+document.getElementById("fullposition").innerText = user.jobs[0].pozitie + ' | ' +user.restaurants[0].restaurant
     $(div).append(menu[i].icon);
     a.innerText = menu[i].title;
     $(div).append(a);

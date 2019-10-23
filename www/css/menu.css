@@ -283,6 +283,7 @@ margin-top: 0px!important;
 .menuname p {
     font-size: 14px;
     font-weight: 300;
+    text-transform: capitalize;
     margin-top: -18px;}
 
 #headernav table .fa-crown {
