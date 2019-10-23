@@ -109,7 +109,18 @@ if ( device.platform === 'Android' ) {
                         <div onclick="filter_date(1)" class="arrow_right"><i class="fas fa-arrow-right"></i></div>
                     </div>                </div>
                 </header>
-
+  <div class="filters">
+                <div class="arrow_up" onclick="expand_filters()"><i id="arrow" class="fas fa-arrow-up"></i></div>
+                <div class="ftype">
+                    <div id="typel" class="selected"><p>Luna</p></div>
+                    <div id="typet" ><p>Trimestru</p></div>
+                    <div id="typea"><p>An</p></div>
+                </div>
+                <div class="selects">
+                <p> Puncte de lucru </p>
+                <select id="pozitii"></select>
+                </div>
+            </div>
 
 </div></div>
 </body>
@@ -146,6 +157,7 @@ if ( device.platform === 'Android' ) {
          </div>
   <div id="menuz">
   </div>
+
 </div>
 
 </html>
@@ -244,6 +256,15 @@ var year_counterm = 0;
                 document.getElementById("datetext").innerText = "Peste "+(month_counter)+" luni";
             }
 
+function fetch_pozitii()
+{
+  for(var i=0;i<user.restaurants.length;i++)
+  {
+    $("#pozitii").append("<option id="+user.restaurants[i].id_restaurant+">"+user.restaurants[i].restaurant+"</option>").trigger("change")
+  }
+    $("#pozitii").prop("selectedIndex", 0);
+
+}
 
 $(function() {
    user = getUser();
@@ -251,7 +272,7 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";   
-
+        fetch_pozitii()
         filter_date()
        
 
@@ -293,5 +314,77 @@ $(function() {
 
 [data-role~="page"] {
   overflow: auto!important;
+}
+
+.filters {
+    position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 3.5em;
+    padding-top: 0.5em;
+}
+
+.arrow_up {
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin-top: -2.5em;
+}
+
+.arrow_up > i {
+    background: grey;
+    padding: 2em;
+    margin-top: 0.4em;
+    position: fixed;
+    margin-left: -2em;
+    color: white;
+    z-index: -1;
+    border-radius: 50%;
+}
+.ftype {
+    font-size: 14px;
+    margin-top: 10.7px;
+        position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+
+.expand {
+        height: 11em!important;
+        overflow-x: auto;
+}
+
+.ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 0px;
+    text-align: center;
+}
+
+.fa-arrow-up:before, .fa-arrow-down:before  {
+    margin-top: -1.5em;
+    position: absolute;
+    margin-left: -0.4em;
+}
+
+.selects {
+    margin-top: 5em;
+    color: white;
+}
+
+.ftype > .selected {
+    background: #9A2C18;
+    color: ghostwhite;
+}
+
+#typew p, #typem p {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: 0.5em;
 }
 </style>
