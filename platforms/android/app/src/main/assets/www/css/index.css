@@ -318,8 +318,7 @@ padding-left: 3%;
     max-width: 50%;
 max-width: 70%;
 margin-bottom: 45px;
-margin-left: -10%;}
-
+}
 
 
 
@@ -435,5 +434,7 @@ font-size: 16px;
 color: white;
 border: 1px solid #555;
 border-radius: 5%;
+color: #333333;
+    background: #F8DD09;
 }
 

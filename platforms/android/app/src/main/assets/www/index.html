@@ -106,7 +106,7 @@ $(function() {
   $("#first").toggle(750, "linear", function() {
     $("#secound").toggle(1000, "linear", function() {
         $("#third").toggle(1000, "linear", function() {
-          //  redirect()
+           redirect()
   })
   })  })
 
@@ -139,19 +139,28 @@ $(function() {
     z-index: 5;
 }
 
-#logotop img {
+img {
     position: fixed;
     flex: 2;
     max-width: 100%;
     left: 0;
     min-width: 100%;
-    margin-bottom: 45px;
+    margin-bottom: 0px!important;
     width: 100%;
-    margin-top: -0.3em!important;
-    border-radius: 2%;
+    border-radius: 0%;
     background: #ffffffb0;
-    top: 0;
+    bottom: 0;
 }
+
+#bg {
+    position: fixed;
+    top: -100%;
+    z-index: 0;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+
 .app {
     z-index: 3;
     position: absolute;

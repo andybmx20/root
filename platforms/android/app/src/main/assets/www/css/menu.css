@@ -231,6 +231,8 @@ text-align: center;
 .menuname h2 {
   width: 100%;
     text-overflow: ellipsis;
+        text-transform: capitalize;
+
     white-space: nowrap;
     overflow: hidden;
     height: 1em;
@@ -286,9 +288,12 @@ margin-top: 0px!important;
 }
 
 .menuname p {
-    font-size: 14px;
+font-size: 14px;
     font-weight: 300;
-    margin-top: -18px;}
+    line-height: 1.5em;
+    margin-top: -18px;
+    margin-bottom: -0.2px;
+  }
 
 #headernav table .fa-crown {
     margin: 0px;

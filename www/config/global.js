@@ -2,7 +2,7 @@ let user, today, dd, mm, yyyy, week_id;
 
 let parola;
 
-let root_url = "http://ima.tech-it-up.com/";
+let root_url = "https://ima.tech-it-up.com";
 
 function 	fetch_config(response)
 {
@@ -223,6 +223,8 @@ if(document.getElementById("menuz").childNodes.length < 4)
 
 document.getElementById("fullname").innerText = user.firstname + ' ' + user.lastname;
 document.getElementById("fullimg").src = root_url + user.image
+document.getElementById("fullposition").innerText = user.jobs[0].pozitie + ' | ' +user.restaurants[0].restaurant
+
 }
 
 

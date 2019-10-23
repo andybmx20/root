@@ -294,6 +294,8 @@ function  fetch_data(data)
     $("#note").append(div)
   }
   total_rating /= i;
+  if("total" in _data.rating)
+  if(_data.rating.total)
   var div = "<p> "+_data.rating.total +" </p>"
    for(var j=0;j<5;j++)
     {

@@ -567,12 +567,13 @@ function    fetch_agenda(e)
                 div+='<div style="display: grid">'
                 for(var j in values[i].plan) {
                     div+='<div class="_content"> '
-                    img = '<div class="_img"> <img src="'+values[i].plan[j].restaurant.icon+'"> </div>';
+                    if(values[i].plan[j].location.icon)
+                    img = '<div class="_img"> <img src="'+values[i].plan[j].location.icon+'"> </div>';
                     var h = values[i].plan[j].total_hours.split('.')[0]
                      div+=img;
                     var start_end = values[i].plan[j].in.date.substr(11, 5) + " - " + values[i].plan[j].out.date.substr(11, 5)
-                    var content = '<div><p class="_restaurant">'+values[i].plan[j].restaurant.name
-                    + " " + values[i].plan[j].restaurant.address +' <span class="_street"></span></p> <p class="hour">'+start_end+'</p> <p class="_role">'+values[i].plan[j].job.name+'</p> </div><div class="_pastrat"><p style="color: '+values[i].plan[j].plan_status.color+' ; background: '+values[i].plan[j].plan_status.background+'" class="_nr">'+h+'</div></div>';
+                    var content = '<div><p class="_restaurant">'+values[i].plan[j].location.name
+                    + " " + values[i].plan[j].location.address +' <span class="_street"></span></p> <p class="hour">'+start_end+'</p> <p class="_role">'+values[i].plan[j].job.name+'</p> </div><div class="_pastrat"><p style="color: '+values[i].plan[j].plan_status.color+' ; background: '+values[i].plan[j].plan_status.background+'" class="_nr">'+h+'</div></div>';
                     hours +=(parseInt(values[i].plan[j].total_hours) | 0);
 
                     div+=content;
