@@ -201,7 +201,7 @@ function  fetch_data()
                                 tbalance += n ;
               if(n > 0)
               	n = "+" + e[i].points
-                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><img src="'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' <span>('+n+' <img class="coins" src="https://citygrillgroup.jobs/media/cache/small_thumb/images/coins.png"/>)</span></p></div></div>' 
+                        div = '<div class="item"><div style="width: fit-content;    margin-left: 10vw;"></div><div class="left"><hr><img src="'+e[i].action.icon+'"></div><div class="left"><p>'+e[i].action.action + ' - ' + e[i].reason+'</p></div><div class="ytr"><p >'+e[i].balance+' <span>('+n+' <img class="coins" src="https://citygrillgroup.jobs/media/cache/small_thumb/images/coins.png"/>)</span></p></div></div>' 
 
                 counter++;
                 $("#items").append(div)
@@ -249,6 +249,28 @@ document.getElementById('enddate').valueAsDate = new Date();
     margin-left: -35px;
     position: absolute;
 }
+
+.left img {
+  z-index: 2;
+    position: absolute;
+}
+
+#headernav table .fa-clock {
+    margin-top: -9px;
+    font-size: 44px!important;
+    margin-left: -33px!important;
+}
+
+hr {
+    margin-bottom: 1rem;
+    position: absolute;
+    border: 2px solid #8e8d8d;
+    margin-left: -17.4px;
+    height: 9em;
+    margin-top: -1px;
+    z-index: 0;
+}
+
   .coins {
         height: 15px!important;
     border-radius: 25%;
@@ -276,8 +298,10 @@ document.getElementById('enddate').valueAsDate = new Date();
     }
 
 .row2 p {
-      float: left;
-}
+float: left;
+    width: 20%;
+    margin-left: -28px;
+    position: absolute;}
 
 .row2 input {
 padding-right: 0em;
@@ -288,11 +312,14 @@ padding-right: 0em;
     background: ghostwhite;
     border-radius: 3%;
     margin: 3px;}
-.item img {
+.left img {
 height: 50px;
     border-radius: 25%;
-    margin-left: -2.1em;
-    margin-top: 0.6em;}
+    border: 1px solid #d8d8d8;
+    margin-left: -2.7em;
+    margin-top: 0.6em;
+  }
+
 
 .item > div {
     white-space: nowrap;

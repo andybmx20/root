@@ -86,7 +86,7 @@ if ( device.platform === 'Android' ) {
 <body>
 
 
-   
+
 <div class="app">
 <div class="">
 
@@ -107,7 +107,23 @@ if ( device.platform === 'Android' ) {
                     </div>
                 </div>
                 </header>
-
+  <div class="filters">
+                <div class="arrow_up" onclick="expand_filters()"><i id="arrow" class="fas fa-arrow-up"></i></div>
+                <div class="ftype">
+                    <div id="typel" class="selected"><p>Toti</p></div>
+                    <div id="typet" ><p>Salon</p></div>
+                    <div id="typet" ><p>Bucatarie</p></div>
+                    <div id="typet" ><p>Administrativ</p></div>
+                </div>
+                <div class="selects">
+                <p> Brand </p>
+                <select id="brands"></select>
+                <p> Restaurant </p>
+                <select id="restaurants"></select>
+                <p> Pozitii </p>
+                <select id="pozitii"></select>
+                </div>
+            </div>
 
 </div></div>
 <table id="angajati" style="width:100%">
@@ -132,7 +148,7 @@ if ( device.platform === 'Android' ) {
   <tr>
     <th><i class="far fa-clock"></i></th>
      <th><img id="fullimg"  src="https://banner2.kisspng.com/20180319/xrq/kisspng-computer-icons-user-profile-clip-art-person-icon-user-person-man-icon-5ab04a2bed2dd1.5439408315215027639715.jpg"></th>
-    <th><i class="fas fa-crown"></i></th>   
+    <th><i class="fas fa-crown"></i></th>
   </tr>
 </table>
 <div style="display: flex!important" class="zlop">
@@ -200,7 +216,7 @@ if ( device.platform === 'Android' ) {
         while( getWeekNumber(new Date()) + week_counter < 0) {
             week_counter+=52;
             year_counterw--;
-        }      
+        }
 
         document.getElementById("fweek").innerText = getWeekNumber(new Date())+ week_counter;
         document.getElementById("fyear").innerText =  new Date().getFullYear() + year_counterw;
@@ -230,12 +246,12 @@ function    status(url)
         url: url,
         dataType: 'json',
         async: true,
-        complete: function (e){  
+        complete: function (e){
        closeLoader()
         alert("Status schimbat" + ' | apasa din nou pentru a schimba status ul')
         filter_date()
           }
-        
+
     });
     }
 }
@@ -251,7 +267,7 @@ function fetch_data(d)
     for(i = 1 ; i < length ; i++)
     {
       var th = "<tr>"
-        th += "<td style='display: flex;'> <img src="+d[0][i].image+"><p>" + d[0][i].nume + "</p></td>"
+        th += "<td style='display: flex;'> <img src="+d[0][i].image+"><p class='rew'>" + d[0][i].nume + "</p></td>"
 
       for(j = 0 ; j < d.length ; j++)
       {
@@ -272,9 +288,9 @@ function fetch_data(d)
         if(title == "null" || title == "prezent")
           url = root_url +  d[j][i]["set-absent"]
         if(title == "absent")
-          url =root_url +  d[j][i]["set-liber"]        
+          url =root_url +  d[j][i]["set-liber"]
         if(title == "liber")
-          url = root_url +  d[j][i]["set-prezent"]  
+          url = root_url +  d[j][i]["set-prezent"]
 
           th += "<td onclick='status(`"+(url)+"`)' style='background: "+bg+";color:"+cl+"'>" + h + "</td>"
       }
@@ -320,7 +336,35 @@ function fetch_ajax(cnp, week, year, restaurant=1)
             fetch_data(values)
             console.log(keys)
         }
-    }); 
+    });
+}
+
+
+function fetch_res()
+{
+  for(var i=0;i<user.restaurants.length;i++)
+  {
+    $("#restaurants").append("<option id="+user.restaurants[i].id_restaurant+">"+user.restaurants[i].restaurant+"</option>").trigger("change")
+  }
+    $("#restaurants").prop("selectedIndex", 0);
+}
+
+function fetch_bra()
+{
+  for(var i=0;i<user.brands.length;i++)
+  {
+    $("#brands").append("<option id="+user.brands[i].id+">"+user.brands[i].brand+"</option>").trigger("change")
+  }
+    $("#brands").prop("selectedIndex", 0);
+}
+
+function fetch_poz()
+{
+  for(var i=0;i<user.restaurants.length;i++)
+  {
+    $("#pozitii").append("<option id="+user.jobs[i].id+">"+user.jobs[i].pozitie+"</option>").trigger("change")
+  }
+    $("#pozitii").prop("selectedIndex", 0);
 }
 
 $(function() {
@@ -329,7 +373,7 @@ $(function() {
       user = JSON.parse(user)
       if(!user || ! parola)
           window.location = "./login.html";
-
+        fetch_res();fetch_bra();fetch_poz();
 filter_date()
 });
 
@@ -337,6 +381,11 @@ filter_date()
 
 
 <style>
+
+.rew {
+      margin-top: 0.9em;
+
+}
 
 img {
 width: auto;
@@ -350,15 +399,16 @@ width: auto;
   overflow: auto!important;
 }
 
-#angajati {
-  padding-right: 2.5em;
+#angajati img {
+      border-radius: 50%!important;
+    border: 1px solid #d8d8d8!important;
 }
 
-td, tr {
+#angajati td,#angajati  tr {
     margin: 0!important;
     height: 4em!important;
-    font-size: 11px!important;
-    min-width: 3.2em!important;
+    font-size: 16px!important;
+    font-weight: bold;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     padding: 0.1em;
     height: 4.2em;
@@ -408,7 +458,7 @@ td , tr {
 }
 
 
-  
+
 
     #nra {
     font-size: 15px;
@@ -417,5 +467,84 @@ td , tr {
 
 .hours {
     display: flex;
+}
+
+
+.filters {
+    position: fixed;
+    width: 100%;
+    background: grey;
+    bottom: 0;
+    height: 3.5em;
+    padding-top: 0.5em;
+}
+
+.arrow_up {
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin-top: -2.5em;
+}
+
+.arrow_up > i {
+    background: grey;
+    padding: 2em;
+    margin-top: 0.4em;
+    position: fixed;
+    margin-left: -2em;
+    color: white;
+    z-index: -1;
+    border-radius: 50%;
+}
+.ftype {
+    font-size: 14px;
+    margin-top: 10.7px;
+        position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+
+.expand {
+        height: 11em!important;
+        overflow-x: auto;
+}
+
+.ftype > div {
+    width: 50%;
+    background: white;
+    border: 1px solid #55555547;
+    height: 3.2em;
+    padding-top: 0px;
+    text-align: center;
+}
+
+#table th {
+    border: 1px solid white;
+    min-width: 4em!important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.fa-arrow-up:before, .fa-arrow-down:before  {
+    margin-top: -1.5em;
+    position: absolute;
+    margin-left: -0.4em;
+}
+
+.selects {
+    margin-top: 5em;
+    color: white;
+}
+
+.ftype > .selected {
+    background: #9A2C18;
+    color: ghostwhite;
+}
+
+#typew p, #typem p {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: 0.5em;
 }
 </style>
