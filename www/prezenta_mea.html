@@ -146,6 +146,23 @@ if ( device.platform === 'Android' ) {
          </div>
   <div id="menuz">
   </div>
+  <div class="filters">
+                            <div onclick="route('a')" id="alerta">
+                <i class="fas fa-plus"></i>
+            </div>
+
+                <div class="arrow_up" onclick="expand_filters()"><i id="arrow" class="fas fa-arrow-up"></i></div>
+                <div class="ftype">
+                    <div id="typew" onclick="weekmonth(0)" class="selected"><p>Saptamana</p></div>
+                    <div id="typem" onclick="weekmonth(1)"><p>Luna</p></div>
+                </div>
+                <div class="selects">
+                <p> Joburile mele </p>
+                <div class="ui-select"><div id="pozitii-button" class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow"><span>ospatar</span><select id="pozitii">&gt;<option value="10">ospatar</option></select></div></div>
+                <p> Confirmari </p>
+                <div class="ui-select"><div id="select-4-button" class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow"><span>Toate</span><select><option>Toate</option></select></div></div>
+                </div>
+            </div>
 </div>
 
 </html>
