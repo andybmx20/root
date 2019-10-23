@@ -188,6 +188,10 @@ $(function() {
       if(!user || ! parola)
           window.location = "./login.html";    filter_date()
     //fetch_ajax('', getWeekNumber(new Date())+ week_counter, new Date().getFullYear() + year_counter);
+    if(!user.terms)
+        window.location = "./legal.html"; 
+    if(user.phone_validated == "false")
+        window.location = "./phoneval.html"; 
     fetch_poziti()
 });
 
