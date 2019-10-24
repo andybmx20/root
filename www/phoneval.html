@@ -1,0 +1,310 @@
+    <!DOCTYPE html>
+    <!--
+        Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+        Licensed to the Apache Software Foundation (ASF) under one
+        or more contributor license agreements.  See the NOTICE file
+        distributed with this work for additional information
+        regarding copyright ownership.  The ASF licenses this file
+        to you under the Apache License, Version 2.0 (the
+        "License"); you may not use this fiale except in compliance
+        with the License.  You may obtain  copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing,
+        software distributed under the License is distributed on an
+        "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+         KIND, either express or implied.  See the License for the
+        specific language governing permissions and limitations
+        under the License.
+    -->
+    <html>
+
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+        <!-- Good default declaration:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+            * Enable eval(): add 'unsafe-eval' to default-src
+        * Create your own at http://cspisawesome.com
+        -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+
+    <script src="./config/global.js"></script>
+
+    </head>
+
+
+
+    <script type="text/javascript">
+
+        function login(x, y)
+    {
+        document.getElementsByClassName("ui-icon-loading")[0].style.display = "block"
+
+        $("body > div").addClass("ui-page-active")
+        openLoader();
+        if(x && y) {
+            openLoader();
+                    $("body > div").addClass("ui-page-active");
+            $.ajax
+              ({
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Basic " + btoa(x + ":" + y));
+            },
+                type: "POST",
+                url: root_url + "/api/login",
+                dataType: 'json',
+                async: true,
+                complete: function (e){
+                                        closeLoader()
+                    if(e.statusText == "error")
+                    {
+                        alert("Incearca din nou")
+                        return ;
+                    }
+                    document.getElementsByClassName("ui-icon-loading")[0].style.display = "none"
+
+                    window.localStorage.setItem("parola", y);
+                    fetch_config(e)
+                    user = e;
+                    window.localStorage.setItem("user", JSON.stringify(e.responseJSON));
+                      window.location = "./agendamealogat.html";
+
+                }
+            });
+          }
+        else
+            closeLoader()
+
+                          $("body > div").addClass("ui-page-active")
+
+    }
+
+
+    function        check_username()
+    {
+        return 1;
+    }
+    </script>
+
+
+
+    <body>
+            <div id="overlay">
+
+    </div>
+
+        <div id="bg" class="z">
+          <img src="./imgs/background.png" alt="">
+        </div>
+      
+       
+
+        <div class="app">
+                    <div id="deviceready" class="blink login">
+
+             <div id="logotop">
+                <p><img src="./imgs/logo.png" alt=""></p>
+            </div>
+                    <div>
+                        <h2>IMA</h2>
+                        <p>La prima autentificare este foarte important sa ne asiguram ca numarul de telefon cu care te-ai inregistrat este corcect si iti apartine</p>
+                        <p>Te rugam  sa introduci codul primit prin SMS</p>
+                    </div>
+                    <input required="required"  type="text" name="username" id="login_username" required="" value="" placeholder="Cod" />
+   
+                    <button onclick="check_phone()" style="    margin-bottom: 12em;" id="submit">Accepta</button>
+
+
+    
+                        </a>
+    </body>
+
+    </html>
+
+    <script type="text/javascript">
+
+
+        function check_phone()
+        {
+             
+                $.ajax
+                  ({
+                  beforeSend: function (xhr) {
+                    xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+                },
+                    type: "GET",
+                    url: root_url + "/api/validate-phone?sms_code="+$("#login_username").val(),
+                    dataType: 'json',
+                    async: true,
+                    complete: function (json){
+                    localStorage.clear()
+                        if(json.responseText == "Mulțumim, numărul de telefon a fost validat.") {
+                            alert("Mulțumim, numărul de telefon a fost validat.")
+                            if(!user.terms)
+                                window.location = "./legal.html"; 
+                            else {
+                                localStorage.clear()
+                                window.location = "./login.html"
+                            }
+                        }
+                        alert("Incearca din nou")
+
+                    }
+                }); 
+        }
+
+    $(function() {
+          user = getUser();
+      parola = window.localStorage.getItem('parola');
+      console.log(user == null)
+      if(user == null)
+        window.location = "./login.html"
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
+
+    });</script>
+
+
+    <style>
+        #logotop {
+    position: absolute;
+    z-index: 99;
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+        margin-left: 0%;
+    margin-right: 0%;
+}
+#logotop img {
+    position: fixed;
+    width: 100%;
+    background: #ffffffb0;
+        max-width: 100%;
+margin-top:0px;
+    left: 0;
+    height: 10em;
+}
+
+.ui-input-text {
+    width: 79%;
+}
+
+button,  .ui-input-text {
+    margin-left: 3em!important;   
+}
+
+p {
+        text-align: left;
+    margin-right: 3em;
+    margin-left: 3em;
+}
+
+#submit {
+    height: 2.5em;
+    width: 80%;
+    margin-left: 0.5%;
+    font-size: 16px;
+    border: 1px solid #555;
+    border-radius: 5%;
+    color: #333333;
+    background: #F8DD09;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 9em;
+}
+
+iframe {
+    height: 50%;
+    margin-top: 10.8em;
+    width: 90%;
+    top: 0;
+    margin-left: 5%;
+    margin-right: 1%;
+    position: fixed;
+    left: 0;
+}
+
+        .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+        background-color: #f9f9f900;
+        border-color: #bbb;
+        color: #333;
+        text-shadow: 0 1px 0 #f3f3f3;
+    }
+
+    input {
+        outline: unset!important;
+    }
+
+
+    .app {
+        z-index: 2;
+        position: absolute;
+    }
+
+    .ui-input-text {
+        height: 2em;
+    }
+
+    #lck {
+        margin-right: 0em;
+    margin-top: -0.8em;
+    float: right;
+    box-shadow: 0px 0px 0px 0px transparent!important;
+    text-align: right;
+    width: -webkit-fill-available;
+    zoom: 2;
+    margin-left: -1.3em;
+    }
+
+    .tinema_minte {
+    margin-top: 0.7em;
+    width: 100%;
+    margin-left: 0.2em;
+    font-size: smaller;
+    word-break: break-all;
+}
+
+.parolauit {
+    width: fit-content;
+    float: right;
+    text-align: right;
+    margin-top: 0.8em;
+    color: white!important;
+    font-size: smaller;
+    font-weight: 500!important;
+
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    background-color: #f9f9f900;
+    border-color: #bbb;
+    color: #333;
+    text-shadow: 0 1px 0 #f3f3f3;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    background-color: #f9f9f9;
+    border-color: #bbb;
+    color: #333;
+    text-shadow: 0 1px 0 #f3f3f3;
+}
+    </style>

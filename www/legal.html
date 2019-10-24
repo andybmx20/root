@@ -126,8 +126,8 @@
 
             	<iframe src="https://ima.tech-it-up.com/app-legal"></iframe>
                   
-                    <button id="submit">Accepta</button>
-                    <button style="background: red;color: white;" id="submit">Refuza</button>
+                    <button onclick="terms()" style="    margin-bottom: 12em;" id="submit">Accepta</button>
+                    <button onclick="kill()" style="background: red;color: white;" id="submit">Refuza</button>
 
 
     
@@ -138,9 +138,34 @@
 
     <script type="text/javascript">
 
+
+        function terms()
+        {
+             
+                $.ajax
+                  ({
+                  beforeSend: function (xhr) {
+                    xhr.setRequestHeader ("Authorization", "Basic " + btoa(user.username + ":" + parola));
+                },
+                    type: "GET",
+                    url: root_url + "/api/accept-terms",
+                    dataType: 'json',
+                    async: true,
+                    complete: function (json){
+                    localStorage.clear()
+                        window.location = ("/agendamealogat.html")                      
+                }); 
+        }
+
     $(function() {
-        console.log("here")
-        console.log('00000000000000000000000000000000000000000000000000000');
+          user = getUser();
+      parola = window.localStorage.getItem('parola');
+      console.log(user == null)
+      if(user == null)
+        window.location = "./login.html"
+      user = JSON.parse(user)
+      if(!user || ! parola)
+          window.location = "./login.html";
 
     });</script>
 
@@ -173,13 +198,14 @@ margin-top:0px;
     border: 1px solid #555;
     border-radius: 5%;
     color: #333333;
-    margin-top: 19.5em;
     background: #F8DD09;
-    margin-bottom: -18.6em;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 9em;
 }
 
 iframe {
-    height: 45%;
+    height: 50%;
     margin-top: 10.8em;
     width: 90%;
     top: 0;

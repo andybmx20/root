@@ -8,6 +8,18 @@ function 	fetch_config(response)
 {
 	user = response;
 }
+
+function kill()
+{
+  if (navigator.app) {
+    navigator.app.exitApp();
+} else if (navigator.device) {
+    navigator.device.exitApp();
+} else {
+    window.close();
+}
+}
+
 function removeA(arr) {
     var what, a = arguments, L = a.length, ax;
     while (L > 1 && arr.length) {
@@ -186,7 +198,10 @@ if(document.getElementById("menuz").childNodes.length < 4)
 
 //    document.getElementsByClassName("rating")[0].innerHTML = '<p class="rating_counter" style="    margin-left: -60px;    margin-right: 0;">' + user.rating + '</p>'+stars + '<p class="rating_counter">' + user.pareri + ' recenzii</p>'
 if(user.jobs.length && user.restaurants)
-document.getElementById("fullposition").innerText = user.jobs[0].pozitie + ' | ' +user.restaurants[0].restaurant
+  document.getElementById("fullposition").innerText = user.jobs[0].pozitie + ' | ' +user.restaurants[0].restaurant
+else
+    document.getElementById("fullposition").innerText = "Pozitie" + ' | ' + "Retea"
+
     $(div).append(menu[i].icon);
     a.innerText = menu[i].title;
     $(div).append(a);
@@ -224,7 +239,6 @@ document.getElementById("fullposition").innerText = user.jobs[0].pozitie + ' | '
 
 document.getElementById("fullname").innerText = user.firstname + ' ' + user.lastname;
 document.getElementById("fullimg").src = root_url + user.image
-document.getElementById("fullposition").innerText = user.jobs[0].pozitie + ' | ' +user.restaurants[0].restaurant
 
 }
 
@@ -253,6 +267,8 @@ function get_compani()
 {
   if(window.localStorage.getItem('compani'))
     return
+  if(!user)
+    window.location = "./login.html"
 
   $.ajax
       ({
